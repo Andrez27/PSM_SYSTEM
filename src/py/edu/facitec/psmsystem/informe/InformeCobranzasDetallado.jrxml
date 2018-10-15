@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeCobranzas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2163d502-e178-47d5-8d6a-0fd756b37803">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="DatasetItems" uuid="d6e513ac-99bb-4e61-97a5-f9340f6f6db1">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="fechaInicio" class="java.util.Date">
+			<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+		</field>
+		<field name="fechaVencimiento" class="java.util.Date">
+			<fieldDescription><![CDATA[fechaVencimiento]]></fieldDescription>
+		</field>
+		<field name="valor" class="java.lang.Double">
+			<fieldDescription><![CDATA[valor]]></fieldDescription>
+		</field>
+		<field name="id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[id]]></fieldDescription>
+		</field>
+		<field name="empeno.cliente.nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[empeno.cliente.nombre]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="filtros" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="fechaCobro" class="java.util.Date"/>
+	<field name="valorCobro" class="java.lang.Double"/>
+	<field name="estado" class="java.lang.Boolean"/>
+	<title>
+		<band height="62">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="3" width="595" height="59" backcolor="#FFFFFF" uuid="5c987ac0-4dd0-47d5-99e2-3974f11f25e3"/>
+				<staticText>
+					<reportElement x="0" y="0" width="595" height="60" forecolor="#000000" uuid="7aa4fbbd-4825-4e70-b574-296b98337c67"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Castellar" size="26" isBold="false"/>
+					</textElement>
+					<text><![CDATA[COBRANZA DETALLES ]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy hh:mm:ss a">
+					<reportElement x="466" y="7" width="120" height="14" forecolor="#000000" uuid="00b71ddf-cb3c-4d32-b1aa-3d9a7cabdc6e"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="496" y="20" width="44" height="21" uuid="64c7ecf1-ea59-4aae-9c74-0d7c736aa129"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="540" y="20" width="45" height="21" uuid="3a74de43-49a5-4f55-86c7-03e74ee3646b"/>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<image>
+					<reportElement x="20" y="0" width="70" height="60" uuid="0da86dff-2798-4c2a-9d00-66db02ee798c"/>
+					<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="20" uuid="ab38a34d-ac0b-4aae-b0c8-a21545076e2e"/>
+				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="72413c47-159e-436d-86c3-95eb4d12f6ae"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6197f06a-068a-4c1f-9035-a32a5f50c36a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c63a0d75-7a17-4a8a-ad16-e0d45f1d912f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="138" height="20" uuid="dde0fb53-3895-4ee4-a3dc-295b6ddeaed5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f82971e6-b807-48ce-a895-a9259f0c3333"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha Cobro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="0" width="138" height="20" uuid="896d3022-798a-4742-8d71-6a92d815c23f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8647130f-581d-4061-bdbb-8d18a58cd5b4"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Valor Cobro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="20" uuid="bf69c64e-11f1-4dbc-964f-c41af90ebd99">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cac6db87-4154-4ed3-800f-e9e9a5ba5601"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="-20" y="0" width="595" height="2" uuid="9c02a920-c557-4ba5-9a4d-aef59f103de3"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="48">
+			<property name="com.jaspersoft.studio.layout"/>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="15" uuid="2c0e9ca4-8812-4090-9d75-9046623e8742">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c63a0d75-7a17-4a8a-ad16-e0d45f1d912f"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="138" height="15" uuid="4da81ebd-2569-4503-9420-99c181d4a4cb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f82971e6-b807-48ce-a895-a9259f0c3333"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaCobro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="0" width="138" height="15" uuid="eb5f075c-85b6-4fab-b1a4-99f8fc36a4eb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8647130f-581d-4061-bdbb-8d18a58cd5b4"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorCobro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="138" height="15" uuid="14348553-75a6-4911-8586-6f21d950510a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cac6db87-4154-4ed3-800f-e9e9a5ba5601"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}==true ? "Cobrado" : "Anulado"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="80" height="32" uuid="0ba47bc2-ac65-4f7b-a8fa-e47d059223ae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Detalles: ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="47" width="555" height="1" uuid="f6d57187-7fb7-4db0-96bd-50f00a7ba181"/>
+			</line>
+			<staticText>
+				<reportElement x="80" y="17" width="30" height="13" uuid="a853ce77-b866-46d7-a100-4b1b78390c69"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="17" width="155" height="13" uuid="ace0d772-c074-4732-baf3-9a99de79d6cd"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="15" width="100" height="15" uuid="8d5e9283-b912-463d-9583-83630bec48f0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha Empeño]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="15" width="100" height="15" uuid="64e8cb51-5cf4-4b0d-baf8-ed735bdf8394"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha Vencimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="16" width="90" height="13" uuid="60d54e2b-bc6f-42dd-ba39-fe78317b284d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<summary>
+		<band height="1"/>
+	</summary>
+</jasperReport>
