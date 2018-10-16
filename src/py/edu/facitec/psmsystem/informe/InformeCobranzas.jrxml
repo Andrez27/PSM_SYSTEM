@@ -72,7 +72,7 @@
 				<reportElement x="100" y="0" width="138" height="20" uuid="dde0fb53-3895-4ee4-a3dc-295b6ddeaed5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f82971e6-b807-48ce-a895-a9259f0c3333"/>
 				</reportElement>
-				<textElement verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Fecha Cobro]]></text>
@@ -112,11 +112,11 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="100" y="0" width="138" height="15" uuid="4da81ebd-2569-4503-9420-99c181d4a4cb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f82971e6-b807-48ce-a895-a9259f0c3333"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaCobro}]]></textFieldExpression>

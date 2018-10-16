@@ -81,7 +81,7 @@
 				<reportElement x="40" y="0" width="60" height="20" uuid="757b81f7-222e-483c-b58f-f0026cdc30db">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b1c7fc9-ae07-4900-bd5c-7e858fd64885"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="13" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
@@ -135,11 +135,11 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="40" y="0" width="60" height="15" uuid="4cca4255-c97c-4b8f-a353-ff733fda661c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b1c7fc9-ae07-4900-bd5c-7e858fd64885"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{fechaDia})]]></textFieldExpression>
