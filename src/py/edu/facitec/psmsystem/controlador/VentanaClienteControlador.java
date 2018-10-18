@@ -13,7 +13,6 @@ import py.edu.facitec.psmsystem.dao.ClienteDao;
 import py.edu.facitec.psmsystem.entidad.Cliente;
 import py.edu.facitec.psmsystem.interfaz.AccionesABM;
 import py.edu.facitec.psmsystem.tabla.TablaCliente;
-import py.edu.facitec.psmsystem.util.TelefonoUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaClienteControlador implements AccionesABM, KeyListener {

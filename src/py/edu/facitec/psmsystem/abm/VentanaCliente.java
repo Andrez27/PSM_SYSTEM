@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -17,14 +19,11 @@ import javax.swing.SwingConstants;
 import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.componente.VentanaGenerica;
 import py.edu.facitec.psmsystem.controlador.VentanaClienteControlador;
-import py.edu.facitec.psmsystem.util.TelefonoUtil;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class VentanaCliente extends VentanaGenerica {
 	private JTextField tfNombre;
 	private NumberTextField tfDocumento;
-	private JFormattedTextField tfTelefono;
+	private JTextField tfTelefono;
 	private JTextField tfDomicilio;
 	private JTextField tfEmail;
 	private JLabel lblValidarNombre;
@@ -136,6 +135,12 @@ public class VentanaCliente extends VentanaGenerica {
 		tfNombre.setColumns(10);
 
 		tfDocumento = new NumberTextField();
+		tfDocumento.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				lblDocumentoDuplicado.setVisible(false);
+			}
+		});
 		tfDocumento.setEditable(false);
 		tfDocumento.setEnabled(false);
 		tfDocumento.addKeyListener(new KeyAdapter() {
@@ -165,14 +170,21 @@ public class VentanaCliente extends VentanaGenerica {
 		getPanelFormulario().add(tfDocumento);
 		tfDocumento.setColumns(10);
 
-		tfTelefono = new JFormattedTextField(TelefonoUtil.getMascara());
+		tfTelefono = new JTextField();
 		tfTelefono.setEditable(false);
 		tfTelefono.setEnabled(false);
+		tfTelefono.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				lblValidarTelefono.setVisible(false);
+			}
+		});
 		tfTelefono.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+				int k = (int) e.getKeyChar();										//32= ESPACIO, 40= (, 41= ), 43= +, 45= -
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=32 & k !=43 & k !=40 & k !=41 & k !=45) {
 					e.consume();
 					lblValidarTelefono.setVisible(true);
 				}else{
@@ -257,7 +269,7 @@ public class VentanaCliente extends VentanaGenerica {
 	public void settfDocumento(NumberTextField tfDocumento) {
 		this.tfDocumento = tfDocumento;
 	}
-	public JFormattedTextField gettfTelefono() {
+	public JTextField gettfTelefono() {
 		return tfTelefono;
 	}
 	public void settfTelefono(JFormattedTextField tfTelefono) {

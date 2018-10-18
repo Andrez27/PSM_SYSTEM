@@ -218,6 +218,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 		tfCuota.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				lblValidarCuota.setVisible(false);
 				calculoTotal();
 			}
 		});

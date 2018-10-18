@@ -1,5 +1,6 @@
 package py.edu.facitec.psmsystem.abm;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -24,6 +25,8 @@ import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.app.VentanaPrincipal;
 import py.edu.facitec.psmsystem.dao.ConfiguracionDao;
 import py.edu.facitec.psmsystem.entidad.Configuracion;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class VentanaConfiguracion extends JDialog {
 	private JTextField tfNombre;
@@ -38,7 +41,9 @@ public class VentanaConfiguracion extends JDialog {
 	private JButton btnCancelar;
 	private JButton btnBorrar;
 	private List<Configuracion> campos;
+	private JLabel lblValidarTelefono;
 	private JComponent ventanaConfiguracion;
+	private JLabel lblValidarRuc;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -125,7 +130,27 @@ public class VentanaConfiguracion extends JDialog {
 		tfNombre.setColumns(10);
 
 		tfRuc = new JTextField();
+		tfRuc.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				lblValidarRuc.setVisible(false);
+			}
+		});
 		tfRuc.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				int k = (int) e.getKeyChar();
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=45) {
+					e.consume();
+					lblValidarRuc.setVisible(true);
+				}else{
+					lblValidarRuc.setVisible(false);
+				}
+				if (tfTelefono.getText().length() == 20) {
+					e.consume();
+				}
+			}
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -140,7 +165,27 @@ public class VentanaConfiguracion extends JDialog {
 		tfRuc.setColumns(10);
 
 		tfTelefono = new JTextField();
+		tfTelefono.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				lblValidarTelefono.setVisible(false);
+			}
+		});
 		tfTelefono.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				int k = (int) e.getKeyChar();										//32= ESPACIO, 40= (, 41= ), 43= +, 45= -
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=32 & k !=43 & k !=40 & k !=41 & k !=45) {
+					e.consume();
+					lblValidarTelefono.setVisible(true);
+				}else{
+					lblValidarTelefono.setVisible(false);
+				}
+				if (tfTelefono.getText().length() == 20) {
+					e.consume();
+				}
+			}
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -148,6 +193,7 @@ public class VentanaConfiguracion extends JDialog {
 					tfEmail.requestFocus();
 					tfEmail.selectAll();
 				}
+				
 			}
 		});
 		tfTelefono.setBounds(185, 82, 195, 20);
@@ -222,6 +268,19 @@ public class VentanaConfiguracion extends JDialog {
 		});
 		btnCancelar.setBounds(266, 194, 97, 34);
 		getContentPane().add(btnCancelar);
+		
+		lblValidarTelefono = new JLabel("*Solo n\u00FAmeros");
+		lblValidarTelefono.setVisible(false);
+		lblValidarTelefono.setForeground(Color.RED);
+		lblValidarTelefono.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblValidarTelefono.setBounds(185, 101, 178, 14);
+		getContentPane().add(lblValidarTelefono);
+		
+		lblValidarRuc = new JLabel("*Caracter no permitido");
+		lblValidarRuc.setVisible(false);
+		lblValidarRuc.setForeground(Color.RED);
+		lblValidarRuc.setBounds(184, 68, 154, 15);
+		getContentPane().add(lblValidarRuc);
 
 		datosActuales();
 	
@@ -404,6 +463,4 @@ public class VentanaConfiguracion extends JDialog {
 	public void setBtnBorrar(JButton btnBorrar) {
 		this.btnBorrar = btnBorrar;
 	}
-
-
 }
