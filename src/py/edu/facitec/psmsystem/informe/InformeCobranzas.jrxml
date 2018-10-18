@@ -4,6 +4,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="filtros" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -49,8 +50,12 @@
 	<pageHeader>
 		<band height="20">
 			<textField>
-				<reportElement x="0" y="0" width="555" height="20" uuid="ab38a34d-ac0b-4aae-b0c8-a21545076e2e"/>
+				<reportElement x="0" y="0" width="340" height="20" uuid="ab38a34d-ac0b-4aae-b0c8-a21545076e2e"/>
 				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="217" height="20" uuid="5ca004d9-4213-4a31-8679-1d337d75b704"/>
+				<textFieldExpression><![CDATA[" Código de Reporte: "+$P{codigo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

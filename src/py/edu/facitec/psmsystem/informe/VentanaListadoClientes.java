@@ -285,6 +285,7 @@ public class VentanaListadoClientes extends JDialog {
 					   + "Total registros: "+lblTotalRegistros.getText()+"";
 		Map<String, Object> map = new HashMap<>();
 		map.put("filtros", filtros);
+		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "ListadoClientes");
 
 	}

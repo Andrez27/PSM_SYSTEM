@@ -75,7 +75,7 @@ public class Cargando extends JFrame {
 		lblGif.setBounds(8, 208, 135, 68);
 		contentPane.add(lblGif);
 
-		lblVersion = new JLabel("v2.0");
+		lblVersion = new JLabel("v1.9");
 		lblVersion.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblVersion.setBounds(393, 250, 46, 30);
 		lblVersion.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);

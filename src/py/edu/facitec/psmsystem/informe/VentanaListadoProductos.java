@@ -146,7 +146,7 @@ public class VentanaListadoProductos extends JDialog {
 			}
 		});
 		tfDesdeDescri.setColumns(10);
-		tfDesdeDescri.setBounds(274, 10, 91, 20);
+		tfDesdeDescri.setBounds(285, 10, 91, 20);
 		getContentPane().add(tfDesdeDescri);
 		
 		tfHastaDescri = new JTextField();
@@ -160,7 +160,7 @@ public class VentanaListadoProductos extends JDialog {
 			}
 		});
 		tfHastaDescri.setColumns(10);
-		tfHastaDescri.setBounds(274, 35, 91, 20);
+		tfHastaDescri.setBounds(285, 35, 91, 20);
 		getContentPane().add(tfHastaDescri);
 		
 		cbOrden = new JComboBox();
@@ -228,12 +228,12 @@ public class VentanaListadoProductos extends JDialog {
 		
 		JLabel lblDesdeDescri = new JLabel("Desde Descripci\u00F3n: ");
 		lblDesdeDescri.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeDescri.setBounds(160, 10, 114, 19);
+		lblDesdeDescri.setBounds(162, 10, 124, 19);
 		getContentPane().add(lblDesdeDescri);
 		
 		JLabel lblHastaDescri = new JLabel("Hasta Descripci\u00F3n: ");
 		lblHastaDescri.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHastaDescri.setBounds(158, 35, 117, 18);
+		lblHastaDescri.setBounds(162, 35, 124, 18);
 		getContentPane().add(lblHastaDescri);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -283,6 +283,7 @@ public class VentanaListadoProductos extends JDialog {
 					   + "Total registros: "+lblTotalRegistros.getText()+"";
 		Map<String, Object> map = new HashMap<>();
 		map.put("filtros", filtros);
+		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "ListadoProductos");
 
 	}

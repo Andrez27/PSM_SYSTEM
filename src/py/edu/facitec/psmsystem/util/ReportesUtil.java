@@ -4,6 +4,7 @@ import java.awt.Dialog.ModalExclusionType;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -35,6 +36,7 @@ public class ReportesUtil{
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
+		
 		
 	}
 }

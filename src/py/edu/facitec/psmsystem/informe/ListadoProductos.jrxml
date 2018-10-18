@@ -5,6 +5,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PSMSystemAdapter"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="filtros" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
@@ -51,8 +52,12 @@
 	<pageHeader>
 		<band height="20">
 			<textField>
-				<reportElement x="0" y="0" width="555" height="20" uuid="c1127c3f-ddf2-4f98-9194-9e1cd7afcf00"/>
+				<reportElement x="0" y="0" width="340" height="20" uuid="c1127c3f-ddf2-4f98-9194-9e1cd7afcf00"/>
 				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="217" height="20" uuid="d83f9585-4b40-43eb-8f44-baaa13497dad"/>
+				<textFieldExpression><![CDATA[" Código de Reporte: "+$P{codigo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

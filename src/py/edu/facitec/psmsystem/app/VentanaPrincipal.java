@@ -73,7 +73,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/img/ventanas/icono.png")));
 		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this); 
 
-		setTitle("PSMSystem v2.0");
+		setTitle("PSMSystem v1.9");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1366, 759);
 		setLocationRelativeTo(this);

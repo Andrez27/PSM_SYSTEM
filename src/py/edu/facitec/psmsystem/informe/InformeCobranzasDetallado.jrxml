@@ -49,6 +49,7 @@
 	</subDataset>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="filtros" class="java.lang.String"/>
+	<parameter name="codigo" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -95,8 +96,12 @@
 	<pageHeader>
 		<band height="20">
 			<textField>
-				<reportElement x="0" y="0" width="555" height="20" uuid="ab38a34d-ac0b-4aae-b0c8-a21545076e2e"/>
+				<reportElement x="0" y="0" width="340" height="20" uuid="ab38a34d-ac0b-4aae-b0c8-a21545076e2e"/>
 				<textFieldExpression><![CDATA[$P{filtros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="217" height="20" uuid="f5036291-4dd2-451d-a298-dae71e988041"/>
+				<textFieldExpression><![CDATA[" Código de Reporte: "+$P{codigo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -229,9 +234,9 @@
 			</staticText>
 			<componentElement>
 				<reportElement stretchType="RelativeToTallestObject" x="80" y="30" width="475" height="15" uuid="6bebac42-8350-4556-baf1-fde14aa21d8b"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="DatasetDeudas" uuid="037a2d6f-b112-4007-90e3-5e48d64aba9f">
-						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{deudaClientes}) ]]></dataSourceExpression>
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{deudaClientes})]]></dataSourceExpression>
 					</datasetRun>
 					<jr:listContents height="15" width="475">
 						<textField>

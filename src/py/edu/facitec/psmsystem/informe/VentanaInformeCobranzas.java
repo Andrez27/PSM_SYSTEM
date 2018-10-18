@@ -178,13 +178,13 @@ public class VentanaInformeCobranzas extends JDialog {
 		getContentPane().add(btnSalir);
 		
 		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
-		lblDesdeFecha.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDesdeFecha.setBounds(11, 10, 84, 19);
+		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDesdeFecha.setBounds(11, 10, 90, 19);
 		getContentPane().add(lblDesdeFecha);
 		
 		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
-		lblHastaFecha.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHastaFecha.setBounds(11, 32, 84, 18);
+		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblHastaFecha.setBounds(11, 32, 90, 18);
 		getContentPane().add(lblHastaFecha);
 		
 		chDetallado = new JCheckBox("Detallado");
@@ -218,12 +218,14 @@ public class VentanaInformeCobranzas extends JDialog {
 						   + "Total registros: "+lblTotalRegistros.getText()+"";
 			Map<String, Object> map = new HashMap<>();
 			map.put("filtros", filtros);
+			map.put("codigo", ""+((Math.random()*9999)+1000));
 			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzasDetallado");
 		} else {
 			String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
 						   + "Total registros: "+lblTotalRegistros.getText()+"";
 			Map<String, Object> map = new HashMap<>();
 			map.put("filtros", filtros);
+			map.put("codigo", ""+((Math.random()*9999)+1000));
 			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzas");
 
 		}

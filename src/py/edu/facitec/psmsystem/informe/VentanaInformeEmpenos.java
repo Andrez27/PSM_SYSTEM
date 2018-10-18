@@ -83,7 +83,7 @@ public class VentanaInformeEmpenos extends JDialog {
 		getContentPane().add(lblTotalRegistros);
 
 		tfDesdeFecha = new JFormattedTextField(FechaUtil.getMascara());
-		tfDesdeFecha.setBounds(100, 11, 70, 20);
+		tfDesdeFecha.setBounds(103, 9, 70, 20);
 		getContentPane().add(tfDesdeFecha);
 		tfDesdeFecha.addKeyListener(new KeyAdapter() {
 			@Override
@@ -107,7 +107,7 @@ public class VentanaInformeEmpenos extends JDialog {
 				}
 			}
 		});
-		tfHastaFecha.setBounds(100, 34, 70, 20);
+		tfHastaFecha.setBounds(103, 32, 70, 20);
 		getContentPane().add(tfHastaFecha);
 		tfHastaFecha.setColumns(10);
 		
@@ -185,12 +185,12 @@ public class VentanaInformeEmpenos extends JDialog {
 		getContentPane().add(btnSalir);
 		
 		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
-		lblHastaFecha.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHastaFecha.setBounds(11, 34, 93, 18);
 		getContentPane().add(lblHastaFecha);
 		
 		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
-		lblDesdeFecha.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDesdeFecha.setBounds(11, 11, 93, 19);
 		getContentPane().add(lblDesdeFecha);
 		
@@ -221,6 +221,7 @@ public class VentanaInformeEmpenos extends JDialog {
 						+ "Total registros: "+lblTotalRegistros.getText()+"";
 		Map<String, Object> map = new HashMap<>();
 		map.put("filtros", filtros);
+		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "InformeEmpenos");
 
 	}
