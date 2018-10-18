@@ -43,9 +43,6 @@ public class VentanaInformeCobranzas extends JDialog {
 	private CobranzaDao dao;
 	private JTable table;
 	private String filtro;
-	private JTextField tfDesdeId;
-	private JTextField tfHastaId;
-	private JComboBox cbOrden;
 	private AbstractButton btnImprimir;
 	private JLabel lblTotalRegistros;
 	private JButton btnProcesar;
@@ -81,64 +78,19 @@ public class VentanaInformeCobranzas extends JDialog {
 		
 		tablaInformeCobranzas = new TablaInformeCobranzas();
 		
-		JLabel lblDesdeId = new JLabel("Desde Id: ");
-		lblDesdeId.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeId.setBounds(10, 12, 59, 19);
-		getContentPane().add(lblDesdeId);
-		
-		JLabel lblHastaId = new JLabel("Hasta Id: ");
-		lblHastaId.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHastaId.setBounds(11, 34, 58, 18);
-		getContentPane().add(lblHastaId);
-		
-		JLabel lblOrdenarPor = new JLabel("Ordenar por: ");
-		lblOrdenarPor.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrdenarPor.setBounds(360, 12, 77, 18);
-		getContentPane().add(lblOrdenarPor);
-		
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(360, 34, 77, 18);
+		lblTotal.setBounds(180, 32, 64, 18);
 		getContentPane().add(lblTotal);
 		
 		lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTotalRegistros.setBounds(439, 34, 34, 18);
+		lblTotalRegistros.setBounds(246, 32, 34, 18);
 		getContentPane().add(lblTotalRegistros);
 		
-		tfDesdeId = new NumberTextField();
-		tfDesdeId.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
-					tfHastaId.requestFocus();
-					tfHastaId.selectAll();
-				}
-			}
-		});
-		tfDesdeId.setColumns(10);
-		tfDesdeId.setBounds(69, 11, 91, 20);
-		getContentPane().add(tfDesdeId);
-		
-		tfHastaId = new NumberTextField();
-		tfHastaId.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
-					tfDesdeFecha.requestFocus();
-					tfDesdeFecha.selectAll();
-				}
-			}
-		});
-		tfHastaId.setColumns(10);
-		tfHastaId.setBounds(69, 34, 91, 20);
-		getContentPane().add(tfHastaId);
-		
 		tfDesdeFecha = new JFormattedTextField(FechaUtil.getMascara());
-		tfDesdeFecha.setBounds(260, 11, 91, 20);
+		tfDesdeFecha.setBounds(100, 9, 70, 20);
 		getContentPane().add(tfDesdeFecha);
 		tfDesdeFecha.addKeyListener(new KeyAdapter() {
 			@Override
@@ -158,28 +110,13 @@ public class VentanaInformeCobranzas extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (c == e.VK_ENTER) {
-					cbOrden.requestFocus();
-				}
-			}
-		});
-		tfHastaFecha.setBounds(260, 34, 91, 20);
-		getContentPane().add(tfHastaFecha);
-		tfHastaFecha.setColumns(10);
-		
-		cbOrden = new JComboBox();
-		cbOrden.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
 					btnProcesar.requestFocus();
 				}
 			}
 		});
-		cbOrden.setModel(new DefaultComboBoxModel(new String[] {"Id", "Fecha Cobro"}));
-		cbOrden.setSelectedIndex(0);
-		cbOrden.setBounds(440, 11, 91, 20);
-		getContentPane().add(cbOrden);
+		tfHastaFecha.setBounds(100, 32, 70, 20);
+		getContentPane().add(tfHastaFecha);
+		tfHastaFecha.setColumns(10);
 		
 		btnProcesar = new JButton("Procesar");
 		btnProcesar.addActionListener(new ActionListener() {
@@ -199,7 +136,7 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnProcesar.setBounds(552, 11, 122, 34);
+		btnProcesar.setBounds(303, 16, 122, 34);
 		getContentPane().add(btnProcesar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -241,13 +178,13 @@ public class VentanaInformeCobranzas extends JDialog {
 		getContentPane().add(btnSalir);
 		
 		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
-		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeFecha.setBounds(156, 12, 98, 19);
+		lblDesdeFecha.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDesdeFecha.setBounds(11, 10, 84, 19);
 		getContentPane().add(lblDesdeFecha);
 		
 		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
-		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHastaFecha.setBounds(156, 34, 98, 18);
+		lblHastaFecha.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHastaFecha.setBounds(11, 32, 84, 18);
 		getContentPane().add(lblHastaFecha);
 		
 		chDetallado = new JCheckBox("Detallado");
@@ -258,19 +195,11 @@ public class VentanaInformeCobranzas extends JDialog {
 //-------------------------------------METODOS------------------------------------------------
 	private void procesar() {
 		dao = new CobranzaDao();
-		int idDesde = 0;
-		int idHasta = 9999999;
-		try {
-			idDesde = Integer.parseInt(tfDesdeId.getText());
-		} catch (Exception e) {}
-		try {
-			idHasta = Integer.parseInt(tfHastaId.getText());
-		} catch (Exception e) {}
 		
 		Date fechaDesde = FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText());
 		Date fechaHasta = FechaUtil.convertirStringADateUtil(tfHastaFecha.getText());
 		
-		lista = dao.recuperarPorRangos(idDesde, idHasta, fechaDesde, fechaHasta, cbOrden.getSelectedIndex());
+		lista = dao.recuperarPorRangos(fechaDesde, fechaHasta);
 		tablaInformeCobranzas.setLista(lista);
 		tablaInformeCobranzas.fireTableDataChanged();
 		table.setModel(tablaInformeCobranzas);
@@ -285,15 +214,13 @@ public class VentanaInformeCobranzas extends JDialog {
 			return;
 		}
 		if (chDetallado.isSelected()) {
-			String filtros = "Id: "+tfDesdeId.getText()+" "+"hasta"+" "+tfHastaId.getText()+" | "
-						   + "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
+			String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
 						   + "Total registros: "+lblTotalRegistros.getText()+"";
 			Map<String, Object> map = new HashMap<>();
 			map.put("filtros", filtros);
 			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzasDetallado");
 		} else {
-			String filtros = "Id: "+tfDesdeId.getText()+" "+"hasta"+" "+tfHastaId.getText()+" | "
-						   + "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
+			String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
 						   + "Total registros: "+lblTotalRegistros.getText()+"";
 			Map<String, Object> map = new HashMap<>();
 			map.put("filtros", filtros);
@@ -306,11 +233,9 @@ public class VentanaInformeCobranzas extends JDialog {
 	private void cancelar() {
 		dao = new CobranzaDao();
 		
-		tfDesdeId.setText("");
 		tfDesdeFecha.setText("");
-		tfHastaId.setText("");
 		tfHastaFecha.setText("");
 		
-		tfDesdeId.requestFocus();
+		tfDesdeFecha.requestFocus();
 	}
 }

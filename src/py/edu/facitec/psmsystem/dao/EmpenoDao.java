@@ -38,8 +38,7 @@ public class EmpenoDao extends GenericDao<Empeno> {
 	
 	public List<Empeno> recuperarPorRangos(Date fDesde, Date fHasta) {
 		getSession().beginTransaction();
-		String sql = "from Empeno where fechaDia BETWEEN :fDesde and :fHasta "
-				+ "and (fechaDia >= :fDesde or :fDesdeNula = true)  "
+		String sql = "from Empeno where (fechaDia >= :fDesde or :fDesdeNula = true)  "
 				+ "and (fechaDia <= :fHasta or :fHastaNula = true)  ";
 		
 			Query<Empeno> query = getSession().createQuery(sql);

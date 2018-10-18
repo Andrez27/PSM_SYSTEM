@@ -73,17 +73,17 @@ public class VentanaInformeEmpenos extends JDialog {
 		
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(302, 34, 57, 18);
+		lblTotal.setBounds(180, 34, 57, 18);
 		getContentPane().add(lblTotal);
 		
 		lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTotalRegistros.setBounds(360, 34, 34, 18);
+		lblTotalRegistros.setBounds(238, 34, 34, 18);
 		getContentPane().add(lblTotalRegistros);
 
 		tfDesdeFecha = new JFormattedTextField(FechaUtil.getMascara());
-		tfDesdeFecha.setBounds(99, 11, 77, 20);
+		tfDesdeFecha.setBounds(100, 11, 70, 20);
 		getContentPane().add(tfDesdeFecha);
 		tfDesdeFecha.addKeyListener(new KeyAdapter() {
 			@Override
@@ -103,11 +103,11 @@ public class VentanaInformeEmpenos extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (c == e.VK_ENTER) {
-					btnImprimir.requestFocus();
+					btnProcesar.requestFocus();
 				}
 			}
 		});
-		tfHastaFecha.setBounds(99, 34, 77, 20);
+		tfHastaFecha.setBounds(100, 34, 70, 20);
 		getContentPane().add(tfHastaFecha);
 		tfHastaFecha.setColumns(10);
 		
@@ -136,7 +136,7 @@ public class VentanaInformeEmpenos extends JDialog {
 			}
 		});
 		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnProcesar.setBounds(186, 18, 122, 34);
+		btnProcesar.setBounds(276, 18, 122, 34);
 		getContentPane().add(btnProcesar);
 		
 		JScrollPane scrollPane = new JScrollPane();

@@ -36,17 +36,12 @@ public class CobranzaDao extends GenericDao<Cobranza> {
 		return lista;
 	}
 	
-	public List<Cobranza> recuperarPorRangos(int idDesde, int idHasta, Date fDesde, Date fHasta, int indiceOrden) {
-		String[] opcionesOrden = {"id", "fechaCobro"};
+	public List<Cobranza> recuperarPorRangos(Date fDesde, Date fHasta) {
 		getSession().beginTransaction();
-		String sql = "from Cobranza where id BETWEEN :idDesde and :idHasta "
-				+ "and (fechaCobro >= :fDesde or :fDesdeNula = true)  "
-				+ "and (fechaCobro <= :fHasta or :fHastaNula = true)  "
-				+ "order by "+opcionesOrden[indiceOrden];
+		String sql = "from Cobranza where (fechaCobro >= :fDesde or :fDesdeNula = true)  "
+				+ "and (fechaCobro <= :fHasta or :fHastaNula = true)  ";
 		
 			Query<Cobranza> query = getSession().createQuery(sql);
-			query.setParameter("idDesde", idDesde);
-			query.setParameter("idHasta", idHasta);
 			query.setParameter("fDesde", fDesde);
 			query.setParameter("fDesdeNula", fDesde == null);
 			query.setParameter("fHasta", fHasta);
