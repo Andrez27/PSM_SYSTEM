@@ -36,17 +36,13 @@ public class EmpenoDao extends GenericDao<Empeno> {
 		return lista;
 	}
 	
-	public List<Empeno> recuperarPorRangos(int idDesde, int idHasta, Date fDesde, Date fHasta, int indiceOrden) {
-		String[] opcionesOrden = {"id", "fechaDia"};
+	public List<Empeno> recuperarPorRangos(Date fDesde, Date fHasta) {
 		getSession().beginTransaction();
-		String sql = "from Empeno where id BETWEEN :idDesde and :idHasta "
+		String sql = "from Empeno where fechaDia BETWEEN :fDesde and :fHasta "
 				+ "and (fechaDia >= :fDesde or :fDesdeNula = true)  "
-				+ "and (fechaDia <= :fHasta or :fHastaNula = true)  "
-				+ "order by "+opcionesOrden[indiceOrden];
+				+ "and (fechaDia <= :fHasta or :fHastaNula = true)  ";
 		
 			Query<Empeno> query = getSession().createQuery(sql);
-			query.setParameter("idDesde", idDesde);
-			query.setParameter("idHasta", idHasta);
 			query.setParameter("fDesde", fDesde);
 			query.setParameter("fDesdeNula", fDesde == null);
 			query.setParameter("fHasta", fHasta);

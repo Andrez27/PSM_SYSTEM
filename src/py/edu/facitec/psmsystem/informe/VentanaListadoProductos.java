@@ -80,22 +80,22 @@ public class VentanaListadoProductos extends JDialog {
 		
 		JLabel lblDesdeId = new JLabel("Desde Id: ");
 		lblDesdeId.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeId.setBounds(11, 10, 60, 19);
+		lblDesdeId.setBounds(8, 10, 60, 19);
 		getContentPane().add(lblDesdeId);
 		
 		JLabel lblHastaId = new JLabel("Hasta Id: ");
 		lblHastaId.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHastaId.setBounds(11, 34, 60, 18);
+		lblHastaId.setBounds(8, 35, 60, 18);
 		getContentPane().add(lblHastaId);
 		
 		JLabel lblOrdenarPor = new JLabel("Ordenar por: ");
 		lblOrdenarPor.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrdenarPor.setBounds(360, 10, 77, 18);
+		lblOrdenarPor.setBounds(372, 10, 77, 18);
 		getContentPane().add(lblOrdenarPor);
 		
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(360, 34, 77, 18);
+		lblTotal.setBounds(372, 34, 77, 18);
 		getContentPane().add(lblTotal);
 		
 		lblTotalRegistros = new JLabel("");
@@ -130,7 +130,7 @@ public class VentanaListadoProductos extends JDialog {
 				}
 			}
 		});
-		tfHastaId.setBounds(68, 34, 91, 20);
+		tfHastaId.setBounds(68, 35, 91, 20);
 		getContentPane().add(tfHastaId);
 		tfHastaId.setColumns(10);
 
@@ -146,7 +146,7 @@ public class VentanaListadoProductos extends JDialog {
 			}
 		});
 		tfDesdeDescri.setColumns(10);
-		tfDesdeDescri.setBounds(259, 10, 91, 20);
+		tfDesdeDescri.setBounds(274, 10, 91, 20);
 		getContentPane().add(tfDesdeDescri);
 		
 		tfHastaDescri = new JTextField();
@@ -160,7 +160,7 @@ public class VentanaListadoProductos extends JDialog {
 			}
 		});
 		tfHastaDescri.setColumns(10);
-		tfHastaDescri.setBounds(259, 34, 91, 20);
+		tfHastaDescri.setBounds(274, 35, 91, 20);
 		getContentPane().add(tfHastaDescri);
 		
 		cbOrden = new JComboBox();
@@ -175,7 +175,7 @@ public class VentanaListadoProductos extends JDialog {
 		});
 		cbOrden.setModel(new DefaultComboBoxModel(new String[] {"Id", "Descripci\u00F3n"}));
 		cbOrden.setSelectedIndex(0);
-		cbOrden.setBounds(439, 10, 91, 20);
+		cbOrden.setBounds(451, 10, 91, 20);
 		getContentPane().add(cbOrden);
 		
 		btnProcesar = new JButton("Procesar");
@@ -226,14 +226,14 @@ public class VentanaListadoProductos extends JDialog {
 		});
 		getContentPane().add(btnSalir);
 		
-		JLabel lblDesdeDescri = new JLabel("Desde Descri: ");
+		JLabel lblDesdeDescri = new JLabel("Desde Descripci\u00F3n: ");
 		lblDesdeDescri.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeDescri.setBounds(168, 10, 91, 19);
+		lblDesdeDescri.setBounds(160, 10, 114, 19);
 		getContentPane().add(lblDesdeDescri);
 		
-		JLabel lblHastaDescri = new JLabel("Hasta Descri: ");
+		JLabel lblHastaDescri = new JLabel("Hasta Descripci\u00F3n: ");
 		lblHastaDescri.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHastaDescri.setBounds(168, 34, 91, 18);
+		lblHastaDescri.setBounds(158, 35, 117, 18);
 		getContentPane().add(lblHastaDescri);
 		
 		btnCancelar = new JButton("Cancelar");
