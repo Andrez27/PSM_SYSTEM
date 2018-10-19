@@ -5,8 +5,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import py.edu.facitec.psmsystem.util.TablaUtil;
-
 public class BuscadorGenerico extends JDialog {
 	private JTextField tfBuscador;
 	private JTable table;

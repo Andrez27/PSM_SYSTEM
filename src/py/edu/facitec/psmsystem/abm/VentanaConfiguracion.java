@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -25,8 +27,6 @@ import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.app.VentanaPrincipal;
 import py.edu.facitec.psmsystem.dao.ConfiguracionDao;
 import py.edu.facitec.psmsystem.entidad.Configuracion;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class VentanaConfiguracion extends JDialog {
 	private JTextField tfNombre;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.query.Query;
 
-import py.edu.facitec.psmsystem.entidad.Cliente;
 import py.edu.facitec.psmsystem.entidad.Producto;
 
 public class ProductoDao extends GenericDao<Producto>{

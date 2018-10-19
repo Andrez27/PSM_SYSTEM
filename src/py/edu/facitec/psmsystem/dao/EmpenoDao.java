@@ -5,9 +5,7 @@ import java.util.List;
 
 import org.hibernate.query.Query;
 
-import py.edu.facitec.psmsystem.entidad.Cliente;
 import py.edu.facitec.psmsystem.entidad.Empeno;
-import py.edu.facitec.psmsystem.entidad.Producto;
 
 public class EmpenoDao extends GenericDao<Empeno> {
 	

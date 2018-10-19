@@ -1,11 +1,12 @@
 package py.edu.facitec.psmsystem.componente;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Color;
-import java.net.URL;
-import java.awt.Font;
-import java.awt.Dimension;
 import javax.swing.SwingConstants;
 
 public class BotonIconoPrincipal extends JButton{

@@ -23,7 +23,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import net.sf.jasperreports.engine.JRException;
 import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.dao.ClienteDao;
 import py.edu.facitec.psmsystem.entidad.Cliente;

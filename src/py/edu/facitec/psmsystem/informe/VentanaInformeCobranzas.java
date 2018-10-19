@@ -13,28 +13,22 @@ import java.util.List;
 import java.util.Map;
 
 import javax.swing.AbstractButton;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import net.sf.jasperreports.engine.JRException;
-import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.dao.CobranzaDao;
-import py.edu.facitec.psmsystem.dao.EmpenoDao;
 import py.edu.facitec.psmsystem.entidad.Cobranza;
 import py.edu.facitec.psmsystem.tabla.TablaInformeCobranzas;
 import py.edu.facitec.psmsystem.util.FechaUtil;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
-import javax.swing.JCheckBox;
 
 public class VentanaInformeCobranzas extends JDialog {
 

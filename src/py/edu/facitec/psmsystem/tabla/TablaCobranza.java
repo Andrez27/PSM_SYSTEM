@@ -1,11 +1,9 @@
 package py.edu.facitec.psmsystem.tabla;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import py.edu.facitec.psmsystem.entidad.Cobranza;

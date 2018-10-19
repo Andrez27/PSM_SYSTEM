@@ -23,17 +23,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
-import net.sf.jasperreports.engine.JRException;
 import py.com.cs.xnumberfield.component.NumberTextField;
-import py.edu.facitec.psmsystem.dao.ClienteDao;
 import py.edu.facitec.psmsystem.dao.ProductoDao;
 import py.edu.facitec.psmsystem.entidad.Producto;
 import py.edu.facitec.psmsystem.tabla.TablaListadoProductos;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
-import py.edu.facitec.psmsystem.util.Factory;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaListadoProductos extends JDialog {

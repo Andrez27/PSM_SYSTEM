@@ -9,12 +9,9 @@ public class Factory {
 	private static SessionFactory sessionFactory;
 	
 	public static void setUp(){
-		
 		StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
 			.configure()
 			.build();
-		
-		
 		try {
 			sessionFactory = new MetadataSources(registry)
 				.buildMetadata()

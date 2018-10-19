@@ -6,8 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.swing.table.TableModel;
-
 import py.edu.facitec.psmsystem.buscador.BuscadorCobranza;
 import py.edu.facitec.psmsystem.dao.CobranzaDao;
 import py.edu.facitec.psmsystem.entidad.Cobranza;

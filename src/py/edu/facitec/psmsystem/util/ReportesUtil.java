@@ -4,9 +4,9 @@ import java.awt.Dialog.ModalExclusionType;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -14,7 +14,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class ReportesUtil{
+public class ReportesUtil<E>{
 	private static JasperReport report;
 	private static JasperPrint print;
 	private static JasperViewer viewer;
@@ -36,7 +36,11 @@ public class ReportesUtil{
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
-		
-		
+	}
+	
+	public void primeraConexion() throws JRException{
+		InputStream stream = ReportesUtil.class.getResourceAsStream("/py/edu/facitec/psmsystem/informe/ListadoClientes.jrxml");
+		JasperReport report= JasperCompileManager.compileReport(stream);
+		JasperPrint print = JasperFillManager.fillReport(report, null,new JRBeanCollectionDataSource(null));
 	}
 }

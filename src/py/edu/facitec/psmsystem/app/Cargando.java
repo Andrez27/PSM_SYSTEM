@@ -16,8 +16,10 @@ import javax.swing.border.EmptyBorder;
 import com.jtattoo.plaf.DecorationHelper;
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 
+import net.sf.jasperreports.engine.JRException;
 import py.edu.facitec.psmsystem.componente.LoadingPanel;
 import py.edu.facitec.psmsystem.util.Factory;
+import py.edu.facitec.psmsystem.util.ReportesUtil;
 
 public class Cargando extends JFrame {
 
@@ -83,6 +85,24 @@ public class Cargando extends JFrame {
 		lblVersion.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblVersion.setForeground(Color.DARK_GRAY);
 		contentPane.add(lblVersion);
+		conectarReporte();
+	}
+	
+	public void abrirMenu(){
+		Factory.setUp();
+		conectarReporte();
+		VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+		ventanaPrincipal.setVisible(true);
+		dispose();
+	}
+	
+	public void conectarReporte(){
+		ReportesUtil<VentanaPrincipal> conexionReportes = new ReportesUtil<VentanaPrincipal>();
+		try {
+			conexionReportes.primeraConexion();
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
