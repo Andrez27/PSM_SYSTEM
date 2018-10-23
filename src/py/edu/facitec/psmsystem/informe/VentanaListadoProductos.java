@@ -71,7 +71,7 @@ public class VentanaListadoProductos extends JDialog {
 		lblOrdenarPor.setBounds(382, 10, 77, 18);
 		getContentPane().add(lblOrdenarPor);
 		
-		JLabel lblTotal = new JLabel("Total:");
+		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTotal.setBounds(382, 34, 77, 18);
 		getContentPane().add(lblTotal);
@@ -79,7 +79,7 @@ public class VentanaListadoProductos extends JDialog {
 		lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTotalRegistros.setBounds(439, 34, 34, 18);
+		lblTotalRegistros.setBounds(461, 35, 34, 18);
 		getContentPane().add(lblTotalRegistros);
 		
 		tfDesdeId = new NumberTextField();
@@ -252,7 +252,7 @@ public class VentanaListadoProductos extends JDialog {
 	
 	private void imprimir() {
 		if (lista == null) {
-			JOptionPane.showMessageDialog(null, "No hay datos para imprimir");
+			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String filtros = "Id: "+tfDesdeId.getText()+" "+"hasta"+" "+tfHastaId.getText()+" | "

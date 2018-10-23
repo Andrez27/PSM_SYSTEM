@@ -55,19 +55,19 @@ public class VentanaInformeCobranzas extends JDialog {
 		
 		tablaInformeCobranzas = new TablaInformeCobranzas();
 		
-		JLabel lblTotal = new JLabel("Total:");
+		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(180, 32, 64, 18);
+		lblTotal.setBounds(414, 32, 64, 18);
 		getContentPane().add(lblTotal);
 		
 		lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTotalRegistros.setBounds(246, 32, 34, 18);
+		lblTotalRegistros.setBounds(480, 32, 34, 18);
 		getContentPane().add(lblTotalRegistros);
 		
 		tfDesdeFecha = new JFormattedTextField(FechaUtil.getMascara());
-		tfDesdeFecha.setBounds(100, 9, 70, 20);
+		tfDesdeFecha.setBounds(336, 10, 70, 20);
 		getContentPane().add(tfDesdeFecha);
 		tfDesdeFecha.addKeyListener(new KeyAdapter() {
 			@Override
@@ -91,7 +91,7 @@ public class VentanaInformeCobranzas extends JDialog {
 				}
 			}
 		});
-		tfHastaFecha.setBounds(100, 32, 70, 20);
+		tfHastaFecha.setBounds(336, 33, 70, 20);
 		getContentPane().add(tfHastaFecha);
 		tfHastaFecha.setColumns(10);
 		
@@ -113,7 +113,7 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnProcesar.setBounds(303, 16, 122, 34);
+		btnProcesar.setBounds(552, 10, 122, 34);
 		getContentPane().add(btnProcesar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -156,12 +156,12 @@ public class VentanaInformeCobranzas extends JDialog {
 		
 		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
 		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeFecha.setBounds(11, 10, 90, 19);
+		lblDesdeFecha.setBounds(247, 11, 90, 19);
 		getContentPane().add(lblDesdeFecha);
 		
 		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
 		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHastaFecha.setBounds(11, 32, 90, 18);
+		lblHastaFecha.setBounds(247, 33, 90, 18);
 		getContentPane().add(lblHastaFecha);
 		
 		chDetallado = new JCheckBox("Detallado");
@@ -187,7 +187,7 @@ public class VentanaInformeCobranzas extends JDialog {
 	
 	private void imprimir() {
 		if (lista == null) {
-			JOptionPane.showMessageDialog(null, "No hay datos para imprimir");
+			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		if (chDetallado.isSelected()) {

@@ -60,23 +60,23 @@ public class VentanaListadoClientes extends JDialog {
 		
 		lblOrdenarPor = new JLabel("Ordenar por: ");
 		lblOrdenarPor.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrdenarPor.setBounds(361, 11, 77, 18);
+		lblOrdenarPor.setBounds(372, 10, 77, 18);
 		getContentPane().add(lblOrdenarPor);
 		
-		JLabel lblTotal = new JLabel("Total:");
+		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(361, 34, 77, 18);
+		lblTotal.setBounds(372, 35, 77, 18);
 		getContentPane().add(lblTotal);
 		
 		lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTotalRegistros.setBounds(446, 34, 34, 18);
+		lblTotalRegistros.setBounds(451, 35, 34, 18);
 		getContentPane().add(lblTotalRegistros);
 		
 		JLabel lblDesdeId = new JLabel("Desde Id: ");
 		lblDesdeId.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeId.setBounds(11, 11, 60, 19);
+		lblDesdeId.setBounds(11, 10, 60, 19);
 		getContentPane().add(lblDesdeId);
 		
 		JLabel lblHastaId = new JLabel("Hasta Id: ");
@@ -96,7 +96,7 @@ public class VentanaListadoClientes extends JDialog {
 			}
 		});
 		tfDesdeId.setColumns(10);
-		tfDesdeId.setBounds(69, 11, 91, 20);
+		tfDesdeId.setBounds(69, 10, 91, 20);
 		getContentPane().add(tfDesdeId);
 		
 		tfHastaId = new NumberTextField();
@@ -117,7 +117,7 @@ public class VentanaListadoClientes extends JDialog {
 		
 		JLabel lblDesdeNombre = new JLabel("Desde Nombre: ");
 		lblDesdeNombre.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeNombre.setBounds(163, 11, 98, 19);
+		lblDesdeNombre.setBounds(163, 10, 98, 19);
 		getContentPane().add(lblDesdeNombre);
 		
 		JLabel lblHastaNombre = new JLabel("Hasta Nombre: ");
@@ -126,7 +126,7 @@ public class VentanaListadoClientes extends JDialog {
 		getContentPane().add(lblHastaNombre);
 		
 		tfDesdeNombre = new JTextField();
-		tfDesdeNombre.setBounds(260, 11, 91, 20);
+		tfDesdeNombre.setBounds(260, 10, 91, 20);
 		getContentPane().add(tfDesdeNombre);
 		tfDesdeNombre.addKeyListener(new KeyAdapter() {
 			@Override
@@ -166,7 +166,7 @@ public class VentanaListadoClientes extends JDialog {
 		});
 		cbOrden.setModel(new DefaultComboBoxModel(new String[] {"Id", "Nombre"}));
 		cbOrden.setSelectedIndex(0);
-		cbOrden.setBounds(440, 11, 91, 20);
+		cbOrden.setBounds(451, 10, 91, 20);
 		getContentPane().add(cbOrden);
 		
 		btnProcesar = new JButton("Procesar");
@@ -187,7 +187,7 @@ public class VentanaListadoClientes extends JDialog {
 			}
 		});
 		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnProcesar.setBounds(552, 11, 122, 34);
+		btnProcesar.setBounds(552, 10, 122, 34);
 		getContentPane().add(btnProcesar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -259,7 +259,7 @@ public class VentanaListadoClientes extends JDialog {
 	
 	private void imprimir() {
 		if (lista == null) {
-			JOptionPane.showMessageDialog(null, "No hay datos para imprimir");
+			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String filtros = "Id: "+tfDesdeId.getText()+" "+"hasta"+" "+tfHastaId.getText()+" | "

@@ -37,8 +37,11 @@ import py.edu.facitec.psmsystem.controlador.VentanaCobranzaControlador;
 import py.edu.facitec.psmsystem.controlador.VentanaEmpenoControlador;
 import py.edu.facitec.psmsystem.controlador.VentanaProductoControlador;
 import py.edu.facitec.psmsystem.dao.ConfiguracionDao;
+import py.edu.facitec.psmsystem.dao.DeudaClienteDao;
 import py.edu.facitec.psmsystem.entidad.Configuracion;
+import py.edu.facitec.psmsystem.entidad.DeudaCliente;
 import py.edu.facitec.psmsystem.informe.VentanaInformeCobranzas;
+import py.edu.facitec.psmsystem.informe.VentanaInformeDeudas;
 import py.edu.facitec.psmsystem.informe.VentanaInformeEmpenos;
 import py.edu.facitec.psmsystem.informe.VentanaListadoClientes;
 import py.edu.facitec.psmsystem.informe.VentanaListadoProductos;
@@ -163,6 +166,14 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 			}
 		});
 		mnInformes.add(mntmInformeDeCobranzas);
+		
+		JMenuItem mntmInformeDeDeudas = new JMenuItem("Informe de Deudas");
+		mntmInformeDeDeudas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirInformeDeudas();
+			}
+		});
+		mnInformes.add(mntmInformeDeDeudas);
 
 		JMenu mnUtilidades = new JMenu("Utilidades");
 		menuBar.add(mnUtilidades);
@@ -381,6 +392,11 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		VentanaInformeCobranzas ventanaInformeCobranzas = new VentanaInformeCobranzas();
 		ventanaInformeCobranzas.setVisible(true);
 	}
+	
+	private void abrirInformeDeudas() {
+		VentanaInformeDeudas ventanaInformeDeudas = new VentanaInformeDeudas();
+		ventanaInformeDeudas.setVisible(true);
+	}
 
 //----------------DESACTIVAR FALLA TECLA F10------------------------------------------
 	public boolean dispatchKeyEvent(KeyEvent e) {
@@ -401,6 +417,22 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		lblRuc.setText(configuracion.get(0).getRuc());
 		lblTelefono.setText(configuracion.get(0).getTelefono());
 		lblEmail.setText(configuracion.get(0).getEmail());
+	}
+	
+//----------------VERIFICAR VENCIMIENTO DEUDAS------------------------------------------
+	private void verificarFechasVencimiento() {
+		DeudaClienteDao deudaClienteDao = new DeudaClienteDao();
+		List<DeudaCliente> deudas = deudaClienteDao.comprobarDeudasVencidas();
+		for (int i = 0; i < deudas.size(); i++) {
+			deudaClienteDao = new DeudaClienteDao();
+			deudas.get(i).setEstado(1);
+			try {
+				deudaClienteDao.modificar(deudas.get(i));
+				deudaClienteDao.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 //----------------INICIALIZAR BASE DE DATOS------------------------------------------

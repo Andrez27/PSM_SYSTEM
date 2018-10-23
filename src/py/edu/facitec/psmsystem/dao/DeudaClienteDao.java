@@ -1,5 +1,6 @@
 package py.edu.facitec.psmsystem.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.query.Query;
@@ -27,6 +28,16 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 			id = Integer.parseInt(filtro);
 		} catch (Exception e) {}
 		query.setParameter("id", id);
+		List<DeudaCliente> lista = query.getResultList();
+		commit();
+		return lista;
+	}
+	
+	public List<DeudaCliente> comprobarDeudasVencidas() {
+		getSession().beginTransaction();
+		String sql = "from DeudaCliente where fechaVencimiento <= :fDesde ";
+		Query<DeudaCliente> query = getSession().createQuery(sql);
+		query.setParameter("fDesde", new Date());
 		List<DeudaCliente> lista = query.getResultList();
 		commit();
 		return lista;
