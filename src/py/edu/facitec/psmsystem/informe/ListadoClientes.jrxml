@@ -57,7 +57,7 @@
 			</textField>
 			<textField>
 				<reportElement x="340" y="0" width="217" height="20" uuid="cb22b8e8-7804-404b-b5bd-2e05e4c93a39"/>
-				<textFieldExpression><![CDATA[" Código de Reporte: "+$P{codigo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[" Código de Listado: "+$P{codigo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

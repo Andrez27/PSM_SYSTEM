@@ -84,12 +84,12 @@ public class VentanaListadoProductos extends JDialog {
 		
 		JLabel lblOrdenarPor = new JLabel("Ordenar por: ");
 		lblOrdenarPor.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblOrdenarPor.setBounds(372, 10, 77, 18);
+		lblOrdenarPor.setBounds(382, 10, 77, 18);
 		getContentPane().add(lblOrdenarPor);
 		
 		JLabel lblTotal = new JLabel("Total:");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(372, 34, 77, 18);
+		lblTotal.setBounds(382, 34, 77, 18);
 		getContentPane().add(lblTotal);
 		
 		lblTotalRegistros = new JLabel("");
@@ -169,7 +169,7 @@ public class VentanaListadoProductos extends JDialog {
 		});
 		cbOrden.setModel(new DefaultComboBoxModel(new String[] {"Id", "Descripci\u00F3n"}));
 		cbOrden.setSelectedIndex(0);
-		cbOrden.setBounds(451, 10, 91, 20);
+		cbOrden.setBounds(461, 10, 84, 20);
 		getContentPane().add(cbOrden);
 		
 		btnProcesar = new JButton("Procesar");
