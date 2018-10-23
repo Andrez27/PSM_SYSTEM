@@ -15,5 +15,4 @@ public class BuscadorProductoControlador {
 		
 		this.bProducto.getTable().setModel(tProducto);
 	}
-
 }

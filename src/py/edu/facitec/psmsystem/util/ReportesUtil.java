@@ -11,11 +11,9 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class ReportesUtil<E>{
-	private static JasperReport report;
 	private static JasperPrint print;
 	private static JasperViewer viewer;
 	
@@ -24,11 +22,12 @@ public class ReportesUtil<E>{
 		InputStream logo = ReportesUtil.class.getResourceAsStream("/img/ventanas/icono.png");
 		map.put("logo", logo);
 		
-		String urlReporte = "/py/edu/facitec/psmsystem/informe/"+reporte+".jasper";
+		String urlReporte = "/py/edu/facitec/psmsystem/informe/"+reporte+".jrxml";
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(lista);
 		
 		try {
-			report = (JasperReport) JRLoader.loadObject(ReportesUtil.class.getResource(urlReporte));
+			InputStream stream = ReportesUtil.class.getResourceAsStream(urlReporte);
+			JasperReport report= JasperCompileManager.compileReport(stream);
 			print = JasperFillManager.fillReport(report, map, dataSource);
 			viewer = new JasperViewer(print, false);
 			viewer.setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);

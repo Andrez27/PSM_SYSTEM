@@ -2,7 +2,6 @@ package py.edu.facitec.psmsystem.abm;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -11,7 +10,6 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -31,21 +29,6 @@ public class VentanaProducto extends VentanaGenerica {
 	private NumberTextField tfPrecioCompra;
 	private JComboBox cbEstado;
 	private JLabel lblVerificarPrecio;
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaProducto dialog = new VentanaProducto();
-					dialog.setUpControlador();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	public void setUpControlador() {
 			new VentanaProductoControlador(this);
@@ -117,7 +100,7 @@ public class VentanaProducto extends VentanaGenerica {
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (tfDescripcion.getText().length() == 25) {
+				if (tfDescripcion.getText().length() == 40) {
 					e.consume();
 				}
 			}

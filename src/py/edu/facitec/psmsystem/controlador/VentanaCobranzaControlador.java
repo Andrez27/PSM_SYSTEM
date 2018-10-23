@@ -69,11 +69,9 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 
 		vCobranza.getBtnRemover().setEnabled(false);
 		vCobranza.getBtnBuscarDeuda().setEnabled(false);
-
 		//Evento del buscador
 		vCobranza.gettBuscador().addKeyListener(this);
 		vCobranza.getTfBuscarDeuda().addKeyListener(this);
-
 	}
 
 	private void recuperarTodo() {
@@ -97,11 +95,11 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		DeudaCliente deu = dao.recuperarPorId(Integer.parseInt(vCobranza.getTfBuscarDeuda().getText()));
 
 		if (deu == null) {
-			JOptionPane.showMessageDialog(null, "Deuda "+vCobranza.getTfBuscarDeuda().getText()+" no encontrada");
+			JOptionPane.showMessageDialog(null, "Deuda "+vCobranza.getTfBuscarDeuda().getText()+" no encontrada", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		if (deu.getEstado() > 2) {
-			JOptionPane.showMessageDialog(null, "Deuda "+vCobranza.getTfBuscarDeuda().getText()+" no encontrada");
+			JOptionPane.showMessageDialog(null, "Deuda "+vCobranza.getTfBuscarDeuda().getText()+" no encontrada", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 
@@ -145,7 +143,6 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		vCobranza.getTfFechaCobro().setValue(FechaUtil.convertirDateUtilAString(new Date()));
 
 		listaDeuda = new ArrayList<>();
-
 	}
 
 	@Override
@@ -154,14 +151,13 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 
 	@Override
 	public void eliminar() {
-		if (cobranza==null) {		//VERIFICA QUE SE SELECCIONO UN REGISTRO
+		if (cobranza==null) {//VERIFICA QUE SE SELECCIONO UN REGISTRO
 			JOptionPane.showMessageDialog(null, "Seleccione un registro");
 		} else {
 			if (cobranza.isEstado() == true){
 				int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que deseas anular la cobranza \n" + cobranza.getId() +" de "+ cobranza.getDeudaClientes().get(0).getEmpeno().getCliente().getNombre(),
-								"ATENCIÓN", JOptionPane.YES_NO_OPTION);
+								"Atención!", JOptionPane.YES_NO_OPTION);
 				if (respuesta == JOptionPane.YES_OPTION) {
-
 					cobranza.setEstado(false);
 					try {
 						dao.modificar(cobranza);
@@ -173,11 +169,11 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 					} catch (Exception e) {
 						dao.rollback();
 						JOptionPane.showMessageDialog(null, "No se pudo anular la cobranza \n" + cobranza.getId() +" "+ cobranza.getDeudaClientes().get(0).getEmpeno().getCliente().getNombre(),
-						"ERROR", JOptionPane.ERROR_MESSAGE);
+						"Error!", JOptionPane.ERROR_MESSAGE);
 					}
 				} 
 			} else {
-				JOptionPane.showMessageDialog(null, "Cobranza ya anulada");
+				JOptionPane.showMessageDialog(null, "Cobranza ya anulada", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 				dao.rollback();
 			}
 		}
@@ -232,7 +228,6 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		estadoInicialCampos2(false);
 		vaciarFormulario();
 		this.vCobranza.getTable().setEnabled(true);
-
 	}
 
 	public void estadoInicialCampos(boolean b) {
@@ -242,14 +237,12 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		this.vCobranza.getBtnRemover().setEnabled(b);
 
 		this.vCobranza.getTable().clearSelection();
-
 	}
 	public void estadoInicialCampos2(boolean b) {
 		this.vCobranza.getTfAbonado().setEditable(b);
 		this.vCobranza.getTfBuscarDeuda().setEnabled(b);
 
 		this.vCobranza.getTable().clearSelection();
-
 	}
 
 	public void vaciarFormulario() {
@@ -261,7 +254,6 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 
 		mtDeudaCliente.setLista(new ArrayList<>());
 		mtDeudaCliente.fireTableDataChanged();
-
 	}
 
 	public void removerDeuda() {
@@ -287,7 +279,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		if (listaDeuda == null) return false;
 		for (int i = 0; i < listaDeuda.size(); i++) {
 			if(listaDeuda.get(i).getId() == d.getId()) {
-				JOptionPane.showMessageDialog(null, "La deuda "+d.getId()+" ya ha sido agregada");
+				JOptionPane.showMessageDialog(null, "La deuda "+d.getId()+" ya ha sido agregada", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 				return true;
 			}
 		}
@@ -306,7 +298,6 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
@@ -328,7 +319,6 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		if (e.getSource() == vCobranza.getTfBuscarDeuda() && e.getKeyCode() == KeyEvent.VK_ENTER) {
 			buscarDeudaPorId();
 		}
-
 	}
 
 	public void abrirBuscarDeuda() {
@@ -359,23 +349,22 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 	//-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------q
 	private boolean validarCampos() {
 		if (listaDeuda.size() == 0) {
-			JOptionPane.showMessageDialog(null, "Selecione una deuda");
+			JOptionPane.showMessageDialog(null, "Selecione una deuda", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vCobranza.getTfBuscarDeuda().requestFocus();
 			return true;
 		}
 		if (vCobranza.getTfAbonado().getText().isEmpty() || vCobranza.getTfAbonado().getValue() == 0) {
-			JOptionPane.showMessageDialog(null, "Informe monto a abonar");
+			JOptionPane.showMessageDialog(null, "Informe monto a abonar", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vCobranza.getTfAbonado().requestFocus();
 			return true;
 		}
 		if (vCobranza.getTfAbonado().getValue() < vCobranza.getTfMontoTotal().getValue()) {
-			JOptionPane.showMessageDialog(null, "Valor abonado es menor que el monto de la deuda");
+			JOptionPane.showMessageDialog(null, "Valor abonado es menor que el monto de la deuda", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vCobranza.getTfAbonado().requestFocus();
 			vCobranza.getTfAbonado().selectAll();
 			return true;
 		}
 		return false;
-
 	}
 
 	@Override

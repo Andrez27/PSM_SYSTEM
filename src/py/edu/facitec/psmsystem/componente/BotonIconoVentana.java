@@ -36,5 +36,4 @@ public class BotonIconoVentana extends JButton{
 			e.printStackTrace();
 		}
 	}
-
 }

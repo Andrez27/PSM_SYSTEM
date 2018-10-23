@@ -10,9 +10,8 @@ import py.edu.facitec.psmsystem.entidad.Empeno;
 public class TablaEmpeno extends AbstractTableModel {
 
 	private String[] columnas = { "ID", "CLIENTE", "VALOR TOTAL", "ESTADO"};
-
 	private List<Empeno> lista = new ArrayList<>();
-
+	
 	public void setLista(List<Empeno> lista) {
 		this.lista = lista;
 	}
@@ -21,12 +20,10 @@ public class TablaEmpeno extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return columnas[column];
 	}
-
 	@Override
 	public int getColumnCount() {
 		return columnas.length;
 	}
-
 	@Override
 	public int getRowCount() {
 		return lista.size();
@@ -70,5 +67,4 @@ public class TablaEmpeno extends AbstractTableModel {
 		if(columnIndex == 2) return Double.class;
 		return super.getColumnClass(columnIndex);
 	}
-
 }

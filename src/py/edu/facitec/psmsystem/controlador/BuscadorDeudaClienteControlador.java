@@ -57,7 +57,6 @@ public class BuscadorDeudaClienteControlador implements KeyListener{
 		tDeuda.fireTableDataChanged();
 		
 		TablaUtil.resizeTableColumnWidth(bDeuda.getTable());
-
 	}
 
 	private void seleccionarRegistro(int posicion) {
@@ -67,7 +66,6 @@ public class BuscadorDeudaClienteControlador implements KeyListener{
 		DeudaCliente deudaCliente = lista.get(posicion);
 		interfaz.setDeudaCliente(deudaCliente);
 		bDeuda.dispose();
-
 	}
 
 	@Override
@@ -79,7 +77,6 @@ public class BuscadorDeudaClienteControlador implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {}
-
 	@Override
 	public void keyReleased(KeyEvent e) {}
 

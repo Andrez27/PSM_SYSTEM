@@ -17,6 +17,4 @@ public class LoadingPanel extends JPanel {
 		setOpaque(false);
 		super.paintComponent(g);
 	}
-
-	
 }

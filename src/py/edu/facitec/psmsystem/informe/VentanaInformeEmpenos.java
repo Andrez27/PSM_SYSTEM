@@ -1,6 +1,5 @@
 package py.edu.facitec.psmsystem.informe;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -35,7 +34,6 @@ public class VentanaInformeEmpenos extends JDialog {
 	private TablaInformeEmpenos tablaInformeEmpenos;
 	private EmpenoDao dao;
 	private JTable table;
-	private String filtro;
 	private AbstractButton btnImprimir;
 	private JLabel lblTotalRegistros;
 	private JButton btnProcesar;
@@ -43,20 +41,6 @@ public class VentanaInformeEmpenos extends JDialog {
 	private JFormattedTextField tfHastaFecha;
 	private JButton btnCancelar;
 	private JButton btnSalir;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaInformeEmpenos dialog = new VentanaInformeEmpenos();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	public VentanaInformeEmpenos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeEmpenos.class.getResource("/img/ventanas/icono.png")));
@@ -221,16 +205,13 @@ public class VentanaInformeEmpenos extends JDialog {
 		map.put("filtros", filtros);
 		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "InformeEmpenos");
-
 	}
 
 	private void cancelar() {
 		dao = new EmpenoDao();
-		
 		tfDesdeFecha.setText("");
 		tfHastaFecha.setText("");
 		
 		tfDesdeFecha.requestFocus();
 	}
-	
 }

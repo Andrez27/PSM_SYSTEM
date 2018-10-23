@@ -24,15 +24,5 @@ public class TablaUtil{
 	        columnModel.getColumn(column).setPreferredWidth(width);
 	    }
 	    
-	} 	
-	
-//	 DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-//		
-//  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-//	  cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-//	  table.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
-//	       
-//	  return getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-//	  }
-
+	} 
 }

@@ -10,7 +10,6 @@ import py.edu.facitec.psmsystem.entidad.Cliente;
 public class TablaListadoClientes extends AbstractTableModel {
 
 	private String[] columnas = { "ID", "NOMBRE Y APELLIDO", "TELEFONO", "EMAIL" };
-
 	private List<Cliente> lista = new ArrayList<>();
 
 	public void setLista(List<Cliente> lista) {

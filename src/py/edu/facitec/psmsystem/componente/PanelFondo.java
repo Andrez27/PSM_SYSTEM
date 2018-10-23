@@ -20,5 +20,4 @@ public class PanelFondo extends JPanel {
 		setOpaque(false);
 		super.paintComponent(g);
 	}
-
 }

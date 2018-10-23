@@ -63,6 +63,7 @@ public class MiToolBar extends JToolBar implements ActionListener {
 		btncnEliminar.addActionListener(this);
 		btncnCancelar.addActionListener(this);
 	}
+	
 	public void estadoInicialToolBar(boolean b, int a) {
 		if (a==1) {
 			btncnNuevo.setEnabled(!b);
@@ -85,7 +86,6 @@ public class MiToolBar extends JToolBar implements ActionListener {
 			btncnGuardar.setEnabled(!b);
 			btncnCancelar.setEnabled(b);
 		}
-		
 	}
 
 	@Override

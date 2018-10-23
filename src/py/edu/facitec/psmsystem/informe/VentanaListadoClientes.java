@@ -1,6 +1,5 @@
 package py.edu.facitec.psmsystem.informe;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -36,7 +35,6 @@ public class VentanaListadoClientes extends JDialog {
 	private TablaListadoClientes tablaClientes;
 	private ClienteDao dao;
 	private JTable table;
-	private String filtro;
 	private JTextField tfDesdeNombre;
 	private JTextField tfHastaNombre;
 	private JComboBox cbOrden;
@@ -48,20 +46,6 @@ public class VentanaListadoClientes extends JDialog {
 	private NumberTextField tfDesdeId;
 	private JButton btnCancelar;
 	private JButton btnSalir;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaListadoClientes dialog = new VentanaListadoClientes();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	public VentanaListadoClientes() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoClientes.class.getResource("/img/ventanas/icono.png")));
@@ -286,12 +270,10 @@ public class VentanaListadoClientes extends JDialog {
 		map.put("filtros", filtros);
 		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "ListadoClientes");
-
 	}
 
 	private void cancelar() {
 		dao = new ClienteDao();
-		
 		tfDesdeId.setText("");
 		tfDesdeNombre.setText("");
 		tfHastaId.setText("");

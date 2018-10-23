@@ -30,10 +30,8 @@ public class VentanaGenerica extends JDialog {
 		setMaximumSize(new Dimension(800, 600));
 		setBounds(100, 100, 890, 500);
 		getContentPane().setLayout(null);
-
 		//Centrar todas las ventanas que hereden de VentanaGenerica
 		setLocationRelativeTo(this);
-
 		//Evitar que se pierda el foco de la ventana
 		setModal(true);
 
@@ -78,15 +76,12 @@ public class VentanaGenerica extends JDialog {
 	public MiToolBar getMiToolBar() {
 		return miToolBar;
 	}
-
 	public JTable getTable() {
 		return table;
 	}
-
 	public JTextField gettBuscador() {
 		return tBuscador;
 	}
-
 	public JPanel getPanelFormulario() {
 		return panelFormulario;
 	}

@@ -34,5 +34,4 @@ public class BotonIconoPrincipal extends JButton{
 			e.printStackTrace();
 		}
 	}
-
 }

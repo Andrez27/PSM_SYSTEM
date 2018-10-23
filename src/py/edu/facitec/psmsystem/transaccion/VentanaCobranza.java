@@ -1,12 +1,10 @@
 package py.edu.facitec.psmsystem.transaccion;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,21 +31,6 @@ public class VentanaCobranza extends VentanaGenerica{
 	private JTable tablaDeuda;
 	private JButton btnBuscarDeuda;
 	private JButton btnRemover;
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaCobranza dialog = new VentanaCobranza();
-					dialog.setUpControlador();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public void setUpControlador() {
 		new VentanaCobranzaControlador(this);
@@ -146,7 +129,7 @@ public class VentanaCobranza extends VentanaGenerica{
 					if (tfAbonado.getValue() >= tfMontoTotal.getValue()) {
 						calcularVuelto();
 					} else {
-						JOptionPane.showMessageDialog(null, "Valor abonado es menor que el monto de la deuda");
+						JOptionPane.showMessageDialog(null, "Valor abonado es menor que el monto de la deuda", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			}
@@ -195,14 +178,12 @@ public class VentanaCobranza extends VentanaGenerica{
 		btnRemover.setActionCommand("RemoverDeuda");
 		btnRemover.setBounds(296, 9, 94, 23);
 		getPanelFormulario().add(btnRemover);
-
 	}
 	
 //-----------------------------METODO PARA CALCULAR EL VUELTO DE LA COBRANZA--------------------------------------------------------
 	private void calcularVuelto() {
 		tfVuelto.setText((Double.parseDouble(tfAbonado.getText()) - Double.parseDouble(tfMontoTotal.getText()))+"");
 	}
-	
 	
 	public JTable getTablaCobranza() {
 		return getTable();
@@ -279,5 +260,4 @@ public class VentanaCobranza extends VentanaGenerica{
 	public void setTfBuscarDeuda(JTextField tfBuscarDeuda) {
 		this.tfBuscarDeuda = tfBuscarDeuda;
 	}
-
 }

@@ -21,12 +21,10 @@ public class TablaProducto extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return columnas[column];
 	}
-
 	@Override
 	public int getColumnCount() {
 		return columnas.length;
 	}
-
 	@Override
 	public int getRowCount() {
 		return lista.size();
@@ -58,11 +56,9 @@ public class TablaProducto extends AbstractTableModel {
 					}
 				}
 			}
-				
 		default:
 			break;
 		}
 		return null;
 	}
-
 }

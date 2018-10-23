@@ -20,9 +20,7 @@ public class EmpenoDao extends GenericDao<Empeno> {
 				+"or id = :id order by id ";
 		
 		Query<Empeno> query = getSession().createQuery(sql);
-		
 		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
-
 
 		int id = 0;
 		try {

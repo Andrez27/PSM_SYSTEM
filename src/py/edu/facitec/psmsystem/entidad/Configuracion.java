@@ -8,7 +8,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="tb_configuracion")
 public class Configuracion {
-
 	@Id
 	@Column(name="conf_id")
 	private Integer id;
@@ -27,7 +26,6 @@ public class Configuracion {
 	
 	@Column(name="conf_interes")
 	public double interes;
-
 	
 	
 	public Integer getId() {
@@ -66,9 +64,4 @@ public class Configuracion {
 	public void setInteres(double interes) {
 		this.interes = interes;
 	}
-
-
-	
-
-
 }

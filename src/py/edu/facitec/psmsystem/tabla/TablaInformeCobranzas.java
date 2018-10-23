@@ -11,9 +11,8 @@ import py.edu.facitec.psmsystem.entidad.Cobranza;
 public class TablaInformeCobranzas extends AbstractTableModel {
 
 	private String[] columnas = { "ID","CLIENTE", "FECHA COBRO", "VALOR TOTAL", "ESTADO"};
-	
 	private List<Cobranza> lista = new ArrayList<>();
-
+	
 	public void setLista(List<Cobranza> lista) {
 		this.lista = lista;
 	}
@@ -30,7 +29,6 @@ public class TablaInformeCobranzas extends AbstractTableModel {
 	public int getRowCount() {
 		return lista.size();
 	}
-	
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
@@ -62,5 +60,4 @@ public class TablaInformeCobranzas extends AbstractTableModel {
 		if(columnIndex == 3) return Double.class;
 		return super.getColumnClass(columnIndex);
 	}
-
 }

@@ -10,9 +10,8 @@ import py.edu.facitec.psmsystem.entidad.Cliente;
 public class TablaCliente extends AbstractTableModel {
 
 	private String[] columnas = { "ID", "NOMBRE Y APELLIDO", "DOCUMENTO", "TELEFONO" };
-	
 	private List<Cliente> lista = new ArrayList<>();
-
+	
 	public void setLista(List<Cliente> lista) {
 		this.lista = lista;
 	}
@@ -21,12 +20,10 @@ public class TablaCliente extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return columnas[column];
 	}
-
 	@Override
 	public int getColumnCount() {
 		return columnas.length;
 	}
-
 	@Override
 	public int getRowCount() {
 		return lista.size();

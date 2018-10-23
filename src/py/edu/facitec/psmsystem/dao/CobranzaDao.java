@@ -20,9 +20,7 @@ public class CobranzaDao extends GenericDao<Cobranza> {
 				+ "or id = :id order by id ";
 		
 		Query<Cobranza> query = getSession().createQuery(sql);
-		
 		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
-
 
 		int id = 0;
 		try {
@@ -49,5 +47,4 @@ public class CobranzaDao extends GenericDao<Cobranza> {
 		commit();
 		return lista;
 	}
-	
 }

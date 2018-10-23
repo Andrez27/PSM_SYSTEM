@@ -10,7 +10,6 @@ import py.edu.facitec.psmsystem.entidad.Producto;
 public class TablaListadoProductos extends AbstractTableModel {
 
 	private String[] columnas = { "ID", "DESCRIPCIÓN", "PRECIO COMPRA", "PRECIO VENTA", "ESTADO" };
-	
 	private List<Producto> lista = new ArrayList<>();
 
 	public void setLista(List<Producto> lista) {
@@ -21,12 +20,10 @@ public class TablaListadoProductos extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return columnas[column];
 	}
-
 	@Override
 	public int getColumnCount() {
 		return columnas.length;
 	}
-
 	@Override
 	public int getRowCount() {
 		return lista.size();
@@ -75,5 +72,4 @@ public class TablaListadoProductos extends AbstractTableModel {
 		
 		return super.getColumnClass(columnIndex);
 	}
-
 }

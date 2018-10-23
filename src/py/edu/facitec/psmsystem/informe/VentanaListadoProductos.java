@@ -1,6 +1,5 @@
 package py.edu.facitec.psmsystem.informe;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -36,7 +35,6 @@ public class VentanaListadoProductos extends JDialog {
 	private TablaListadoProductos tablaProductos;
 	private ProductoDao dao;
 	private JTable table;
-	private String filtro;
 	private NumberTextField tfDesdeId;
 	private NumberTextField tfHastaId;
 	private JComboBox cbOrden;
@@ -46,20 +44,6 @@ public class VentanaListadoProductos extends JDialog {
 	private JTextField tfDesdeDescri;
 	private JTextField tfHastaDescri;
 	private JButton btnCancelar;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaListadoProductos dialog = new VentanaListadoProductos();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	public VentanaListadoProductos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoProductos.class.getResource("/img/ventanas/icono.png")));
@@ -279,7 +263,6 @@ public class VentanaListadoProductos extends JDialog {
 		map.put("filtros", filtros);
 		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "ListadoProductos");
-
 	}
 	
 	private void cancelar() {
@@ -292,5 +275,4 @@ public class VentanaListadoProductos extends JDialog {
 		
 		tfDesdeId.requestFocus();
 	}
-	
 }

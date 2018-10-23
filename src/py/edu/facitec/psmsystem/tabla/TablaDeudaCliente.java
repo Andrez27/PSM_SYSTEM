@@ -11,9 +11,8 @@ import py.edu.facitec.psmsystem.entidad.DeudaCliente;
 public class TablaDeudaCliente extends AbstractTableModel {
 
 	private String[] columnas = { "ID", "CLIENTE", "FECHA VENCIMIENTO", "MONTO", "ESTADO"};
-
 	private List<DeudaCliente> lista = new ArrayList<>();
-
+	
 	public void setLista(List<DeudaCliente> lista) {
 		this.lista = lista;
 	}
@@ -22,12 +21,10 @@ public class TablaDeudaCliente extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return columnas[column];
 	}
-
 	@Override
 	public int getColumnCount() {
 		return columnas.length;
 	}
-
 	@Override
 	public int getRowCount() {
 		return lista.size();
@@ -74,5 +71,4 @@ public class TablaDeudaCliente extends AbstractTableModel {
 		if(columnIndex == 3) return Double.class;
 		return super.getColumnClass(columnIndex);
 	}
-
 }

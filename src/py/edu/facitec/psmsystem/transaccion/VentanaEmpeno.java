@@ -42,21 +42,6 @@ public class VentanaEmpeno extends VentanaGenerica{
 	private JTextField tfId;
 	private NumberTextField tfCuota;
 	public JLabel lblValidarCuota;
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaEmpeno dialog = new VentanaEmpeno();
-					dialog.setUpControlador();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public void setUpControlador() {
 		new VentanaEmpenoControlador(this);
@@ -355,7 +340,6 @@ public class VentanaEmpeno extends VentanaGenerica{
 	public JFormattedTextField getTfFechaRegistro() {
 		return tfFechaRegistro;
 	}
-
 	public void setTfFechaRegistro(JFormattedTextField tfFechaRegistro) {
 		this.tfFechaRegistro = tfFechaRegistro;
 	}
@@ -425,6 +409,4 @@ public class VentanaEmpeno extends VentanaGenerica{
 	public void setLblValidarCuota(JLabel lblValidarCuota) {
 		this.lblValidarCuota = lblValidarCuota;
 	}
-
-	
 }

@@ -106,6 +106,4 @@ public class Empeno {
 	public Producto getProducto() {
 		return producto;
 	}
-
-
 }

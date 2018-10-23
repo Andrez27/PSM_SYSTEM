@@ -1,7 +1,6 @@
 package py.edu.facitec.psmsystem.abm;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -10,7 +9,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -29,22 +27,7 @@ public class VentanaCliente extends VentanaGenerica {
 	private JLabel lblValidarNombre;
 	private JLabel lblValidarTelefono;
 	private JLabel lblDocumentoDuplicado;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaCliente dialog = new VentanaCliente();
-					dialog.setUpControlador();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	public void setUpControlador() {
 		new VentanaClienteControlador(this);
 	}

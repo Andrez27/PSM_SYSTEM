@@ -20,9 +20,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 				+"and estado < 2 order by id";
 		
 		Query<DeudaCliente> query = getSession().createQuery(sql);
-		
 		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
-
 
 		int id = 0;
 		try {
@@ -33,7 +31,4 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		commit();
 		return lista;
 	}
-	
-	
-
 }

@@ -1,9 +1,5 @@
 package py.edu.facitec.psmsystem.buscador;
 
-import java.awt.EventQueue;
-
-import javax.swing.JDialog;
-
 import py.edu.facitec.psmsystem.componente.BuscadorGenerico;
 import py.edu.facitec.psmsystem.controlador.BuscadorDeudaClienteControlador;
 

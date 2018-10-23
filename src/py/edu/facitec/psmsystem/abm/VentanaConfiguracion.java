@@ -1,7 +1,6 @@
 package py.edu.facitec.psmsystem.abm;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -19,9 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-
-import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 
 import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.app.VentanaPrincipal;
@@ -44,22 +40,7 @@ public class VentanaConfiguracion extends JDialog {
 	private JLabel lblValidarTelefono;
 	private JComponent ventanaConfiguracion;
 	private JLabel lblValidarRuc;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UIManager.setLookAndFeel(GraphiteLookAndFeel.class.getName());
-					VentanaConfiguracion dialog = new VentanaConfiguracion();
-					dialog.setUpControlador();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JLabel lblValidarNombre;
 
 	protected void setUpControlador() {
 	}
@@ -109,6 +90,12 @@ public class VentanaConfiguracion extends JDialog {
 		getContentPane().add(label);
 		
 		tfNombre = new JTextField();
+		tfNombre.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				lblValidarNombre.setVisible(false);
+			}
+		});
 		tfNombre.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -121,6 +108,7 @@ public class VentanaConfiguracion extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if (tfNombre.getText().length() == 40) {
+					lblValidarNombre.setVisible(true);
 					e.consume();
 				}
 			}
@@ -281,6 +269,12 @@ public class VentanaConfiguracion extends JDialog {
 		lblValidarRuc.setForeground(Color.RED);
 		lblValidarRuc.setBounds(184, 68, 154, 15);
 		getContentPane().add(lblValidarRuc);
+		
+		lblValidarNombre = new JLabel("*No se permite m\u00E1s caracteres");
+		lblValidarNombre.setVisible(false);
+		lblValidarNombre.setForeground(Color.RED);
+		lblValidarNombre.setBounds(185, 32, 195, 20);
+		getContentPane().add(lblValidarNombre);
 
 		datosActuales();
 	
@@ -350,14 +344,13 @@ public class VentanaConfiguracion extends JDialog {
 		dao = new ConfiguracionDao();
 		campos = dao.recuperarTodo();
 		if (tfInteres.getText().isEmpty() || tfInteres.getValue() < 1){
-			JOptionPane.showMessageDialog(null, "Informe valor del \"Interes\" \nInteres mínimo es de 1%");
+			JOptionPane.showMessageDialog(null, "Informe valor del \"Interés\" \nInterés mínimo es de 1%", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			tfInteres.requestFocus();
 			tfInteres.setValue((double) 1);
 			tfInteres.selectAll();
 			return true;
 		}
 		return false;
-
 	}
 
 //-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
@@ -370,15 +363,13 @@ public class VentanaConfiguracion extends JDialog {
 		} catch (Exception e) {
 			dao.rollback();
 		}
-		
 		VentanaPrincipal.lblNombre.setText("");
 		VentanaPrincipal.lblRuc.setText("");
 		VentanaPrincipal.lblTelefono.setText("");
 		VentanaPrincipal.lblEmail.setText("");
 
 	}
-
-
+	
 	public JTextField gettfNombre() {
 		return tfNombre;
 	}

@@ -11,7 +11,6 @@ import py.edu.facitec.psmsystem.entidad.Empeno;
 public class TablaInformeEmpenos extends AbstractTableModel {
 
 	private String[] columnas = { "ID", "FECHA EMPEÑO", "CLIENTE", "PRODUCTO", "VALOR TOTAL", "ESTADO"};
-
 	private List<Empeno> lista = new ArrayList<>();
 
 	public void setLista(List<Empeno> lista) {
@@ -22,17 +21,14 @@ public class TablaInformeEmpenos extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return columnas[column];
 	}
-
 	@Override
 	public int getColumnCount() {
 		return columnas.length;
 	}
-
 	@Override
 	public int getRowCount() {
 		return lista.size();
 	}
-
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
@@ -76,5 +72,4 @@ public class TablaInformeEmpenos extends AbstractTableModel {
 		if(columnIndex == 4) return Double.class;
 		return super.getColumnClass(columnIndex);
 	}
-
 }

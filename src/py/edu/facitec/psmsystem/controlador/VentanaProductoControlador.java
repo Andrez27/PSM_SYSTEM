@@ -60,7 +60,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		mtProducto.fireTableDataChanged();
 		
 		TablaUtil.resizeTableColumnWidth(vProducto.getTable());
-
 	}
 
 	private void recuperarPorFiltro() {
@@ -69,7 +68,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		mtProducto.fireTableDataChanged();
 		
 		TablaUtil.resizeTableColumnWidth(vProducto.getTable());
-
 	}
 
 	private void cargarFormulario(int posicion) {
@@ -87,7 +85,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		this.vProducto.getMiToolBar().estadoInicialToolBar(true,3);
 		estadoInicialCampos(true);
 		estadoInicialCampos2(false);
-
 	}
 
 	private void estadoInicialCampos(boolean b) {
@@ -97,7 +94,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		this.vProducto.gettfDetalle().setEnabled(b);
 
 		this.vProducto.getTable().clearSelection();
-
 	}
 
 	private void estadoInicialCampos2(boolean b) {
@@ -107,7 +103,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		this.vProducto.gettfDetalle().setEditable(b);
 
 		this.vProducto.getTable().clearSelection();
-
 	}
 
 	private void vaciarFormulario() {
@@ -116,7 +111,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		vProducto.gettfPrecioVenta().setText("");
 		vProducto.gettfDetalle().setText("");
 		vProducto.getCbEstado().setSelectedIndex(0);
-
 	}
 
 	@Override
@@ -141,7 +135,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		vProducto.gettfDescripcion().selectAll();
 		this.vProducto.getCbEstado().setEnabled(true);
 		this.vProducto.getTable().setEnabled(false);
-
 	}
 
 	@Override
@@ -150,7 +143,7 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		if (producto == null) {		//VERIFICA QUE SE SELECCIONO UN REGISTRO
 			JOptionPane.showMessageDialog(null, "Seleccione un registro");
 		} else {
-			int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar el producto: \n" + producto.getDescripcion(), "ATENCIÓN", JOptionPane.YES_NO_OPTION);
+			int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar el producto: \n" + producto.getDescripcion(), "Atención!", JOptionPane.YES_NO_OPTION);
 			if (respuesta == JOptionPane.YES_OPTION) {
 				try {
 					dao.eliminar(producto);
@@ -160,11 +153,10 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 					vaciarFormulario();
 				} catch (Exception e) {
 					dao.rollback();
-					JOptionPane.showMessageDialog(null, "No se pudo eliminar el registro \n Producto vinculado a un empeño", "ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No se pudo eliminar el registro \n Producto vinculado a un empeño", "Error!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
-
 	}
 
 	@Override
@@ -184,7 +176,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		producto.setEstado(vProducto.getCbEstado().getSelectedIndex());
 
 		producto.setPrecioCompra(vProducto.gettfPrecioCompra().getValue());
-
 		producto.setPrecioVenta(vProducto.gettfPrecioVenta().getValue());
 
 		try {
@@ -209,7 +200,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		this.vProducto.getCbEstado().setEnabled(false);
 		this.vProducto.getLblVerificarPrecio().setVisible(false);
 		this.vProducto.getTable().setEnabled(true);
-
 	}	
 
 	@Override
@@ -220,21 +210,17 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		this.vProducto.getCbEstado().setEnabled(false);
 		vaciarFormulario();
 		this.vProducto.getTable().setEnabled(true);
-
-
 	}
 
 //-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------
 
 	private boolean validarCampos() {
 		if (vProducto.gettfDescripcion().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "El campo \"DESCRIPCIÓN\" es obligatorio!");
+			JOptionPane.showMessageDialog(null, "El campo \"DESCRIPCIÓN\" es obligatorio!", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vProducto.gettfDescripcion().requestFocus();
 			return false;
 		}
-
 		return true;// Si no se encuentran problemas
-
 	}
 
 //----------------------------------PARA VALIDAR EL PRECIO DE VENTA---------------------------------
@@ -270,17 +256,14 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		if (e.getSource() == vProducto.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
 			recuperarPorFiltro();
 		}
-
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	}

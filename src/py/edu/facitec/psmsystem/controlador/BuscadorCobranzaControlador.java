@@ -55,7 +55,6 @@ public class BuscadorCobranzaControlador implements KeyListener{
 		lista = dao.recuperarPorFiltro(bCobranza.gettBuscador().getText());
 		tCobranza.setLista(lista);
 		tCobranza.fireTableDataChanged();
-
 	}
 
 	private void seleccionarRegistro(int posicion) {
@@ -65,17 +64,14 @@ public class BuscadorCobranzaControlador implements KeyListener{
 		Cobranza cobranza = lista.get(posicion);
 		interfaz.setCobranza(cobranza);
 		bCobranza.dispose();
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 	}
-
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}

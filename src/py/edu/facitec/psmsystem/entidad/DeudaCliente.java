@@ -84,6 +84,4 @@ public class DeudaCliente {
 	public void setCobranza(Cobranza cobranza) {
 		this.cobranza = cobranza;
 	}
-
-
 }

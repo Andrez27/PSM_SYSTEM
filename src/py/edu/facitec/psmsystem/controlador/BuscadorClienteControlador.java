@@ -55,7 +55,6 @@ public class BuscadorClienteControlador implements KeyListener{
 		tCliente.fireTableDataChanged();
 		
 		TablaUtil.resizeTableColumnWidth(bCliente.getTable());
-
 	}
 
 	private void seleccionarRegistro(int posicion) {
@@ -65,7 +64,6 @@ public class BuscadorClienteControlador implements KeyListener{
 		Cliente cliente = lista.get(posicion);
 		interfaz.setCliente(cliente);
 		bCliente.dispose();
-
 	}
 
 	@Override
@@ -77,7 +75,6 @@ public class BuscadorClienteControlador implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {}
-
 	@Override
 	public void keyReleased(KeyEvent e) {}
 

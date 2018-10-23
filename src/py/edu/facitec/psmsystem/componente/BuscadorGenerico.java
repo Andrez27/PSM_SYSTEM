@@ -37,7 +37,6 @@ public class BuscadorGenerico extends JDialog {
 	public JTextField gettBuscador() {
 		return tfBuscador;
 	}
-
 	public JTable getTable() {
 		return table;
 	}

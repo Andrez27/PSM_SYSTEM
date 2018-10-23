@@ -1,6 +1,5 @@
 package py.edu.facitec.psmsystem.informe;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -36,30 +35,14 @@ public class VentanaInformeCobranzas extends JDialog {
 	private TablaInformeCobranzas tablaInformeCobranzas;
 	private CobranzaDao dao;
 	private JTable table;
-	private String filtro;
 	private AbstractButton btnImprimir;
 	private JLabel lblTotalRegistros;
 	private JButton btnProcesar;
-	private Map<String, Object> map;
 	private JFormattedTextField tfDesdeFecha;
 	private JFormattedTextField tfHastaFecha;
 	private JButton btnCancelar;
 	private JButton btnSalir;
 	private JCheckBox chDetallado;
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaInformeCobranzas dialog = new VentanaInformeCobranzas();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 	
 	public VentanaInformeCobranzas() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeCobranzas.class.getResource("/img/ventanas/icono.png")));
@@ -221,14 +204,11 @@ public class VentanaInformeCobranzas extends JDialog {
 			map.put("filtros", filtros);
 			map.put("codigo", ""+((Math.random()*9999)+1000));
 			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzas");
-
 		}
-
 	}
 
 	private void cancelar() {
 		dao = new CobranzaDao();
-		
 		tfDesdeFecha.setText("");
 		tfHastaFecha.setText("");
 		

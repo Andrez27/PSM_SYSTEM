@@ -35,7 +35,6 @@ public class Cliente {
 	@Column(name="cli_email", length=50)
 	private String email;
 
-
 	@OneToMany(mappedBy="cliente")
 	private List<Empeno>empenos;
 
@@ -82,6 +81,4 @@ public class Cliente {
 	public List<Empeno> getEmpenos() {
 		return empenos;
 	}
-
-
 }

@@ -16,7 +16,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="tb_cobranza")
 public class Cobranza {
-
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(strategy="increment",name="increment")
@@ -66,5 +65,4 @@ public class Cobranza {
 	public void setDeudaClientes(List<DeudaCliente> deudaClientes) {
 		this.deudaClientes = deudaClientes;
 	}
-
 }

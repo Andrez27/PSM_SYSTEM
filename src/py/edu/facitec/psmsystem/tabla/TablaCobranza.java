@@ -10,10 +10,9 @@ import py.edu.facitec.psmsystem.entidad.Cobranza;
 
 public class TablaCobranza extends AbstractTableModel {
 
-	private String[] columnas = { "ID","CLIENTE", "FECHA COBRO", "VALOR TOTAL", "ESTADO"};
-	
+	private String[] columnas = { "ID", "FECHA COBRO", "VALOR TOTAL", "ESTADO"};
 	private List<Cobranza> lista = new ArrayList<>();
-
+	
 	public void setLista(List<Cobranza> lista) {
 		this.lista = lista;
 	}
@@ -31,19 +30,16 @@ public class TablaCobranza extends AbstractTableModel {
 		return lista.size();
 	}
 	
-
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
 		case 0:
 			return lista.get(rowIndex).getId();
 		case 1:
-			return lista.get(rowIndex).getDeudaClientes().get(0).getEmpeno().getCliente().getNombre();
-		case 2:
 			return lista.get(rowIndex).getFechaCobro();
-		case 3:
+		case 2:
 			return lista.get(rowIndex).getValorCobro();
-		case 4:
+		case 3:
 			if(lista.get(rowIndex).isEstado() == true){
 				return "Cobrado";
 			} else {
@@ -57,9 +53,8 @@ public class TablaCobranza extends AbstractTableModel {
 
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
-		if(columnIndex == 2) return Date.class;
-		if(columnIndex == 3) return Double.class;
+		if(columnIndex == 1) return Date.class;
+		if(columnIndex == 2) return Double.class;
 		return super.getColumnClass(columnIndex);
 	}
-
 }

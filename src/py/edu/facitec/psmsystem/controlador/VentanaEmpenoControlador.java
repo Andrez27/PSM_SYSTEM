@@ -67,7 +67,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 
 		//Evento del buscador
 		vEmpeno.gettBuscador().addKeyListener(this);
-
 	}
 
 	private void recuperarTodo() {
@@ -76,7 +75,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		mtEmpeno.fireTableDataChanged();
 
 		TablaUtil.resizeTableColumnWidth(vEmpeno.getTable());
-
 	}
 
 	private void recuperarPorFiltro() {
@@ -85,7 +83,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		mtEmpeno.fireTableDataChanged();
 
 		TablaUtil.resizeTableColumnWidth(vEmpeno.getTable());
-
 	}
 
 	private void cargarFormulario(int posicion) {
@@ -169,7 +166,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		vEmpeno.getTfFechaRegistro().selectAll();
 
 		vEmpeno.getTfId().setText(dao.recuperarSiguienteId()+"");
-
 	}
 
 	@Override
@@ -182,8 +178,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			JOptionPane.showMessageDialog(null, "Seleccione un registro");
 		} else {
 			if (vEmpeno.getCbEstado().getSelectedIndex() != 3){
-				int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea anular el empeño: \n" + empeno.getId() +" "+ empeno.getCliente().getNombre(),
-						"ATENCIÓN", JOptionPane.YES_NO_OPTION);
+				int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea anular el empeño: \n" + empeno.getId() +" "+ empeno.getCliente().getNombre(), "Atención!", JOptionPane.YES_NO_OPTION);
 				if (respuesta == JOptionPane.YES_OPTION) {
 					empeno.setEstado(3);
 					producto.setEstado(3);
@@ -196,12 +191,11 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 						vaciarFormulario();
 					} catch (Exception e) {
 						dao.rollback();
-						JOptionPane.showMessageDialog(null, "No se pudo anular el empeno: \n" + empeno.getId() +" "+ empeno.getCliente().getNombre(), "ERROR",
-								JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "No se pudo anular el empeno: \n" + empeno.getId() +" "+ empeno.getCliente().getNombre(), "Error!", JOptionPane.ERROR_MESSAGE);
 					}
 				} 
 			} else {
-				JOptionPane.showMessageDialog(null, "Empeño ya anulado");
+				JOptionPane.showMessageDialog(null, "Empeño ya anulado", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 				dao.rollback();
 			}
 		}
@@ -248,7 +242,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			dao.rollback();
 			JOptionPane.showMessageDialog(null, "Se produjo un error al guardar", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
-
 	}
 
 	private void guardarProducto() {
@@ -292,7 +285,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	@Override
@@ -311,38 +303,32 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 
 	private boolean validarCampos() {
 		if (vEmpeno.getTfCliente().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Debes seleccionar un \"Cliente\" ");
+			JOptionPane.showMessageDialog(null, "Debes seleccionar un \"Cliente\"", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getBtnBuscarCliente().requestFocus();
 			return false;
 		}
 		if (Integer.parseInt(vEmpeno.getTfCuota().getText()) < 1) {
-			JOptionPane.showMessageDialog(null, "Informar cantidad de Cuotas");
+			JOptionPane.showMessageDialog(null, "Informar cantidad de Cuotas", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getTfCuota().requestFocus();
 			vEmpeno.getTfCuota().selectAll();
-
 			return false;
 		}
 		if (vEmpeno.getTfDescripcion().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Debe informar un producto");
+			JOptionPane.showMessageDialog(null, "Debe informar un producto", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getTfDescripcion().requestFocus();
 			return false;
 		}
 		if (FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaVencimiento().getText()) == null) {
-			JOptionPane.showMessageDialog(null, "Informar cantidad de Cuotas");
+			JOptionPane.showMessageDialog(null, "Informar cantidad de Cuotas", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getTfCuota().requestFocus();
 			return false;
-
 		}
-		//SI LA FECHA NO ES OBLIGATORIA. SI ES OBLIGATORIA SE OBVIA LA VALIDACION:
-		//v!Empeno.gettFechaRegistro().getText().equals("__/__/____") &&
 		if (!vEmpeno.getTfFechaRegistro().getText().equals("__/__/____") && FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()) == null) {
-			JOptionPane.showMessageDialog(null, "Ingrese una fecha valida");
+			JOptionPane.showMessageDialog(null, "Ingrese una fecha valida", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getTfFechaRegistro().requestFocus();
 			return false;
-
 		}
 		return true;
-
 	}
 
 	//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
@@ -367,7 +353,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		if (e.getSource() == vEmpeno.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
 			recuperarPorFiltro();
 		}
-
 	}
 
 	public void abrirBuscarCliente() {

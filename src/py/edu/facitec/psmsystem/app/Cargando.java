@@ -36,8 +36,7 @@ public class Cargando extends JFrame {
 			UIManager.setLookAndFeel(GraphiteLookAndFeel.class.getName());
 			//PARA QUITAR EL BORDE DEL TEMA JTATTOO
 			DecorationHelper.decorateWindows(false);
-		} catch (Exception e) {
-		}
+		} catch (Exception e) {}
 		try {
 			Cargando frame = new Cargando();
 			frame.setVisible(true);
@@ -53,7 +52,6 @@ public class Cargando extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public Cargando() {
@@ -104,5 +102,4 @@ public class Cargando extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
 }

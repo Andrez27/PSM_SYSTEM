@@ -19,9 +19,7 @@ public class ProductoDao extends GenericDao<Producto>{
 				+"or id = :id order by id ";
 		
 		Query<Producto> query = getSession().createQuery(sql);
-
 		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
-		
 		
 		int id = 0;
 		try {

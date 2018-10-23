@@ -86,8 +86,4 @@ public class Producto {
 	public void setEmpeno(Empeno empeno) {
 		this.empeno = empeno;
 	}
-	
-	
-	
-	
 }

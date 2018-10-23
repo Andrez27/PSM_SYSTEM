@@ -56,19 +56,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 	private ConfiguracionDao configuracionDao;
 	private JPanel jPanelConfig;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	public VentanaPrincipal() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/img/ventanas/icono.png")));
 		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this); 
@@ -184,14 +171,13 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		mntmInicializacinDeDatos.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				int respuesta = JOptionPane.showConfirmDialog(null, "Desea restablecer datos?\nSerán eliminado permanentemente todos los datos almacenados", "Atención!!!", JOptionPane.YES_NO_OPTION);
+				int respuesta = JOptionPane.showConfirmDialog(null, "Desea restablecer base de datos?\nSerán eliminado permanentemente todos los datos almacenados", "Atención!", JOptionPane.YES_NO_OPTION);
 				if (respuesta==JOptionPane.YES_OPTION) {
 					inicializarBaseDeDatos();
-					JOptionPane.showMessageDialog(null, "Base de datos restablecida");
+					JOptionPane.showMessageDialog(null, "Base de datos restablecida!");
 				}
 				else {
-					
-					JOptionPane.showMessageDialog(null, "Operación cancelada");
+					JOptionPane.showMessageDialog(null, "Operación cancelada", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -229,7 +215,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		Configuracion a = new Configuracion();
 		a = dao.recuperarPorId(1);
 		if (a == null) {
-		JOptionPane.showMessageDialog(null, "Informe porcentaje % de interÃ©s");
+		JOptionPane.showMessageDialog(null, "Informe porcentaje % de interés");
 		abrirFormularioConfiguracion();
 		
 		} else {
@@ -362,7 +348,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		VentanaProducto ventanaProducto = new VentanaProducto();
 		ventanaProducto.setUpControlador();
 		ventanaProducto.setVisible(true);
-
 	}
 
 	private void abrirFormularioEmpeno() {
@@ -398,7 +383,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 	}
 
 //----------------DESACTIVAR FALLA TECLA F10------------------------------------------
-
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		if(e.getID() == e.KEY_PRESSED){
 			if(e.getKeyCode()== e.VK_F10 | e.getKeyCode() == e.VK_SPACE){
@@ -409,7 +393,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 	}
 
 //-----------------CARGAR FORMULARIO DE LA EMPRESA--------------------------------------
-
 	public void cargarConfiguracion() {
 		configuracionDao = new ConfiguracionDao();
 		configuracion = configuracionDao.recuperarTodo();
@@ -421,7 +404,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 	}
 
 //----------------INICIALIZAR BASE DE DATOS------------------------------------------
-
 	public void inicializarBaseDeDatos() {
 		VentanaCliente a = new VentanaCliente();
 		VentanaClienteControlador ventanaClienteControlador = new VentanaClienteControlador(a);
@@ -441,6 +423,5 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		VentanaCobranza c = new VentanaCobranza();
 		VentanaCobranzaControlador ventanaCobranzaControlador = new VentanaCobranzaControlador(c);
 		ventanaCobranzaControlador.inicializarCobranza();
-
 	}
 }

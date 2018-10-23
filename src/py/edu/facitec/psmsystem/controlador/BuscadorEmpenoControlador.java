@@ -54,7 +54,6 @@ public class BuscadorEmpenoControlador implements KeyListener{
 		lista = dao.recuperarPorFiltro(bEmpeno.gettBuscador().getText());
 		tEmpeno.setLista(lista);
 		tEmpeno.fireTableDataChanged();
-
 	}
 
 	private void seleccionarRegistro(int posicion) {
@@ -64,7 +63,6 @@ public class BuscadorEmpenoControlador implements KeyListener{
 		Empeno empeno = lista.get(posicion);
 		interfaz.setEmpeno(empeno);
 		bEmpeno.dispose();
-
 	}
 
 	@Override
@@ -78,7 +76,6 @@ public class BuscadorEmpenoControlador implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {}
-
 	@Override
 	public void keyReleased(KeyEvent e) {}
 
