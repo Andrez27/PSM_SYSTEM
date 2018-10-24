@@ -27,6 +27,9 @@ import py.edu.facitec.psmsystem.tabla.TablaDeudaCliente;
 import py.edu.facitec.psmsystem.util.FechaUtil;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
 
 public class VentanaInformeDeudas extends JDialog {
 
@@ -38,6 +41,10 @@ public class VentanaInformeDeudas extends JDialog {
 	private JButton btnProcesar;
 	private JButton btnCancelar;
 	private JButton btnSalir;
+	private JTextField tfNombre;
+	private JLabel lblNombre;
+	private JLabel lblTotalRegistros;
+	private JComboBox cbEstado;
 	
 	public VentanaInformeDeudas() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeDeudas.class.getResource("/img/ventanas/icono.png")));
@@ -99,14 +106,6 @@ public class VentanaInformeDeudas extends JDialog {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cancelar();
-				procesar();
-			}
-		});
-		btnCancelar.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				cancelar();
-				procesar();
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -125,31 +124,51 @@ public class VentanaInformeDeudas extends JDialog {
 		
 		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(394, 33, 77, 18);
+		lblTotal.setBounds(359, 32, 77, 18);
 		getContentPane().add(lblTotal);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_1.setBounds(475, 33, 34, 18);
-		getContentPane().add(label_1);
+		lblTotalRegistros = new JLabel("");
+		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTotalRegistros.setBounds(439, 33, 34, 18);
+		getContentPane().add(lblTotalRegistros);
+		
+		cbEstado = new JComboBox();
+		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"Activo", "Vencido", "Cobrado", "Anulado", "Todos"}));
+		cbEstado.setToolTipText("");
+		cbEstado.setBounds(439, 10, 92, 19);
+		getContentPane().add(cbEstado);
+		
+		JLabel lblEstado = new JLabel("Estado: ");
+		lblEstado.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEstado.setBounds(366, 10, 70, 14);
+		getContentPane().add(lblEstado);
+		
+		tfNombre = new JTextField();
+		tfNombre.setBounds(80, 10, 304, 19);
+		getContentPane().add(tfNombre);
+		tfNombre.setColumns(10);
+		
+		lblNombre = new JLabel("Nombre: ");
+		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNombre.setBounds(11, 10, 70, 19);
+		getContentPane().add(lblNombre);
 		
 	}
 
 //-------------------------------------METODOS------------------------------------------------
 	private void procesar() {
-//		dao = new DeudaClienteDao();
-//
-//		Date fechaDesde = FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText());
-//		Date fechaHasta = FechaUtil.convertirStringADateUtil(tfHastaFecha.getText());
-//		
-//		lista = dao.recuperarPorRangos(fechaDesde, fechaHasta);
-//		tablaInformeDeudas.setLista(lista);
-//		tablaInformeDeudas.fireTableDataChanged();
-//		table.setModel(tablaInformeDeudas);
-//		TablaUtil.resizeTableColumnWidth(table);
-//		
-//		lblTotalRegistros.setText(lista.size()+"");
+		dao = new DeudaClienteDao();
+		if (cbEstado.getSelectedIndex()==4) {
+			lista = dao.recuperarPorNombre(tfNombre.getText());
+		}else {
+			lista = dao.filtroInforme(tfNombre.getText(), cbEstado.getSelectedIndex());
+		}
+		tablaInformeDeudas.setLista(lista);
+		tablaInformeDeudas.fireTableDataChanged();
+		table.setModel(tablaInformeDeudas);
+		TablaUtil.resizeTableColumnWidth(table);
+		lblTotalRegistros.setText(lista.size()+"");
 	}
 	
 	private void imprimir() {
@@ -157,19 +176,27 @@ public class VentanaInformeDeudas extends JDialog {
 			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-//		String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
-//						+ "Total registros: "+lblTotalRegistros.getText()+"";
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("filtros", filtros);
-//		map.put("codigo", ""+((Math.random()*9999)+1000));
-//		ReportesUtil.GenerarInforme(lista, map, "InformeDeudas");
+		String filtros;
+		if (tfNombre.getText().isEmpty()) {
+			filtros = "Deudas "+cbEstado.getSelectedItem().toString()+" hasta la fecha";
+		}else {
+			filtros = "Deudas de: "+tfNombre.getText()+", "+cbEstado.getSelectedItem().toString()+" hasta la fecha";
+		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("filtros", filtros);
+		map.put("codigo", ""+((Math.random()*9999)+1000));
+		ReportesUtil.GenerarInforme(lista, map, "InformeDeudas");
 	}
 
 	private void cancelar() {
-		dao = new DeudaClienteDao();
-//		tfDesdeFecha.setText("");
-//		tfHastaFecha.setText("");
-//		
-//		tfDesdeFecha.requestFocus();
+		tfNombre.setText("");
+		cbEstado.setSelectedIndex(0);
+		
+		lista.removeAll(lista);
+		tablaInformeDeudas.setLista(lista);
+		tablaInformeDeudas.fireTableDataChanged();
+		
+		tfNombre.requestFocus();
+		lblTotalRegistros.setText(lista.size()+"");
 	}
 }

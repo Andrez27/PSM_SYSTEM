@@ -70,7 +70,7 @@
 				<reportElement x="-1" y="0" width="40" height="20" uuid="7822f5f1-8d0a-4aac-8e80-aed5d142a915">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c35d207-d0fb-42f4-814a-c1c9971ff215"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Id]]></text>
@@ -79,7 +79,7 @@
 				<reportElement x="39" y="0" width="200" height="20" uuid="ec4a88df-8c93-4697-8352-16c90e2c4f88">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d162c9f5-c6b9-49d6-b2dd-5e6a2455a8cc"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Nombre y apellido]]></text>
@@ -88,7 +88,7 @@
 				<reportElement x="239" y="1" width="130" height="20" uuid="3dc97993-011a-4f74-8601-12dd30a953b4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d81514a9-7542-4acf-ae37-a3ff8b6dece3"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Teléfono]]></text>
@@ -97,7 +97,7 @@
 				<reportElement x="370" y="1" width="184" height="20" uuid="31ddfed9-e1d7-4c8f-a3a3-052e510ac8ff">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7276a652-6a55-4397-a899-9068ee2a4440"/>
 				</reportElement>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Email]]></text>

@@ -48,6 +48,8 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		estadoInicialCampos(true);
 
 		dao = new EmpenoDao();
+		
+		comprobarEstadoDeuda();
 
 		recuperarTodo();
 
@@ -346,6 +348,33 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 	public void cargarVencimiento() {
 		vEmpeno.getTfFechaVencimiento().setValue(FechaUtil.convertirDateUtilAString(FechaUtil.sumarMes(FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()), Integer.parseInt(vEmpeno.getTfCuota().getText()) )));
 	}
+	
+	//--------------------Verificar El estado de las deudas------------------------------------------
+		private void comprobarEstadoDeuda() {
+			EmpenoDao empenoDao = new EmpenoDao();
+			List<Empeno> empenos = empenoDao.verificarEstadoDeuda();
+			for (int i = 0; i < empenos.size(); i++) {
+				if (empenos.get(i).getDeudaClientes().get(empenos.get(i).getDeudaClientes().size()-1).getEstado() == 2) {
+					empenos.get(i).setEstado(2);
+					empenoDao = new EmpenoDao();
+					try {
+						empenoDao.modificar(empenos.get(i));
+						empenoDao.commit();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				if (empenos.get(i).getDeudaClientes().get(empenos.get(i).getDeudaClientes().size()-1).getEstado() == 1) {
+					empenos.get(i).setEstado(1);
+					try {
+						empenoDao.modificar(empenos.get(i));
+						empenoDao.commit();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
 
 	//---------------------------------ACCIÓNES DEL BOTON BUSCADOR------------------------------------------------------
 	@Override

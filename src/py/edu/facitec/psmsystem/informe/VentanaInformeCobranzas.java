@@ -137,7 +137,6 @@ public class VentanaInformeCobranzas extends JDialog {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cancelar();
-				procesar();
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -208,10 +207,14 @@ public class VentanaInformeCobranzas extends JDialog {
 	}
 
 	private void cancelar() {
-		dao = new CobranzaDao();
-		tfDesdeFecha.setText("");
-		tfHastaFecha.setText("");
-		
+		tfDesdeFecha.setText("__/__/____");
+		tfHastaFecha.setText("__/__/____");
+//		if (tfDesdeFecha.getText().equals("__/__/____") && tfHastaFecha.getText().equals("__/__/____") | FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText()) == null && FechaUtil.convertirStringADateUtil(tfHastaFecha.getText()) == null){
+			lista.removeAll(lista);
+			tablaInformeCobranzas.setLista(lista);
+			tablaInformeCobranzas.fireTableDataChanged();
+//		}
 		tfDesdeFecha.requestFocus();
+		lblTotalRegistros.setText(lista.size()+"");
 	}
 }

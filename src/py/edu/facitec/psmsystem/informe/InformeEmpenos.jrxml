@@ -167,7 +167,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{producto.descripcion}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
 				<reportElement x="380" y="0" width="92" height="15" uuid="5ec0161b-277e-47bd-80c8-222809e8ef0f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7dec10f2-2a2d-4ffd-9717-ade206ffc81c"/>
 				</reportElement>

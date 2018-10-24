@@ -35,8 +35,8 @@ public class VentanaListadoProductos extends JDialog {
 	private TablaListadoProductos tablaProductos;
 	private ProductoDao dao;
 	private JTable table;
-	private NumberTextField tfDesdeId;
-	private NumberTextField tfHastaId;
+	private JTextField tfDesdeId;
+	private JTextField tfHastaId;
 	private JComboBox cbOrden;
 	private AbstractButton btnImprimir;
 	private JLabel lblTotalRegistros;
@@ -82,7 +82,7 @@ public class VentanaListadoProductos extends JDialog {
 		lblTotalRegistros.setBounds(461, 35, 34, 18);
 		getContentPane().add(lblTotalRegistros);
 		
-		tfDesdeId = new NumberTextField();
+		tfDesdeId = new JTextField();
 		tfDesdeId.setBounds(68, 10, 91, 20);
 		getContentPane().add(tfDesdeId);
 		tfDesdeId.addKeyListener(new KeyAdapter() {
@@ -94,10 +94,20 @@ public class VentanaListadoProductos extends JDialog {
 					tfHastaId.selectAll();
 				}
 			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+					e.consume();
+				}
+				if (tfDesdeId.getText().length() == 5) {
+					e.consume();
+				}
+			}
 		});
 		tfDesdeId.setColumns(10);
 		
-		tfHastaId = new NumberTextField();
+		tfHastaId = new JTextField();
 		tfHastaId.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -105,6 +115,16 @@ public class VentanaListadoProductos extends JDialog {
 				if (c == e.VK_ENTER) {
 					tfDesdeDescri.requestFocus();
 					tfDesdeDescri.selectAll();
+				}
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+					e.consume();
+				}
+				if (tfDesdeId.getText().length() == 5) {
+					e.consume();
 				}
 			}
 		});
@@ -218,7 +238,6 @@ public class VentanaListadoProductos extends JDialog {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cancelar();
-				procesar();
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -266,13 +285,17 @@ public class VentanaListadoProductos extends JDialog {
 	}
 	
 	private void cancelar() {
-		dao = new ProductoDao();
-		
 		tfDesdeId.setText("");
+		tfDesdeDescri.setText("");
 		tfHastaId.setText("");
 		tfDesdeDescri.setText("");
-		tfHastaDescri.setText("");
+		tfDesdeId.requestFocus();
 		
+		lista.removeAll(lista);
+		tablaProductos.setLista(lista);
+		tablaProductos.fireTableDataChanged();
+		
+		lblTotalRegistros.setText(lista.size()+"");
 		tfDesdeId.requestFocus();
 	}
 }

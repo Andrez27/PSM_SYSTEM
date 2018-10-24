@@ -42,8 +42,8 @@ public class VentanaListadoClientes extends JDialog {
 	private AbstractButton btnImprimir;
 	private JLabel lblTotalRegistros;
 	private JButton btnProcesar;
-	private NumberTextField tfHastaId;
-	private NumberTextField tfDesdeId;
+	private JTextField tfHastaId;
+	private JTextField tfDesdeId;
 	private JButton btnCancelar;
 	private JButton btnSalir;
 	
@@ -84,7 +84,7 @@ public class VentanaListadoClientes extends JDialog {
 		lblHastaId.setBounds(11, 34, 60, 18);
 		getContentPane().add(lblHastaId);
 		
-		tfDesdeId = new NumberTextField();
+		tfDesdeId = new JTextField();
 		tfDesdeId.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -94,12 +94,23 @@ public class VentanaListadoClientes extends JDialog {
 					tfHastaId.selectAll();
 				}
 			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+					e.consume();
+				}
+				if (tfDesdeId.getText().length() == 5) {
+					e.consume();
+				}
+			}
 		});
+			
 		tfDesdeId.setColumns(10);
 		tfDesdeId.setBounds(69, 10, 91, 20);
 		getContentPane().add(tfDesdeId);
 		
-		tfHastaId = new NumberTextField();
+		tfHastaId = new JTextField();
 		tfHastaId.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -107,6 +118,16 @@ public class VentanaListadoClientes extends JDialog {
 				if (c == e.VK_ENTER) {
 					tfDesdeNombre.requestFocus();
 					tfDesdeNombre.selectAll();
+				}
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+					e.consume();
+				}
+				if (tfDesdeId.getText().length() == 5) {
+					e.consume();
 				}
 			}
 		});
@@ -212,7 +233,6 @@ public class VentanaListadoClientes extends JDialog {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cancelar();
-				procesar();
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -273,12 +293,16 @@ public class VentanaListadoClientes extends JDialog {
 	}
 
 	private void cancelar() {
-		dao = new ClienteDao();
 		tfDesdeId.setText("");
 		tfDesdeNombre.setText("");
 		tfHastaId.setText("");
 		tfHastaNombre.setText("");
 		
+		lista.removeAll(lista);
+		tablaClientes.setLista(lista);
+		tablaClientes.fireTableDataChanged();
+		
+		lblTotalRegistros.setText(lista.size()+"");
 		tfDesdeId.requestFocus();
 	}
 }

@@ -47,4 +47,13 @@ public class EmpenoDao extends GenericDao<Empeno> {
 		commit();
 		return lista;
 	}
+	
+	public List<Empeno> verificarEstadoDeuda() {
+		getSession().beginTransaction();
+		String sql = "from Empeno where  estado < 2";
+		Query<Empeno> query = getSession().createQuery(sql);
+		List<Empeno> lista = query.getResultList();
+		commit();
+		return lista;
+	}
 }

@@ -340,6 +340,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		jPanelConfig.add(label, gbc_label);
 
 		cargarConfiguracion();
+		verificarFechasVencimiento();
 
 	}
 

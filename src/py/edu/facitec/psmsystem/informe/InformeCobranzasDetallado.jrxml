@@ -111,7 +111,7 @@
 				<reportElement x="0" y="0" width="100" height="20" uuid="6197f06a-068a-4c1f-9035-a32a5f50c36a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c63a0d75-7a17-4a8a-ad16-e0d45f1d912f"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Id]]></text>
@@ -120,7 +120,7 @@
 				<reportElement x="100" y="0" width="138" height="20" uuid="dde0fb53-3895-4ee4-a3dc-295b6ddeaed5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f82971e6-b807-48ce-a895-a9259f0c3333"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Fecha Cobro]]></text>
@@ -129,7 +129,7 @@
 				<reportElement x="260" y="0" width="138" height="20" uuid="896d3022-798a-4742-8d71-6a92d815c23f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8647130f-581d-4061-bdbb-8d18a58cd5b4"/>
 				</reportElement>
-				<textElement textAlignment="Right" verticalAlignment="Bottom">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Valor Cobro]]></text>
@@ -138,7 +138,7 @@
 				<reportElement x="417" y="0" width="138" height="20" uuid="bf69c64e-11f1-4dbc-964f-c41af90ebd99">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cac6db87-4154-4ed3-800f-e9e9a5ba5601"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Estado]]></text>
@@ -169,7 +169,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaCobro}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
 				<reportElement x="260" y="0" width="138" height="15" uuid="eb5f075c-85b6-4fab-b1a4-99f8fc36a4eb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8647130f-581d-4061-bdbb-8d18a58cd5b4"/>
 				</reportElement>
@@ -240,7 +240,7 @@
 					</datasetRun>
 					<jr:listContents height="15" width="475">
 						<textField>
-							<reportElement x="0" y="0" width="30" height="15" uuid="cd617e86-ea92-4d3c-a0b7-f8ea4964c508"/>
+							<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="30" height="15" uuid="cd617e86-ea92-4d3c-a0b7-f8ea4964c508"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 						</textField>
@@ -259,7 +259,7 @@
 							<textElement textAlignment="Center" verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[$F{fechaVencimiento}]]></textFieldExpression>
 						</textField>
-						<textField>
+						<textField pattern="#,##0.###;(#,##0.###-)">
 							<reportElement x="385" y="0" width="90" height="15" uuid="aa1e9ae9-3697-41ff-ab82-13d68a608d55"/>
 							<textElement textAlignment="Right" verticalAlignment="Middle"/>
 							<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>

@@ -18,7 +18,7 @@ public class ReportesUtil<E>{
 	private static JasperViewer viewer;
 	
 	public static void GenerarInforme(List<?> lista, Map<String, Object> map, String reporte){
-		//PARA MPRIMIR LOGO DEL SISTEMA
+		
 		InputStream logo = ReportesUtil.class.getResourceAsStream("/img/ventanas/icono.png");
 		map.put("logo", logo);
 		

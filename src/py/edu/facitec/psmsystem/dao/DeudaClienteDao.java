@@ -33,9 +33,30 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		return lista;
 	}
 	
+	public List<DeudaCliente> recuperarPorNombre(String filtro) {
+		getSession().beginTransaction();
+		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri ";
+		Query<DeudaCliente> query = getSession().createQuery(sql);
+		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
+		List<DeudaCliente> lista = query.getResultList();
+		commit();
+		return lista;
+	}
+	
+	public List<DeudaCliente> filtroInforme(String filtro, int estado){
+		getSession().beginTransaction();
+		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri and estado = :fEstado ";
+		Query<DeudaCliente> query = getSession().createQuery(sql);
+		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
+		query.setParameter("fEstado", estado);
+		List<DeudaCliente> lista = query.getResultList();
+		commit();
+		return lista;
+	}
+	
 	public List<DeudaCliente> comprobarDeudasVencidas() {
 		getSession().beginTransaction();
-		String sql = "from DeudaCliente where fechaVencimiento <= :fDesde ";
+		String sql = "from DeudaCliente where fechaVencimiento <= :fDesde and estado = 0";
 		Query<DeudaCliente> query = getSession().createQuery(sql);
 		query.setParameter("fDesde", new Date());
 		List<DeudaCliente> lista = query.getResultList();
