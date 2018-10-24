@@ -18,7 +18,7 @@ public class Producto {
 	@Column(name="pro_id")
 	private int id;
 	
-	@Column(name="pro_descricion", nullable=false, unique=true, length=100)
+	@Column(name="pro_descricion", nullable=false, length=100)
 	private String descripcion;
 	
 	@Column(name="pro_precio_compra", nullable=false)

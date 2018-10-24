@@ -178,9 +178,9 @@ public class VentanaInformeDeudas extends JDialog {
 		}
 		String filtros;
 		if (tfNombre.getText().isEmpty()) {
-			filtros = "Deudas "+cbEstado.getSelectedItem().toString()+" hasta la fecha";
+			filtros = "Deudas de: |"+cbEstado.getSelectedItem().toString()+"| hasta la fecha";
 		}else {
-			filtros = "Deudas de: "+tfNombre.getText()+", "+cbEstado.getSelectedItem().toString()+" hasta la fecha";
+			filtros = "Deudas de: |"+tfNombre.getText()+"| con estado |"+cbEstado.getSelectedItem().toString()+"| hasta la fecha";
 		}
 		Map<String, Object> map = new HashMap<>();
 		map.put("filtros", filtros);

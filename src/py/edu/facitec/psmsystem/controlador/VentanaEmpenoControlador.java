@@ -55,7 +55,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 
 		setUpEvents();
 	}
-
 	private void setUpEvents() {
 		vEmpeno.getTable().addMouseListener(new MouseAdapter() {
 			@Override
@@ -63,59 +62,45 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 				cargarFormulario(vEmpeno.getTable().getSelectedRow());
 			}
 		});
-		//PARA LLAMAR LA ACCION DEL BOTON BUSCAR CLIENTE
 		vEmpeno.getBtnBuscarCliente().addActionListener(this);
 		vEmpeno.getBtnBuscarCliente().setEnabled(false);
-
-		//Evento del buscador
 		vEmpeno.gettBuscador().addKeyListener(this);
 	}
-
 	private void recuperarTodo() {
 		lista = dao.recuperarTodo();
 		mtEmpeno.setLista(lista);
 		mtEmpeno.fireTableDataChanged();
-
 		TablaUtil.resizeTableColumnWidth(vEmpeno.getTable());
 	}
-
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(vEmpeno.gettBuscador().getText());
 		mtEmpeno.setLista(lista);
 		mtEmpeno.fireTableDataChanged();
-
 		TablaUtil.resizeTableColumnWidth(vEmpeno.getTable());
 	}
-
 	private void cargarFormulario(int posicion) {
 		if (posicion < 0) {
 			return;
 		}
 		empeno = lista.get(posicion);
-
 		vEmpeno.getTfId().setText(empeno.getId()+"");
 		vEmpeno.getTfFechaRegistro().setValue(FechaUtil.convertirDateUtilAString(empeno.getFechaDia()));
 		vEmpeno.getTfFechaVencimiento().setValue(FechaUtil.convertirDateUtilAString(empeno.getFechaVencimiento()));
 		vEmpeno.getTfCliente().setText(empeno.getCliente().getNombre());
 		vEmpeno.getTfObs().setText(empeno.getObservacion());
-
 		vEmpeno.getTfCuota().setText(empeno.getDeudaClientes().size()+"");
 		vEmpeno.getTfValorEmpeno().setText(empeno.getProducto().getPrecioCompra()+"");
 		vEmpeno.getTfValorTotal().setValue(empeno.getValorTotal());
 		vEmpeno.getTfDescripcion().setText(empeno.getProducto().getDescripcion());
 		vEmpeno.getTfDetalle().setText(empeno.getProducto().getDetalle());
 		vEmpeno.getCbEstado().setSelectedIndex(empeno.getEstado());
-
 		this.cliente = empeno.getCliente();
 		this.producto = empeno.getProducto();
-
 		TablaUtil.resizeTableColumnWidth(vEmpeno.getTable());
-
 		this.vEmpeno.getMiToolBar().estadoInicialToolBar(true,3);
 		estadoInicialCampos(true);
 		estadoInicialCampos2(false);
 	}
-
 	private void estadoInicialCampos(boolean b) {
 		this.vEmpeno.getTfFechaRegistro().setEnabled(b);
 		this.vEmpeno.getTfCliente().setEnabled(b);
@@ -125,7 +110,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		this.vEmpeno.getTfDescripcion().setEnabled(b);
 		this.vEmpeno.getTfValorEmpeno().setEnabled(b);
 		this.vEmpeno.getTfDetalle().setEnabled(b);
-
 		this.vEmpeno.getTable().clearSelection();
 	}
 	private void estadoInicialCampos2(boolean b) {
@@ -135,10 +119,8 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		this.vEmpeno.getTfDescripcion().setEditable(b);
 		this.vEmpeno.getTfValorEmpeno().setEditable(b);
 		this.vEmpeno.getTfDetalle().setEditable(b);
-
 		this.vEmpeno.getTable().clearSelection();
 	}
-
 	private void vaciarFormulario() {
 		vEmpeno.getTfId().setText("");
 		vEmpeno.getTfFechaRegistro().setValue(null);
@@ -150,10 +132,8 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		vEmpeno.getTfDescripcion().setText("");
 		vEmpeno.getTfValorEmpeno().setText("");
 		vEmpeno.getTfDetalle().setText("");
-
 		vEmpeno.getCbEstado().setSelectedIndex(0);
 	}
-
 	@Override
 	public void nuevo() {
 		vaciarFormulario();
@@ -166,14 +146,11 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		this.vEmpeno.getTable().setEnabled(false);
 		vEmpeno.getTfFechaRegistro().setValue(FechaUtil.convertirDateUtilAString(new Date()));
 		vEmpeno.getTfFechaRegistro().selectAll();
-
 		vEmpeno.getTfId().setText(dao.recuperarSiguienteId()+"");
 	}
-
 	@Override
-	public void modificar() {
-	}
-
+	public void modificar() {}
+	
 	@Override
 	public void eliminar() {
 		if (empeno==null) {		//VERIFICA QUE SE SELECCIONO UN REGISTRO
@@ -202,13 +179,10 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			}
 		}
 	}
-
-
 	@Override
 	public void guardar() {
-		if (!validarCampos()) {
-			return;
-		}
+		if (!validarCampos()) {return;}
+		
 		if (accion.equals("NUEVO")) {
 			empeno = new Empeno();
 			guardarProducto();
@@ -230,7 +204,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 				dao.modificar(empeno);
 				dao.commit();
 			}
-
 			this.vEmpeno.getMiToolBar().estadoInicialToolBar(true,2);
 			estadoInicialCampos(false);
 			estadoInicialCampos2(false);
@@ -238,14 +211,12 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			this.vEmpeno.getTable().setEnabled(true);
 			recuperarTodo();
 			vaciarFormulario();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			dao.rollback();
 			JOptionPane.showMessageDialog(null, "Se produjo un error al guardar", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 	private void guardarProducto() {
 		producto = new Producto();
 		producto.setDescripcion(vEmpeno.getTfDescripcion().getText());
@@ -255,7 +226,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		producto.setPrecioVenta(Double.parseDouble(vEmpeno.getTfValorTotal().getText()));
 		producto.setEmpeno(empeno);
 	}
-
 	private void guardarDeuda() {
 		for (int i = 1; i <= Integer.parseInt(vEmpeno.getTfCuota().getText()); i++) {
 			DeudaCliente deudaCliente = new DeudaCliente();
@@ -264,7 +234,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			deudaCliente.setEstado(0);
 			deudaCliente.setFechaVencimiento(FechaUtil.sumarMes(deudaCliente.getFechaInicio(), i));
 			deudaCliente.setValor(Double.parseDouble(vEmpeno.getTfValorTotal().getText()) / Integer.parseInt(vEmpeno.getTfCuota().getText()));
-
 			DeudaClienteDao deudaClienteDao = new DeudaClienteDao();
 			try {
 				deudaClienteDao.insertar(deudaCliente);
@@ -274,7 +243,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			}
 		}
 	}
-
 	private void anularDeuda() {
 		DeudaClienteDao deudaClienteDao;
 		for (int i = 0; i < empeno.getDeudaClientes().size(); i++) {
@@ -288,7 +256,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			}
 		}
 	}
-
 	@Override
 	public void cancelar() {
 		this.vEmpeno.getMiToolBar().estadoInicialToolBar(true,2);
@@ -298,11 +265,8 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		vaciarFormulario();
 		this.vEmpeno.getTable().setEnabled(true);
 		this.vEmpeno.lblValidarCuota.setVisible(false);
-
 	}
-
 	//-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------
-
 	private boolean validarCampos() {
 		if (vEmpeno.getTfCliente().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Debes seleccionar un \"Cliente\"", "Atención!", JOptionPane.INFORMATION_MESSAGE);
@@ -343,12 +307,10 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			dao.rollback();
 		}
 	}
-
 	//---------------------METODO PARA GENERAR FECHA DE VENCIMIENTO A CADA MES----------------------------------------
 	public void cargarVencimiento() {
 		vEmpeno.getTfFechaVencimiento().setValue(FechaUtil.convertirDateUtilAString(FechaUtil.sumarMes(FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()), Integer.parseInt(vEmpeno.getTfCuota().getText()) )));
 	}
-	
 	//--------------------Verificar El estado de las deudas------------------------------------------
 		private void comprobarEstadoDeuda() {
 			EmpenoDao empenoDao = new EmpenoDao();
@@ -375,7 +337,6 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 				}
 			}
 		}
-
 	//---------------------------------ACCIÓNES DEL BOTON BUSCADOR------------------------------------------------------
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -383,20 +344,17 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			recuperarPorFiltro();
 		}
 	}
-
 	public void abrirBuscarCliente() {
 		BuscadorCliente buscador = new BuscadorCliente();
 		buscador.setUpController();
 		buscador.getControlador().setInterfaz(this);
 		buscador.setVisible(true);
 	}
-
 	@Override
 	public void setCliente(Cliente cliente) {
 		vEmpeno.getTfCliente().setText(cliente.getNombre());
 		this.cliente = cliente;
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -407,12 +365,10 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			break;
 		}
 	}
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-
 }

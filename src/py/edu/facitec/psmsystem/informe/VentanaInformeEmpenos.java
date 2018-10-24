@@ -173,16 +173,13 @@ public class VentanaInformeEmpenos extends JDialog {
 //-------------------------------------METODOS------------------------------------------------
 	private void procesar() {
 		dao = new EmpenoDao();
-
 		Date fechaDesde = FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText());
 		Date fechaHasta = FechaUtil.convertirStringADateUtil(tfHastaFecha.getText());
-		
 		lista = dao.recuperarPorRangos(fechaDesde, fechaHasta);
 		tablaInformeEmpenos.setLista(lista);
 		tablaInformeEmpenos.fireTableDataChanged();
 		table.setModel(tablaInformeEmpenos);
 		TablaUtil.resizeTableColumnWidth(table);
-		
 		lblTotalRegistros.setText(lista.size()+"");
 	}
 	
@@ -200,13 +197,12 @@ public class VentanaInformeEmpenos extends JDialog {
 	}
 
 	private void cancelar() {
-		tfDesdeFecha.setText("__/__/____");
-		tfHastaFecha.setText("__/__/____");
-//		if (tfDesdeFecha.getText().equals("__/__/____") && tfHastaFecha.getText().equals("__/__/____") | FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText()) == null && FechaUtil.convertirStringADateUtil(tfHastaFecha.getText()) == null){
-			lista.removeAll(lista);
-			tablaInformeEmpenos.setLista(lista);
-			tablaInformeEmpenos.fireTableDataChanged();
-//		}
+		tfDesdeFecha.setValue(null);
+		tfHastaFecha.setValue(null);
+		lista.removeAll(lista);
+		
+		tablaInformeEmpenos.setLista(lista);
+		tablaInformeEmpenos.fireTableDataChanged();
 		tfDesdeFecha.requestFocus();
 		lblTotalRegistros.setText(lista.size()+"");
 	}

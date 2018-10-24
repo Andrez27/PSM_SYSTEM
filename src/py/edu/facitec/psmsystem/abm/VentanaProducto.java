@@ -19,6 +19,8 @@ import javax.swing.border.BevelBorder;
 import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.componente.VentanaGenerica;
 import py.edu.facitec.psmsystem.controlador.VentanaProductoControlador;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class VentanaProducto extends VentanaGenerica {
 	private JTextField tfDescripcion;
@@ -137,6 +139,12 @@ public class VentanaProducto extends VentanaGenerica {
 		getPanelFormulario().add(tfPrecioCompra);
 		
 		tfPrecioVenta = new NumberTextField();
+		tfPrecioVenta.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				validarPrecio();
+			}
+		});
 		tfPrecioVenta.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfPrecioVenta.setEditable(false);
 		tfPrecioVenta.setEnabled(false);
@@ -198,6 +206,20 @@ public class VentanaProducto extends VentanaGenerica {
 		getPanelFormulario().add(label);
 		
 	}
+	//----------------------------------PARA VALIDAR EL PRECIO DE VENTA---------------------------------
+		public boolean validarPrecio() {
+			double compra = Double.parseDouble(tfPrecioCompra.getText());
+			double venta = Double.parseDouble(tfPrecioVenta.getText());
+			if (venta < compra) {
+				lblVerificarPrecio.setVisible(true);
+				tfPrecioVenta.requestFocus();
+				tfPrecioVenta.selectAll();
+				return false;
+			}else {
+				lblVerificarPrecio.setVisible(false);
+			}
+			return true;
+		}
 
 	public JTextField gettfDescripcion() {
 		return tfDescripcion;

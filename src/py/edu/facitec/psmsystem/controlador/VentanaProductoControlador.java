@@ -18,7 +18,6 @@ import py.edu.facitec.psmsystem.tabla.TablaProducto;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaProductoControlador implements AccionesABM, KeyListener, ActionListener {
-
 	private VentanaProducto vProducto;
 	private ProductoDao dao;
 	private String accion;
@@ -28,7 +27,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 
 	public VentanaProductoControlador(VentanaProducto vProducto) {
 		this.vProducto = vProducto;
-
 		// Pasamos las implementaciones de AccionesABM a MiToolbar
 		this.vProducto.getMiToolBar().setAcciones(this);
 
@@ -53,58 +51,47 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		});
 		vProducto.gettBuscador().addKeyListener(this);
 	}
-
 	private void recuperarTodo() {
 		lista = dao.recuperarTodo();
 		mtProducto.setLista(lista);
 		mtProducto.fireTableDataChanged();
-		
 		TablaUtil.resizeTableColumnWidth(vProducto.getTable());
 	}
-
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(vProducto.gettBuscador().getText());
 		mtProducto.setLista(lista);
 		mtProducto.fireTableDataChanged();
-		
 		TablaUtil.resizeTableColumnWidth(vProducto.getTable());
 	}
-
 	private void cargarFormulario(int posicion) {
 		if (posicion < 0) {
 			return;
 		}
 		producto = lista.get(posicion);	// Recupera un Producto por la posicion recibida
-		
 		vProducto.gettfDescripcion().setText(producto.getDescripcion());	// Carga los datos del Producto al formulario
 		vProducto.gettfPrecioCompra().setValue(producto.getPrecioCompra());
 		vProducto.gettfPrecioVenta().setValue(producto.getPrecioVenta());
 		vProducto.gettfDetalle().setText(producto.getDetalle());
 		vProducto.getCbEstado().setSelectedIndex(producto.getEstado());
-
 		this.vProducto.getMiToolBar().estadoInicialToolBar(true,3);
 		estadoInicialCampos(true);
 		estadoInicialCampos2(false);
 	}
-
 	private void estadoInicialCampos(boolean b) {
 		this.vProducto.gettfDescripcion().setEnabled(b);
 		this.vProducto.gettfPrecioCompra().setEnabled(b);
 		this.vProducto.gettfPrecioVenta().setEnabled(b);
 		this.vProducto.gettfDetalle().setEnabled(b);
-
 		this.vProducto.getTable().clearSelection();
 	}
-
 	private void estadoInicialCampos2(boolean b) {
 		this.vProducto.gettfDescripcion().setEditable(b);
 		this.vProducto.gettfPrecioCompra().setEditable(b);
 		this.vProducto.gettfPrecioVenta().setEditable(b);
 		this.vProducto.gettfDetalle().setEditable(b);
-
 		this.vProducto.getTable().clearSelection();
+		this.vProducto.getCbEstado().setEnabled(b);
 	}
-
 	private void vaciarFormulario() {
 		vProducto.gettfDescripcion().setText("");
 		vProducto.gettfPrecioCompra().setText("");
@@ -112,7 +99,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		vProducto.gettfDetalle().setText("");
 		vProducto.getCbEstado().setSelectedIndex(0);
 	}
-
 	@Override
 	public void nuevo() {
 		vaciarFormulario();
@@ -124,7 +110,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		this.vProducto.getCbEstado().setEnabled(true);
 		this.vProducto.getTable().setEnabled(false);
 	}
-
 	@Override
 	public void modificar() {
 		estadoInicialCampos(true);
@@ -136,7 +121,6 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		this.vProducto.getCbEstado().setEnabled(true);
 		this.vProducto.getTable().setEnabled(false);
 	}
-
 	@Override
 	public void eliminar() {
 		int posicion = vProducto.getTable().getSelectedRow();
@@ -158,26 +142,18 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 			}
 		}
 	}
-
 	@Override
 	public void guardar() {
-		if (!validarCampos())	{	// Si no se validan los campos para la ejecucion
-			return;
-		}
-		if(!validarPrecio())	{	//VALIDAR PRECIO DE VENTA
-			return;
-		}
-		if (accion.equals("NUEVO")) {// Si la accion es NUEVO (o ALTA) se instancia un nuevo Producto
+		if (!validarCampos())	{return;}
+		
+		if (accion.equals("NUEVO")) {
 			producto = new Producto();
 		}
-		// Se cargan los valores obtenidos del formulario al objeto Producto
 		producto.setDescripcion(vProducto.gettfDescripcion().getText());
 		producto.setDetalle(vProducto.gettfDetalle().getText());
 		producto.setEstado(vProducto.getCbEstado().getSelectedIndex());
-
 		producto.setPrecioCompra(vProducto.gettfPrecioCompra().getValue());
 		producto.setPrecioVenta(vProducto.gettfPrecioVenta().getValue());
-
 		try {
 			if(accion.equals("NUEVO")){
 				dao.insertar(producto);
@@ -190,18 +166,14 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 			estadoInicialCampos(false);
 			estadoInicialCampos2(false);
 			recuperarTodo();
-
 		} catch (Exception e) {
 			dao.rollback();
-			JOptionPane.showMessageDialog(null, "Se produjo un error al guardar", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Se produjo un error al guardar", "Error!", JOptionPane.ERROR_MESSAGE);
 		}
 		estadoInicialCampos(false);
 		estadoInicialCampos2(false);
-		this.vProducto.getCbEstado().setEnabled(false);
-		this.vProducto.getLblVerificarPrecio().setVisible(false);
 		this.vProducto.getTable().setEnabled(true);
 	}	
-
 	@Override
 	public void cancelar() {
 		this.vProducto.getMiToolBar().estadoInicialToolBar(true,2);
@@ -211,34 +183,17 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		vaciarFormulario();
 		this.vProducto.getTable().setEnabled(true);
 	}
-
 //-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------
-
 	private boolean validarCampos() {
 		if (vProducto.gettfDescripcion().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El campo \"DESCRIPCIÓN\" es obligatorio!", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			vProducto.gettfDescripcion().requestFocus();
 			return false;
 		}
-		return true;// Si no se encuentran problemas
-	}
-
-//----------------------------------PARA VALIDAR EL PRECIO DE VENTA---------------------------------
-
-	private boolean validarPrecio() {
-		double compra = Double.parseDouble(vProducto.gettfPrecioCompra().getText());
-		double venta = Double.parseDouble(vProducto.gettfPrecioVenta().getText());
-		if (venta < compra) {
-			vProducto.getLblVerificarPrecio().setVisible(true);
-			vProducto.gettfPrecioVenta().requestFocus();
-			vProducto.gettfPrecioVenta().selectAll();
-			return false;
-		}
 		return true;
 	}
 
 //-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
-
 	public void inicializarProducto() {
 		String tabla = "tb_producto";
 		dao.eliminarTodos(tabla);
@@ -248,16 +203,13 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 			dao.rollback();
 		}
 	}
-
 //----------------------------------------------------------------------------------------------------------
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource() == vProducto.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
 			recuperarPorFiltro();
 		}
 	}
-
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
@@ -267,5 +219,4 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	}
-
 }

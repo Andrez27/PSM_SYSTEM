@@ -35,7 +35,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 	
 	public List<DeudaCliente> recuperarPorNombre(String filtro) {
 		getSession().beginTransaction();
-		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri ";
+		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri order by id";
 		Query<DeudaCliente> query = getSession().createQuery(sql);
 		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
 		List<DeudaCliente> lista = query.getResultList();
@@ -45,7 +45,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 	
 	public List<DeudaCliente> filtroInforme(String filtro, int estado){
 		getSession().beginTransaction();
-		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri and estado = :fEstado ";
+		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri and estado = :fEstado order by id";
 		Query<DeudaCliente> query = getSession().createQuery(sql);
 		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
 		query.setParameter("fEstado", estado);

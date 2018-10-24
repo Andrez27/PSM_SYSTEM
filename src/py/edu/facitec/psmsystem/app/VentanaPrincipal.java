@@ -3,7 +3,6 @@ package py.edu.facitec.psmsystem.app;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.DefaultKeyboardFocusManager;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -49,7 +48,6 @@ import py.edu.facitec.psmsystem.transaccion.VentanaCobranza;
 import py.edu.facitec.psmsystem.transaccion.VentanaEmpeno;
 
 public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
-
 	private PanelFondo contentPane;
 	public static JLabel lblNombre;
 	public static JLabel lblRuc;
@@ -349,56 +347,46 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		VentanaConfiguracion ventanaConfiguracion = new VentanaConfiguracion();
 		ventanaConfiguracion.setVisible(true);
 	}
-
 	private void abrirFormularioCliente() {
 		VentanaCliente ventanaCliente = new VentanaCliente();
 		ventanaCliente.setUpControlador();
 		ventanaCliente.setVisible(true);
 	}
-
 	private void abrirFormularioProducto() {
 		VentanaProducto ventanaProducto = new VentanaProducto();
 		ventanaProducto.setUpControlador();
 		ventanaProducto.setVisible(true);
 	}
-
 	private void abrirFormularioEmpeno() {
 		VentanaEmpeno ventanaEmpeno = new VentanaEmpeno();
 		ventanaEmpeno.setUpControlador();
 		ventanaEmpeno.setVisible(true);
 	}
-	
 	private void abrirFormularioCobranza() {
 		VentanaCobranza ventanaCobranza = new VentanaCobranza();
 		ventanaCobranza.setUpControlador();
 		ventanaCobranza.setVisible(true);
 	}
-	
 	private void abrirListadoClientes() {
 		VentanaListadoClientes ventanaListadoClientes = new VentanaListadoClientes();
 		ventanaListadoClientes.setVisible(true);
 	}
-	
 	private void abrirListadoProductos() {
 		VentanaListadoProductos ventanaListadoProductos = new VentanaListadoProductos();
 		ventanaListadoProductos.setVisible(true);
 	}
-	
 	private void abrirInformeEmpenos() {
 		VentanaInformeEmpenos ventanaInformeEmpenos = new VentanaInformeEmpenos();
 		ventanaInformeEmpenos.setVisible(true);
 	}
-	
 	private void abrirInformeCobranzas() {
 		VentanaInformeCobranzas ventanaInformeCobranzas = new VentanaInformeCobranzas();
 		ventanaInformeCobranzas.setVisible(true);
 	}
-	
 	private void abrirInformeDeudas() {
 		VentanaInformeDeudas ventanaInformeDeudas = new VentanaInformeDeudas();
 		ventanaInformeDeudas.setVisible(true);
 	}
-
 //----------------DESACTIVAR FALLA TECLA F10------------------------------------------
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		if(e.getID() == e.KEY_PRESSED){
@@ -408,7 +396,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		}
 		return false;
 	}
-
 //-----------------CARGAR FORMULARIO DE LA EMPRESA--------------------------------------
 	public void cargarConfiguracion() {
 		configuracionDao = new ConfiguracionDao();
@@ -419,7 +406,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		lblTelefono.setText(configuracion.get(0).getTelefono());
 		lblEmail.setText(configuracion.get(0).getEmail());
 	}
-	
 //----------------VERIFICAR VENCIMIENTO DEUDAS------------------------------------------
 	private void verificarFechasVencimiento() {
 		DeudaClienteDao deudaClienteDao = new DeudaClienteDao();
@@ -435,7 +421,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 			}
 		}
 	}
-
 //----------------INICIALIZAR BASE DE DATOS------------------------------------------
 	public void inicializarBaseDeDatos() {
 		VentanaCliente a = new VentanaCliente();

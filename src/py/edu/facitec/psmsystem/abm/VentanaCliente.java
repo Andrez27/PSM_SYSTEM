@@ -20,7 +20,7 @@ import py.edu.facitec.psmsystem.controlador.VentanaClienteControlador;
 
 public class VentanaCliente extends VentanaGenerica {
 	private JTextField tfNombre;
-	private NumberTextField tfDocumento;
+	private JTextField tfDocumento;
 	private JTextField tfTelefono;
 	private JTextField tfDomicilio;
 	private JTextField tfEmail;
@@ -117,7 +117,7 @@ public class VentanaCliente extends VentanaGenerica {
 		getPanelFormulario().add(tfNombre);
 		tfNombre.setColumns(10);
 
-		tfDocumento = new NumberTextField();
+		tfDocumento = new JTextField();
 		tfDocumento.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -130,7 +130,8 @@ public class VentanaCliente extends VentanaGenerica {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+				int k = (int) e.getKeyChar();
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=45) {
 					e.consume();
 					lblDocumentoDuplicado.setVisible(true);
 				}else{
@@ -166,7 +167,7 @@ public class VentanaCliente extends VentanaGenerica {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				int k = (int) e.getKeyChar();										//32= ESPACIO, 40= (, 41= ), 43= +, 45= -
+				int k = (int) e.getKeyChar();										//32= ESPACIO, 40= "(", 41= ")", 43= +, 45= -
 				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=32 & k !=43 & k !=40 & k !=41 & k !=45) {
 					e.consume();
 					lblValidarTelefono.setVisible(true);
@@ -246,10 +247,10 @@ public class VentanaCliente extends VentanaGenerica {
 	public void settfNombre(JTextField tfNombre) {
 		this.tfNombre = tfNombre;
 	}
-	public NumberTextField gettfDocumento() {
+	public JTextField gettfDocumento() {
 		return tfDocumento;
 	}
-	public void settfDocumento(NumberTextField tfDocumento) {
+	public void settfDocumento(JTextField tfDocumento) {
 		this.tfDocumento = tfDocumento;
 	}
 	public JTextField gettfTelefono() {

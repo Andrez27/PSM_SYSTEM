@@ -171,16 +171,13 @@ public class VentanaInformeCobranzas extends JDialog {
 //-------------------------------------METODOS------------------------------------------------
 	private void procesar() {
 		dao = new CobranzaDao();
-		
 		Date fechaDesde = FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText());
 		Date fechaHasta = FechaUtil.convertirStringADateUtil(tfHastaFecha.getText());
-		
 		lista = dao.recuperarPorRangos(fechaDesde, fechaHasta);
 		tablaInformeCobranzas.setLista(lista);
 		tablaInformeCobranzas.fireTableDataChanged();
 		table.setModel(tablaInformeCobranzas);
 		TablaUtil.resizeTableColumnWidth(table);
-		
 		lblTotalRegistros.setText(lista.size()+"");
 	}
 	
@@ -207,13 +204,12 @@ public class VentanaInformeCobranzas extends JDialog {
 	}
 
 	private void cancelar() {
-		tfDesdeFecha.setText("__/__/____");
-		tfHastaFecha.setText("__/__/____");
-//		if (tfDesdeFecha.getText().equals("__/__/____") && tfHastaFecha.getText().equals("__/__/____") | FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText()) == null && FechaUtil.convertirStringADateUtil(tfHastaFecha.getText()) == null){
-			lista.removeAll(lista);
-			tablaInformeCobranzas.setLista(lista);
-			tablaInformeCobranzas.fireTableDataChanged();
-//		}
+		tfDesdeFecha.setValue(null);
+		tfHastaFecha.setValue(null);
+		
+		lista.removeAll(lista);
+		tablaInformeCobranzas.setLista(lista);
+		tablaInformeCobranzas.fireTableDataChanged();
 		tfDesdeFecha.requestFocus();
 		lblTotalRegistros.setText(lista.size()+"");
 	}
