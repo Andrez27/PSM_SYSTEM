@@ -22,7 +22,7 @@ public class ReportesUtil<E>{
 		InputStream logo = ReportesUtil.class.getResourceAsStream("/img/ventanas/icono.png");
 		map.put("logo", logo);
 		
-		String urlReporte = "/py/edu/facitec/psmsystem/informe/"+reporte+".jrxml";
+		String urlReporte = "/py/edu/facitec/psmsystem/jasper/"+reporte+".jrxml";
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(lista);
 		
 		try {
@@ -38,7 +38,7 @@ public class ReportesUtil<E>{
 	}
 	
 	public void primeraConexion() throws JRException{
-		InputStream stream = ReportesUtil.class.getResourceAsStream("/py/edu/facitec/psmsystem/informe/ListadoClientes.jrxml");
+		InputStream stream = ReportesUtil.class.getResourceAsStream("/py/edu/facitec/psmsystem/jasper/ListadoClientes.jrxml");
 		JasperReport report= JasperCompileManager.compileReport(stream);
 		JasperPrint print = JasperFillManager.fillReport(report, null,new JRBeanCollectionDataSource(null));
 	}
