@@ -53,6 +53,7 @@ public class GenericDao <T>{
 		getSession().delete(entity);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<T> recuperarTodo(){
 		getSession().beginTransaction();
 		Query<T> query = getSession().createQuery("from "+clase.getName()+" order by id");
@@ -61,6 +62,7 @@ public class GenericDao <T>{
 		return results;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public int recuperarSiguienteId(){
 		getSession().beginTransaction();
 		Query<T> query = getSession().createQuery("select max(id) from "+clase.getName());
@@ -92,6 +94,7 @@ public class GenericDao <T>{
 		getSession().close();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public void eliminarTodos(String tabla){
 		getSession().getTransaction().begin();
 		String deleteAll= "TRUNCATE TABLE "+tabla+ " cascade";

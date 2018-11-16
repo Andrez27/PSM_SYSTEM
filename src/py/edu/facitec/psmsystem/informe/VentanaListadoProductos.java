@@ -22,13 +22,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.dao.ProductoDao;
 import py.edu.facitec.psmsystem.entidad.Producto;
 import py.edu.facitec.psmsystem.tabla.TablaListadoProductos;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
+@SuppressWarnings("serial")
 public class VentanaListadoProductos extends JDialog {
 
 	private List<Producto> lista;
@@ -37,6 +37,7 @@ public class VentanaListadoProductos extends JDialog {
 	private JTable table;
 	private JTextField tfDesdeId;
 	private JTextField tfHastaId;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbOrden;
 	private AbstractButton btnImprimir;
 	private JLabel lblTotalRegistros;
@@ -45,6 +46,7 @@ public class VentanaListadoProductos extends JDialog {
 	private JTextField tfHastaDescri;
 	private JButton btnCancelar;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaListadoProductos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoProductos.class.getResource("/img/ventanas/icono.png")));
 		setTitle("Listado de Productos");
@@ -86,6 +88,7 @@ public class VentanaListadoProductos extends JDialog {
 		tfDesdeId.setBounds(68, 10, 91, 20);
 		getContentPane().add(tfDesdeId);
 		tfDesdeId.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -94,6 +97,7 @@ public class VentanaListadoProductos extends JDialog {
 					tfHastaId.selectAll();
 				}
 			}
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -109,6 +113,7 @@ public class VentanaListadoProductos extends JDialog {
 		
 		tfHastaId = new JTextField();
 		tfHastaId.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -117,6 +122,7 @@ public class VentanaListadoProductos extends JDialog {
 					tfDesdeDescri.selectAll();
 				}
 			}
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -134,6 +140,7 @@ public class VentanaListadoProductos extends JDialog {
 
 		tfDesdeDescri = new JTextField();
 		tfDesdeDescri.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -149,6 +156,7 @@ public class VentanaListadoProductos extends JDialog {
 		
 		tfHastaDescri = new JTextField();
 		tfHastaDescri.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -163,6 +171,7 @@ public class VentanaListadoProductos extends JDialog {
 		
 		cbOrden = new JComboBox();
 		cbOrden.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -178,6 +187,7 @@ public class VentanaListadoProductos extends JDialog {
 		
 		btnProcesar = new JButton("Procesar");
 		btnProcesar.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();

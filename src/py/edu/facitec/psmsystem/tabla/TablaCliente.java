@@ -8,7 +8,8 @@ import javax.swing.table.AbstractTableModel;
 import py.edu.facitec.psmsystem.entidad.Cliente;
 
 public class TablaCliente extends AbstractTableModel {
-
+	private static final long serialVersionUID = 1L;
+	
 	private String[] columnas = { "ID", "NOMBRE Y APELLIDO", "DOCUMENTO", "TELEFONO" };
 	private List<Cliente> lista = new ArrayList<>();
 	

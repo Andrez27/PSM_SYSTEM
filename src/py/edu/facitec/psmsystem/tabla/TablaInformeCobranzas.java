@@ -9,7 +9,8 @@ import javax.swing.table.AbstractTableModel;
 import py.edu.facitec.psmsystem.entidad.Cobranza;
 
 public class TablaInformeCobranzas extends AbstractTableModel {
-
+	private static final long serialVersionUID = 1L;
+	
 	private String[] columnas = { "ID","CLIENTE", "FECHA COBRO", "VALOR TOTAL", "ESTADO"};
 	private List<Cobranza> lista = new ArrayList<>();
 	

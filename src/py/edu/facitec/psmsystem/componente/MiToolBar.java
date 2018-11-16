@@ -9,6 +9,8 @@ import javax.swing.JToolBar;
 import py.edu.facitec.psmsystem.interfaz.AccionesABM;
 
 public class MiToolBar extends JToolBar implements ActionListener {
+	private static final long serialVersionUID = 1L;
+	
 	public BotonIconoVentana btncnNuevo;
 	public BotonIconoVentana btncnModificar;
 	public BotonIconoVentana btncnEliminar;

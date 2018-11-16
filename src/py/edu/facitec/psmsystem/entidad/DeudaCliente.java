@@ -20,16 +20,12 @@ public class DeudaCliente {
 	@GenericGenerator(strategy="increment",name="increment")
 	@Column(name="deu_id")
 	private int id;
-	
 	@Column(name="deu_fecha_inicio", nullable=false)
 	private Date fechaInicio;
-	
 	@Column(name="deu_fecha_vencimiento", nullable=false)
 	private Date fechaVencimiento;
-	
 	@Column(name="deu_valor", nullable=false)
 	private double valor;
-	
 	@Column(name="deu_estado", nullable=false)
 	private int estado;
 	

@@ -18,6 +18,7 @@ import py.edu.facitec.psmsystem.tabla.TablaProducto;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaProductoControlador implements AccionesABM, KeyListener, ActionListener {
+	
 	private VentanaProducto vProducto;
 	private ProductoDao dao;
 	private String accion;
@@ -123,6 +124,7 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 	}
 	@Override
 	public void eliminar() {
+		@SuppressWarnings("unused")
 		int posicion = vProducto.getTable().getSelectedRow();
 		if (producto == null) {		//VERIFICA QUE SE SELECCIONO UN REGISTRO
 			JOptionPane.showMessageDialog(null, "Seleccione un registro");
@@ -142,6 +144,7 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 			}
 		}
 	}
+	
 	@Override
 	public void guardar() {
 		if (!validarCampos())	{return;}
@@ -174,6 +177,7 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		estadoInicialCampos2(false);
 		this.vProducto.getTable().setEnabled(true);
 	}	
+	
 	@Override
 	public void cancelar() {
 		this.vProducto.getMiToolBar().estadoInicialToolBar(true,2);
@@ -183,6 +187,7 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		vaciarFormulario();
 		this.vProducto.getTable().setEnabled(true);
 	}
+	
 //-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------
 	private boolean validarCampos() {
 		if (vProducto.gettfDescripcion().getText().isEmpty()) {
@@ -203,6 +208,7 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 			dao.rollback();
 		}
 	}
+	
 //----------------------------------------------------------------------------------------------------------
 	@Override
 	public void keyPressed(KeyEvent e) {

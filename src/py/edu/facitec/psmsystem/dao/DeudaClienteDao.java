@@ -13,6 +13,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		super (DeudaCliente.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<DeudaCliente> recuperarPorFiltro(String filtro) {
 		getSession().beginTransaction();
 
@@ -33,6 +34,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<DeudaCliente> recuperarPorNombre(String filtro) {
 		getSession().beginTransaction();
 		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri order by id";
@@ -43,6 +45,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<DeudaCliente> filtroInforme(String filtro, int estado){
 		getSession().beginTransaction();
 		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri and estado = :fEstado order by id";
@@ -54,6 +57,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<DeudaCliente> comprobarDeudasVencidas() {
 		getSession().beginTransaction();
 		String sql = "from DeudaCliente where fechaVencimiento <= :fDesde and estado = 0";

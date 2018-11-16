@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 public class BotonIconoVentana extends JButton{
-	
 	private static final long serialVersionUID = -5135218231501823013L;
 
 	public BotonIconoVentana(){

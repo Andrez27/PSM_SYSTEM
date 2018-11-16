@@ -19,19 +19,14 @@ public class Cliente {
 	@GenericGenerator(strategy = "increment", name = "increment")
 	@Column(name="cli_id")
 	private int id;
-
 	@Column(name="cli_nombre", nullable=false, length=50)
 	private String nombre;
-
 	@Column(name="cli_documento", nullable=false, unique=true, length=20)
 	private String documento;
-
 	@Column(name="cli_telefono", nullable=false, length=20)
 	private String telefono;
-
 	@Column(name="cli_domicilio", nullable=false, length=100)
 	private String domicilio;
-
 	@Column(name="cli_email", length=50)
 	private String email;
 

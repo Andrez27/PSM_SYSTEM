@@ -12,6 +12,7 @@ public class ProductoDao extends GenericDao<Producto>{
 		super (Producto.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Producto> recuperarPorFiltro(String filtro) {
 		getSession().beginTransaction();
 
@@ -31,6 +32,7 @@ public class ProductoDao extends GenericDao<Producto>{
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Producto> recuperarPorRangos(int idDesde, int idHasta, String dDesde, String dHasta, int indiceOrden) {
 		String[] opcionesOrden = {"id", "descripcion"};
 		getSession().beginTransaction();

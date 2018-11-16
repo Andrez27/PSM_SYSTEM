@@ -16,6 +16,7 @@ import py.edu.facitec.psmsystem.tabla.TablaCliente;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaClienteControlador implements AccionesABM, KeyListener {
+	
 	private VentanaCliente vCliente;
 	private String accion;
 	private Cliente cliente;
@@ -49,18 +50,21 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		});
 		vCliente.gettBuscador().addKeyListener(this);
 	}
+	
 	private void recuperarTodo() {
 		lista = dao.recuperarTodo();
 		mtCliente.setLista(lista);
 		mtCliente.fireTableDataChanged();
 		TablaUtil.resizeTableColumnWidth(vCliente.getTable());
 	}
+	
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(vCliente.gettBuscador().getText());
 		mtCliente.setLista(lista);
 		mtCliente.fireTableDataChanged();
 		TablaUtil.resizeTableColumnWidth(vCliente.getTable());
 	}
+	
 	private void cargarFormulario(int posicion) {
 		if (posicion < 0) {
 			return;
@@ -75,6 +79,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		estadoInicialCampos(true);
 		estadoInicialCampos2(false);
 	}
+	
 	private void estadoInicialCampos(boolean b) {
 		this.vCliente.gettfNombre().setEnabled(b);
 		this.vCliente.gettfDocumento().setEnabled(b);
@@ -86,6 +91,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		this.vCliente.getlblValidarNombre().setVisible(false);
 		this.vCliente.getlblValidarTelefono().setVisible(false);
 	}
+	
 	private void estadoInicialCampos2(boolean b) {
 		this.vCliente.gettfNombre().setEditable(b);
 		this.vCliente.gettfDocumento().setEditable(b);
@@ -94,6 +100,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		this.vCliente.gettfEmail().setEditable(b);
 		this.vCliente.getTable().clearSelection();
 	}
+	
 	private void vaciarFormulario() {
 		vCliente.gettfNombre().setText("");
 		vCliente.gettfDocumento().setText("");
@@ -102,6 +109,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vCliente.gettfEmail().setText("");
 		vCliente.getlblDocumentoDuplicado().setVisible(false);
 	}
+	
 	@Override
 	public void nuevo() {
 		vaciarFormulario();
@@ -112,6 +120,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vCliente.gettfNombre().requestFocus();
 		this.vCliente.getTable().setEnabled(false);
 	}
+	
 	@Override
 	public void modificar() {
 		estadoInicialCampos(true);
@@ -122,6 +131,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vCliente.gettfNombre().selectAll();
 		this.vCliente.getTable().setEnabled(false);
 	}
+	
 	@Override
 	public void eliminar() {
 		if (cliente == null) {		// Verifica que se seleccione un registro
@@ -142,6 +152,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 			}
 		}
 	}
+	
 	@Override
 	public void guardar() {
 		if(verificarDocumento()) {return;}
@@ -176,6 +187,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		estadoInicialCampos2(false);
 		this.vCliente.getTable().setEnabled(true);
 	}
+	
 	@Override
 	public void cancelar() {
 		this.vCliente.getMiToolBar().estadoInicialToolBar(true,2);
@@ -184,6 +196,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vaciarFormulario();
 		this.vCliente.getTable().setEnabled(true);
 	}
+	
 //------------------------METODO PARA VERIFICAR DOCUMENTO---------------------------
 	private boolean verificarDocumento() {
 		if (vCliente.gettfDocumento().getText().isEmpty()) {
@@ -205,6 +218,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		}
 		return false;
 	}
+	
 //--------------------------------VALIDAR CAMPOS OBLIGATORIOS---------------------------------------
 	private boolean validarCampos() {
 		if (vCliente.gettfNombre().getText().isEmpty()) {
@@ -224,6 +238,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		}
 		return true;
 	}
+	
 //---------------------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
 	public void inicializarCliente() {
 		String tabla = "tb_cliente";
@@ -234,6 +249,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 			dao.rollback();
 		}
 	}
+	
 //----------------------------------------------------------------------------------------------------------
 	@Override
 	public void keyPressed(KeyEvent e) {

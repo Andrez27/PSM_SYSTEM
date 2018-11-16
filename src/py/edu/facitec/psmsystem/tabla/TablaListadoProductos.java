@@ -8,7 +8,8 @@ import javax.swing.table.AbstractTableModel;
 import py.edu.facitec.psmsystem.entidad.Producto;
 
 public class TablaListadoProductos extends AbstractTableModel {
-
+	private static final long serialVersionUID = 1L;
+	
 	private String[] columnas = { "ID", "DESCRIPCIÓN", "PRECIO COMPRA", "PRECIO VENTA", "ESTADO" };
 	private List<Producto> lista = new ArrayList<>();
 

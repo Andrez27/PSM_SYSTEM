@@ -13,6 +13,7 @@ public class EmpenoDao extends GenericDao<Empeno> {
 		super(Empeno.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Empeno> recuperarPorFiltro(String filtro) {
 		getSession().beginTransaction();
 
@@ -32,6 +33,7 @@ public class EmpenoDao extends GenericDao<Empeno> {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Empeno> recuperarPorRangos(Date fDesde, Date fHasta) {
 		getSession().beginTransaction();
 		String sql = "from Empeno where (fechaDia >= :fDesde or :fDesdeNula = true)  "
@@ -48,6 +50,7 @@ public class EmpenoDao extends GenericDao<Empeno> {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Empeno> verificarEstadoDeuda() {
 		getSession().beginTransaction();
 		String sql = "from Empeno where  estado < 2";

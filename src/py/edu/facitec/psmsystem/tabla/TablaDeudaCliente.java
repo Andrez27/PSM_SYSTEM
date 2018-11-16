@@ -9,7 +9,8 @@ import javax.swing.table.AbstractTableModel;
 import py.edu.facitec.psmsystem.entidad.DeudaCliente;
 
 public class TablaDeudaCliente extends AbstractTableModel {
-
+	private static final long serialVersionUID = 1L;
+	
 	private String[] columnas = { "ID", "CLIENTE", "FECHA VENCIMIENTO", "MONTO", "ESTADO"};
 	private List<DeudaCliente> lista = new ArrayList<>();
 	

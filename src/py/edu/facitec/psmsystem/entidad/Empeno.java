@@ -25,13 +25,10 @@ public class Empeno {
 	@GenericGenerator(strategy = "increment", name = "increment")
 	@Column(name="emp_id")
 	private int id;
-
 	@Column(name = "emp_fecha_dia", nullable = false)
 	private Date fechaDia;
-
 	@Column(name = "emp_fecha_vencimiento", nullable = false)
 	private Date fechaVencimiento;
-
 	@Column(name = "emp_valor_total", nullable = false)
 	private double valorTotal;
 

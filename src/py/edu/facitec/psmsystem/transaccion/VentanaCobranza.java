@@ -19,6 +19,8 @@ import py.edu.facitec.psmsystem.controlador.VentanaCobranzaControlador;
 import py.edu.facitec.psmsystem.util.FechaUtil;
 
 public class VentanaCobranza extends VentanaGenerica{
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel lblFechaCobro;
 	private JFormattedTextField tfFechaCobro;
 	private JLabel lblMontoACobrar;
@@ -91,6 +93,7 @@ public class VentanaCobranza extends VentanaGenerica{
 
 		tfBuscarDeuda = new JTextField();
 		tfBuscarDeuda.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -122,6 +125,7 @@ public class VentanaCobranza extends VentanaGenerica{
 
 		tfAbonado = new NumberTextField();
 		tfAbonado.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -159,6 +163,7 @@ public class VentanaCobranza extends VentanaGenerica{
 		btnBuscarDeuda = new JButton("Agregar");
 		btnBuscarDeuda.setEnabled(false);
 		btnBuscarDeuda.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();

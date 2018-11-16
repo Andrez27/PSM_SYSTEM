@@ -1,7 +1,6 @@
 package py.edu.facitec.psmsystem.transaccion;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -11,7 +10,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
@@ -28,7 +26,9 @@ import py.edu.facitec.psmsystem.entidad.Configuracion;
 import py.edu.facitec.psmsystem.util.FechaUtil;
 
 public class VentanaEmpeno extends VentanaGenerica{
+	private static final long serialVersionUID = 1L;
 	
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbEstado;
 	private JFormattedTextField tfFechaRegistro;
 	private JFormattedTextField tfFechaVencimiento;
@@ -47,6 +47,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 		new VentanaEmpenoControlador(this);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaEmpeno() {
 		gettBuscador().setLocation(420, 55);
 		getMiToolBar().setBounds(10, 11, 400, 64);
@@ -66,56 +67,56 @@ public class VentanaEmpeno extends VentanaGenerica{
 		separator.setBounds(10, 461, 851, 14);
 		getContentPane().add(separator);
 
-		JLabel lblId = new JLabel("N\u00FAmero:");
+		JLabel lblId = new JLabel("N\u00FAmero: ");
 		lblId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblId.setBounds(32, 33, 73, 20);
+		lblId.setBounds(0, 34, 115, 20);
 		getPanelFormulario().add(lblId);
 
-		JLabel lblEstado = new JLabel("Estado:");
+		JLabel lblEstado = new JLabel("Estado: ");
 		lblEstado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEstado.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblEstado.setBounds(233, 33, 73, 20);
+		lblEstado.setBounds(226, 36, 89, 20);
 		getPanelFormulario().add(lblEstado);
 
-		JLabel lblFechaDia = new JLabel("Fecha dia:");
+		JLabel lblFechaDia = new JLabel("Fecha dia: ");
 		lblFechaDia.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblFechaDia.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblFechaDia.setBounds(32, 86, 73, 20);
+		lblFechaDia.setBounds(0, 86, 115, 20);
 		getPanelFormulario().add(lblFechaDia);
 
-		JLabel lblVencimiento = new JLabel("Vencimiento:");
+		JLabel lblVencimiento = new JLabel("Vencimiento: ");
 		lblVencimiento.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblVencimiento.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblVencimiento.setBounds(210, 86, 96, 20);
+		lblVencimiento.setBounds(203, 86, 112, 20);
 		getPanelFormulario().add(lblVencimiento);
 
-		JLabel lblCliente = new JLabel("Cliente:");
+		JLabel lblCliente = new JLabel("Cliente: ");
 		lblCliente.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCliente.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCliente.setBounds(32, 139, 73, 20);
+		lblCliente.setBounds(0, 139, 115, 20);
 		getPanelFormulario().add(lblCliente);
 
-		JLabel lblValorEmpeno = new JLabel("Vlr. empe\u00F1o:");
+		JLabel lblValorEmpeno = new JLabel("Vlr. empe\u00F1o: ");
 		lblValorEmpeno.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblValorEmpeno.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblValorEmpeno.setBounds(-1, 192, 106, 20);
+		lblValorEmpeno.setBounds(0, 192, 115, 20);
 		getPanelFormulario().add(lblValorEmpeno);
 
-		JLabel lblCuotas = new JLabel("Cuotas:");
+		JLabel lblCuotas = new JLabel("Cuotas: ");
 		lblCuotas.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCuotas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCuotas.setBounds(252, 192, 54, 20);
+		lblCuotas.setBounds(245, 192, 70, 20);
 		getPanelFormulario().add(lblCuotas);
 
 		JLabel lblGs = new JLabel("Gs.");
 		lblGs.setBounds(227, 200, 25, 14);
 		getPanelFormulario().add(lblGs);
 
-		JLabel lblObservacion = new JLabel("Observaci\u00F3n:");
+		JLabel lblObservacion = new JLabel("Observaci\u00F3n: ");
 		lblObservacion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblObservacion.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblObservacion.setBounds(-1, 233, 106, 20);
+		lblObservacion.setBounds(0, 233, 115, 20);
 		getPanelFormulario().add(lblObservacion);
 
 		tfId = new JTextField();
@@ -134,6 +135,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 
 		tfFechaRegistro = new JFormattedTextField(FechaUtil.getMascara());
 		tfFechaRegistro.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -162,6 +164,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 		btnBuscarCliente = new JButton(". . .");
 		btnBuscarCliente.setEnabled(false);
 		btnBuscarCliente.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -184,6 +187,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 			}
 		});
 		tfValorEmpeno.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -208,6 +212,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 			}
 		});
 		tfCuota.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -221,6 +226,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 					e.consume();
 				}
 			}
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -239,6 +245,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 
 		tfObs = new JTextPane();
 		tfObs.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -266,26 +273,27 @@ public class VentanaEmpeno extends VentanaGenerica{
 		lblDatosDelProducto.setBounds(10, 472, 259, 29);
 		getContentPane().add(lblDatosDelProducto);
 
-		JLabel lblDescripcion = new JLabel("Descripci\u00F3n:");
+		JLabel lblDescripcion = new JLabel("Descripci\u00F3n: ");
 		lblDescripcion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDescripcion.setBounds(10, 512, 102, 20);
+		lblDescripcion.setBounds(0, 512, 125, 20);
 		getContentPane().add(lblDescripcion);
 
-		JLabel lblDetalle = new JLabel("Detalle:");
+		JLabel lblDetalle = new JLabel("Detalle: ");
 		lblDetalle.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDetalle.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDetalle.setBounds(10, 554, 102, 20);
+		lblDetalle.setBounds(23, 554, 102, 20);
 		getContentPane().add(lblDetalle);
 
-		JLabel lblValorTotal = new JLabel("Valor total:");
+		JLabel lblValorTotal = new JLabel("Valor total: ");
 		lblValorTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblValorTotal.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblValorTotal.setBounds(574, 510, 102, 20);
+		lblValorTotal.setBounds(583, 512, 102, 20);
 		getContentPane().add(lblValorTotal);
 
 		tfDescripcion = new JTextField();
 		tfDescripcion.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -301,7 +309,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 		getContentPane().add(label);
 		tfDescripcion.setEditable(false);
 		tfDescripcion.setEnabled(false);
-		tfDescripcion.setBounds(118, 512, 467, 20);
+		tfDescripcion.setBounds(125, 512, 447, 20);
 		getContentPane().add(tfDescripcion);
 		tfDescripcion.setColumns(10);
 
@@ -315,7 +323,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 		tfDetalle.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tfDetalle.setEnabled(false);
 		tfDetalle.setEditable(false);
-		tfDetalle.setBounds(118, 554, 554, 59);
+		tfDetalle.setBounds(125, 554, 734, 59);
 		tfObs.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		getContentPane().add(tfDetalle);
 
@@ -331,9 +339,11 @@ public class VentanaEmpeno extends VentanaGenerica{
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	public JComboBox getCbEstado() {
 		return cbEstado;
 	}
+	@SuppressWarnings("rawtypes")
 	public void setCbEstado(JComboBox cbEstado) {
 		this.cbEstado = cbEstado;
 	}

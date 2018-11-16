@@ -18,14 +18,15 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class VentanaGenerica extends JDialog {
-
+	private static final long serialVersionUID = 1L;
+	
 	private MiToolBar miToolBar;
 	public JTable table;
 	private JTextField tBuscador;
 	private JPanel panelFormulario;
 
 	public VentanaGenerica() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaGenerica.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaGenerica.class.getResource("/img/icono.png")));
 		setMinimumSize(new Dimension(700, 500));
 		setMaximumSize(new Dimension(800, 600));
 		setBounds(100, 100, 890, 500);

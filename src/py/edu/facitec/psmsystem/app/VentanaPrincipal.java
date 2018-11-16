@@ -48,6 +48,8 @@ import py.edu.facitec.psmsystem.transaccion.VentanaCobranza;
 import py.edu.facitec.psmsystem.transaccion.VentanaEmpeno;
 
 public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
+	private static final long serialVersionUID = 1L;
+	
 	private PanelFondo contentPane;
 	public static JLabel lblNombre;
 	public static JLabel lblRuc;
@@ -58,7 +60,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 	private JPanel jPanelConfig;
 
 	public VentanaPrincipal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/img/icono.png")));
 		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this); 
 
 		setTitle("PSMSystem v1.9");
@@ -387,7 +389,9 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		VentanaInformeDeudas ventanaInformeDeudas = new VentanaInformeDeudas();
 		ventanaInformeDeudas.setVisible(true);
 	}
+	
 //----------------DESACTIVAR FALLA TECLA F10------------------------------------------
+	@SuppressWarnings("static-access")
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		if(e.getID() == e.KEY_PRESSED){
 			if(e.getKeyCode()== e.VK_F10 | e.getKeyCode() == e.VK_SPACE){
@@ -396,6 +400,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		}
 		return false;
 	}
+	
 //-----------------CARGAR FORMULARIO DE LA EMPRESA--------------------------------------
 	public void cargarConfiguracion() {
 		configuracionDao = new ConfiguracionDao();
@@ -406,6 +411,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		lblTelefono.setText(configuracion.get(0).getTelefono());
 		lblEmail.setText(configuracion.get(0).getEmail());
 	}
+	
 //----------------VERIFICAR VENCIMIENTO DEUDAS------------------------------------------
 	private void verificarFechasVencimiento() {
 		DeudaClienteDao deudaClienteDao = new DeudaClienteDao();
@@ -421,6 +427,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 			}
 		}
 	}
+	
 //----------------INICIALIZAR BASE DE DATOS------------------------------------------
 	public void inicializarBaseDeDatos() {
 		VentanaCliente a = new VentanaCliente();

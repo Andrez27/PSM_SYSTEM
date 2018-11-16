@@ -17,19 +17,14 @@ public class Producto {
 	@GenericGenerator(strategy="increment",name="increment")
 	@Column(name="pro_id")
 	private int id;
-	
 	@Column(name="pro_descricion", nullable=false, length=100)
 	private String descripcion;
-	
 	@Column(name="pro_precio_compra", nullable=false)
 	private Double precioCompra;
-	
 	@Column(name="pro_precio_venta", nullable=false)
 	private Double precioVenta;
-	
 	@Column(name="pro_detalle", length=100)
 	private String detalle;
-	
 	@Column(name="pro_estado", nullable=false)
 	private int estado;
 	

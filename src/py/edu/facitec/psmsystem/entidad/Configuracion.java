@@ -11,19 +11,14 @@ public class Configuracion {
 	@Id
 	@Column(name="conf_id")
 	private Integer id;
-
 	@Column(name="conf_nombre")
 	private String nombre;
-
 	@Column(name="conf_ruc")
 	private String ruc;
-
 	@Column(name="conf_telefono")
 	private String telefono;
-
 	@Column(name="conf_email")
 	private String email;
-	
 	@Column(name="conf_interes")
 	public double interes;
 	

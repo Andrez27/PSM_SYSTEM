@@ -12,6 +12,7 @@ public class ClienteDao extends GenericDao<Cliente> {
 		super (Cliente.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Cliente> recuperarPorFiltro(String filtro) {
 		getSession().beginTransaction();
 
@@ -34,6 +35,7 @@ public class ClienteDao extends GenericDao<Cliente> {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Boolean validarDocumento(int id, String documento){
 		getSession().beginTransaction();
 		
@@ -50,6 +52,7 @@ public class ClienteDao extends GenericDao<Cliente> {
 		return false;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Cliente> recuperarPorRangos(int idDesde, int idHasta, String nDesde, String nHasta, int indiceOrden) {
 		String[] opcionesOrden = {"id", "nombre"};
 		getSession().beginTransaction();

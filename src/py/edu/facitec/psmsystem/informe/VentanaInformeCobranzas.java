@@ -30,7 +30,8 @@ import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaInformeCobranzas extends JDialog {
-
+	private static final long serialVersionUID = 1L;
+	
 	private List<Cobranza> lista;
 	private TablaInformeCobranzas tablaInformeCobranzas;
 	private CobranzaDao dao;
@@ -45,7 +46,7 @@ public class VentanaInformeCobranzas extends JDialog {
 	private JCheckBox chDetallado;
 	
 	public VentanaInformeCobranzas() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeCobranzas.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeCobranzas.class.getResource("/img/icono.png")));
 		setTitle("Informe de Cobranzas");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);
@@ -70,6 +71,7 @@ public class VentanaInformeCobranzas extends JDialog {
 		tfDesdeFecha.setBounds(336, 10, 70, 20);
 		getContentPane().add(tfDesdeFecha);
 		tfDesdeFecha.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -83,6 +85,7 @@ public class VentanaInformeCobranzas extends JDialog {
 		
 		tfHastaFecha = new JFormattedTextField(FechaUtil.getMascara());
 		tfHastaFecha.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -103,6 +106,7 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		btnProcesar.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();

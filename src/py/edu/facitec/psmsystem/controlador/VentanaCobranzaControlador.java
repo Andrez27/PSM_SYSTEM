@@ -26,6 +26,7 @@ import py.edu.facitec.psmsystem.util.FechaUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaCobranzaControlador implements AccionesABM, KeyListener, ActionListener, InterfazBuscadorDeudaCliente{
+	
 	private VentanaCobranza vCobranza;
 	private CobranzaDao dao;
 	private TablaCobranza mtCobranza;
@@ -68,6 +69,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		vCobranza.gettBuscador().addKeyListener(this);
 		vCobranza.getTfBuscarDeuda().addKeyListener(this);
 	}
+	
 	private void recuperarTodo() {
 		listaCobranza = dao.recuperarTodo();
 		mtCobranza.setLista(listaCobranza);
@@ -75,6 +77,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		//Ajusta el ancho de las columnas
 		TablaUtil.resizeTableColumnWidth(vCobranza.getTablaCobranza());
 	}
+	
 	private void recuperarPorFiltro() {
 		listaCobranza = dao.recuperarPorFiltro(vCobranza.gettBuscador().getText());
 		mtCobranza.setLista(listaCobranza);
@@ -82,6 +85,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		//Ajusta el ancho de las columnas
 		TablaUtil.resizeTableColumnWidth(vCobranza.getTablaCobranza());
 	}
+	
 	private void buscarDeudaPorId() {
 		DeudaClienteDao dao = new DeudaClienteDao();
 		DeudaCliente deu = dao.recuperarPorId(Integer.parseInt(vCobranza.getTfBuscarDeuda().getText()));
@@ -100,6 +104,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		TablaUtil.resizeTableColumnWidth(vCobranza.getTablaDeuda());
 		vCobranza.getTfMontoTotal().setValue(vCobranza.getTfMontoTotal().getValue() + deu.getValor());
 	}
+	
 	private void cargarFormulario(int posicion) {
 		if (posicion < 0) {
 			return;
@@ -115,6 +120,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		estadoInicialCampos(false);
 		estadoInicialCampos2(false);
 	}
+	
 	@Override
 	public void nuevo() {	
 		vaciarFormulario();
@@ -127,6 +133,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		vCobranza.getTfFechaCobro().setValue(FechaUtil.convertirDateUtilAString(new Date()));
 		listaDeuda = new ArrayList<>();
 	}
+	
 	@Override
 	public void modificar() {}
 	
@@ -159,6 +166,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 			}
 		}
 	}
+	
 	@Override
 	public void guardar() {
 		if (validarCampos())	{
@@ -184,6 +192,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 			e.printStackTrace();
 		}
 	}
+	
 	private void modificarDeuda() {
 		for (int i = 0; i < listaDeuda.size(); i++) {
 			DeudaCliente deudaCliente = new DeudaCliente();
@@ -199,6 +208,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 			}
 		}
 	}
+	
 	@Override
 	public void cancelar() {
 		this.vCobranza.getMiToolBar().estadoInicialToolBar(true,2);
@@ -207,6 +217,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		vaciarFormulario();
 		this.vCobranza.getTable().setEnabled(true);
 	}
+	
 	public void estadoInicialCampos(boolean b) {
 		this.vCobranza.getTfBuscarDeuda().setEditable(b);
 		this.vCobranza.getTfAbonado().setEnabled(b);
@@ -214,11 +225,13 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		this.vCobranza.getBtnRemover().setEnabled(b);
 		this.vCobranza.getTable().clearSelection();
 	}
+	
 	public void estadoInicialCampos2(boolean b) {
 		this.vCobranza.getTfAbonado().setEditable(b);
 		this.vCobranza.getTfBuscarDeuda().setEnabled(b);
 		this.vCobranza.getTable().clearSelection();
 	}
+	
 	public void vaciarFormulario() {
 		vCobranza.getTfAbonado().setText("");
 		vCobranza.getTfMontoTotal().setText("");
@@ -228,12 +241,14 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		mtDeudaCliente.setLista(new ArrayList<>());
 		mtDeudaCliente.fireTableDataChanged();
 	}
+	
 	public void removerDeuda() {
 		vCobranza.getTfMontoTotal().setValue(vCobranza.getTfMontoTotal().getValue() - listaDeuda.get(vCobranza.getTablaDeuda().getSelectedRow()).getValor());
 		listaDeuda.remove(vCobranza.getTablaDeuda().getSelectedRow());
 		mtDeudaCliente.setLista(listaDeuda);
 		mtDeudaCliente.fireTableDataChanged();
 	}
+	
 	@Override
 	public void setDeudaCliente(DeudaCliente deudaCliente) {
 		if(verificarDeudaDuplicada(deudaCliente)) return;
@@ -243,6 +258,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		TablaUtil.resizeTableColumnWidth(vCobranza.getTablaDeuda());
 		vCobranza.getTfMontoTotal().setValue(vCobranza.getTfMontoTotal().getValue() + deudaCliente.getValor());
 	}
+	
 	private boolean verificarDeudaDuplicada(DeudaCliente d) {
 		if (listaDeuda == null) return false;
 		for (int i = 0; i < listaDeuda.size(); i++) {
@@ -253,6 +269,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 		}
 		return false;
 	}
+	
 	private void anularDeudas() {
 		DeudaClienteDao deudaClienteDao;
 		for (int i = 0; i < cobranza.getDeudaClientes().size(); i++) {
@@ -266,6 +283,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 			}
 		}
 	}
+	
 	//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
 	public void inicializarCobranza() {
 		String tabla = "tb_cobranza";
@@ -276,6 +294,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 			dao.rollback();
 		}
 	}
+	
 	//----------------------------------ACCION DE LOS BUSCADORES-------------------------------------------
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -286,12 +305,14 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 			buscarDeudaPorId();
 		}
 	}
+	
 	public void abrirBuscarDeuda() {
 		BuscadorDeudaCliente buscador = new BuscadorDeudaCliente();
 		buscador.setUpController();
 		buscador.getControlador().setInterfaz(this);
 		buscador.setVisible(true);
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -309,6 +330,7 @@ public class VentanaCobranzaControlador implements AccionesABM, KeyListener, Act
 			break;
 		}
 	}
+	
 	//-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------q
 	private boolean validarCampos() {
 		if (listaDeuda.size() == 0) {

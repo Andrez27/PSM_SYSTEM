@@ -13,6 +13,7 @@ public class CobranzaDao extends GenericDao<Cobranza> {
 		super(Cobranza.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Cobranza> recuperarPorFiltro(String filtro) {
 		getSession().beginTransaction();
 
@@ -32,6 +33,7 @@ public class CobranzaDao extends GenericDao<Cobranza> {
 		return lista;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Cobranza> recuperarPorRangos(Date fDesde, Date fHasta) {
 		getSession().beginTransaction();
 		String sql = "from Cobranza where (fechaCobro >= :fDesde or :fDesdeNula = true)  "

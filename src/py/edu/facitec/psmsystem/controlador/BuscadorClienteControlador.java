@@ -14,6 +14,7 @@ import py.edu.facitec.psmsystem.tabla.TablaCliente;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class BuscadorClienteControlador implements KeyListener{
+	
 	private BuscadorCliente bCliente;
 	private InterfazBuscadorCliente interfaz;
 	private TablaCliente tCliente;

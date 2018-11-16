@@ -8,10 +8,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class PanelFondo extends JPanel {
+	private static final long serialVersionUID = 1L;
+
 	public PanelFondo() {
 	}
 	//estira la imagen desde la carpeta
-	URL url = getClass().getResource("/img/ventanas/fondo.png");
+	URL url = getClass().getResource("/img/fondo.png");
 	Image image = new ImageIcon(url).getImage();
 	
 	//pasa la imagen a la pantalla

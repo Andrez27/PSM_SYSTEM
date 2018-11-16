@@ -29,7 +29,8 @@ import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaInformeEmpenos extends JDialog {
-
+	private static final long serialVersionUID = 1L;
+	
 	private List<Empeno> lista;
 	private TablaInformeEmpenos tablaInformeEmpenos;
 	private EmpenoDao dao;
@@ -68,6 +69,7 @@ public class VentanaInformeEmpenos extends JDialog {
 		tfDesdeFecha.setBounds(339, 10, 70, 20);
 		getContentPane().add(tfDesdeFecha);
 		tfDesdeFecha.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -81,6 +83,7 @@ public class VentanaInformeEmpenos extends JDialog {
 		
 		tfHastaFecha = new JFormattedTextField(FechaUtil.getMascara());
 		tfHastaFecha.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -108,6 +111,7 @@ public class VentanaInformeEmpenos extends JDialog {
 			}
 		});
 		btnProcesar.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();

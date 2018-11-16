@@ -12,7 +12,6 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,6 +24,8 @@ import py.edu.facitec.psmsystem.dao.ConfiguracionDao;
 import py.edu.facitec.psmsystem.entidad.Configuracion;
 
 public class VentanaConfiguracion extends JDialog {
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField tfNombre;
 	private JTextField tfRuc;
 	private JTextField tfTelefono;
@@ -38,7 +39,6 @@ public class VentanaConfiguracion extends JDialog {
 	private JButton btnBorrar;
 	private List<Configuracion> campos;
 	private JLabel lblValidarTelefono;
-	private JComponent ventanaConfiguracion;
 	private JLabel lblValidarRuc;
 	private JLabel lblValidarNombre;
 
@@ -48,39 +48,39 @@ public class VentanaConfiguracion extends JDialog {
 	public VentanaConfiguracion() {
 		setTitle("Configuración");
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaConfiguracion.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaConfiguracion.class.getResource("/img/icono.png")));
 		setBounds(100, 100, 396, 276);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(this);
 		setModal(true);
 		setResizable(false);
 
-		JLabel lblNombre = new JLabel("Nombre o raz\u00F3n social       :");
-		lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel lblNombre = new JLabel("Nombre o raz\u00F3n social : ");
+		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNombre.setBounds(10, 14, 176, 20);
 		getContentPane().add(lblNombre);
 
-		JLabel lblRuc = new JLabel("R.U.C.                               :");
-		lblRuc.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel lblRuc = new JLabel("R.U.C. : ");
+		lblRuc.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblRuc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblRuc.setBounds(10, 48, 176, 20);
 		getContentPane().add(lblRuc);
 
-		JLabel lblTelefono = new JLabel("Tel\u00E9fono                            :");
-		lblTelefono.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel lblTelefono = new JLabel("Tel\u00E9fono : ");
+		lblTelefono.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblTelefono.setBounds(10, 82, 176, 20);
 		getContentPane().add(lblTelefono);
 
-		JLabel lblEmail = new JLabel("Email                                 :");
-		lblEmail.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel lblEmail = new JLabel("Email : ");
+		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblEmail.setBounds(10, 116, 176, 20);
 		getContentPane().add(lblEmail);
 		
-		JLabel lblTazaInteres = new JLabel("Taza de  inter\u00E9s                 :");
-		lblTazaInteres.setHorizontalAlignment(SwingConstants.LEFT);
+		JLabel lblTazaInteres = new JLabel("Taza de  inter\u00E9s : ");
+		lblTazaInteres.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTazaInteres.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblTazaInteres.setBounds(10, 150, 176, 20);
 		getContentPane().add(lblTazaInteres);
@@ -97,6 +97,7 @@ public class VentanaConfiguracion extends JDialog {
 			}
 		});
 		tfNombre.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -125,6 +126,7 @@ public class VentanaConfiguracion extends JDialog {
 			}
 		});
 		tfRuc.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -139,6 +141,7 @@ public class VentanaConfiguracion extends JDialog {
 					e.consume();
 				}
 			}
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -160,6 +163,7 @@ public class VentanaConfiguracion extends JDialog {
 			}
 		});
 		tfTelefono.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -174,6 +178,7 @@ public class VentanaConfiguracion extends JDialog {
 					e.consume();
 				}
 			}
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -190,6 +195,7 @@ public class VentanaConfiguracion extends JDialog {
 
 		tfEmail = new JTextField();
 		tfEmail.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -208,6 +214,7 @@ public class VentanaConfiguracion extends JDialog {
 		tfInteres.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfInteres.setBounds(185, 150, 44, 20);
 		tfInteres.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();

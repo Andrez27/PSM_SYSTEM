@@ -21,13 +21,10 @@ public class Cobranza {
 	@GenericGenerator(strategy="increment",name="increment")
 	@Column(name="cob_id")
 	private int id;
-
 	@Column(name="cob_fecha_cobro", nullable=false)
 	private Date fechaCobro;
-
 	@Column(name="cob_valor_cobro", nullable=false)
 	private double valorCobro;
-	
 	@Column(name = "cob_estado", nullable = false)
 	private boolean estado;
 

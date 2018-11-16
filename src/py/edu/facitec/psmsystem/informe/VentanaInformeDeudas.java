@@ -6,33 +6,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.AbstractButton;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import py.edu.facitec.psmsystem.dao.DeudaClienteDao;
 import py.edu.facitec.psmsystem.entidad.DeudaCliente;
 import py.edu.facitec.psmsystem.tabla.TablaDeudaCliente;
-import py.edu.facitec.psmsystem.util.FechaUtil;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
 
 public class VentanaInformeDeudas extends JDialog {
-
+	private static final long serialVersionUID = 1L;
+	
 	private List<DeudaCliente> lista;
 	private TablaDeudaCliente tablaInformeDeudas;
 	private DeudaClienteDao dao;
@@ -44,10 +42,12 @@ public class VentanaInformeDeudas extends JDialog {
 	private JTextField tfNombre;
 	private JLabel lblNombre;
 	private JLabel lblTotalRegistros;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbEstado;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaInformeDeudas() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeDeudas.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeDeudas.class.getResource("/img/icono.png")));
 		setTitle("Informe de Deudas");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);
@@ -72,6 +72,7 @@ public class VentanaInformeDeudas extends JDialog {
 			}
 		});
 		btnProcesar.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();

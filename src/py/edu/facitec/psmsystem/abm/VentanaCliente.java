@@ -14,11 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import py.com.cs.xnumberfield.component.NumberTextField;
 import py.edu.facitec.psmsystem.componente.VentanaGenerica;
 import py.edu.facitec.psmsystem.controlador.VentanaClienteControlador;
 
 public class VentanaCliente extends VentanaGenerica {
+	private static final long serialVersionUID = 1L;
+	
 	private JTextField tfNombre;
 	private JTextField tfDocumento;
 	private JTextField tfTelefono;
@@ -39,7 +40,7 @@ public class VentanaCliente extends VentanaGenerica {
 		getPanelFormulario().setSize(400, 370);
 		getPanelFormulario().setLocation(10, 80);
 		setTitle("Registro Cliente");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaCliente.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaCliente.class.getResource("/img/icono.png")));
 		gettBuscador().setLocation(420, 55);
 		getMiToolBar().setBounds(new Rectangle(10, 10, 400, 65));
 		getMiToolBar().setOpaque(false);
@@ -50,31 +51,31 @@ public class VentanaCliente extends VentanaGenerica {
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNombre.setBounds(21, 43, 73, 14);
+		lblNombre.setBounds(17, 40, 94, 14);
 		getPanelFormulario().add(lblNombre);
 
 		JLabel lblDocumento = new JLabel("Documento:");
 		lblDocumento.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDocumento.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDocumento.setBounds(0, 100, 94, 14);
+		lblDocumento.setBounds(6, 97, 105, 14);
 		getPanelFormulario().add(lblDocumento);
 
 		JLabel lblTelefono = new JLabel("Tel\u00E9fono:");
 		lblTelefono.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblTelefono.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTelefono.setBounds(21, 157, 73, 14);
+		lblTelefono.setBounds(18, 157, 93, 14);
 		getPanelFormulario().add(lblTelefono);
 
 		JLabel lblDomicilio = new JLabel("Domicilio:");
 		lblDomicilio.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDomicilio.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDomicilio.setBounds(21, 214, 73, 14);
+		lblDomicilio.setBounds(18, 214, 93, 14);
 		getPanelFormulario().add(lblDomicilio);
 
 		JLabel lblEmail = new JLabel("E-Mail:");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEmail.setBounds(21, 271, 73, 14);
+		lblEmail.setBounds(21, 271, 90, 14);
 		getPanelFormulario().add(lblEmail);
 
 		tfNombre = new JTextField();
@@ -88,6 +89,7 @@ public class VentanaCliente extends VentanaGenerica {
 		tfNombre.setEnabled(false);
 		tfNombre.setEditable(false);
 		tfNombre.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -104,6 +106,7 @@ public class VentanaCliente extends VentanaGenerica {
 						lblValidarNombre.setVisible(true);
 					}
 				}
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -113,7 +116,7 @@ public class VentanaCliente extends VentanaGenerica {
 				}
 			}
 		});
-		tfNombre.setBounds(100, 37, 290, 20);
+		tfNombre.setBounds(112, 37, 278, 20);
 		getPanelFormulario().add(tfNombre);
 		tfNombre.setColumns(10);
 
@@ -127,6 +130,7 @@ public class VentanaCliente extends VentanaGenerica {
 		tfDocumento.setEditable(false);
 		tfDocumento.setEnabled(false);
 		tfDocumento.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -141,6 +145,7 @@ public class VentanaCliente extends VentanaGenerica {
 					e.consume();
 				}
 			}
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -150,7 +155,7 @@ public class VentanaCliente extends VentanaGenerica {
 				}
 			}
 		});
-		tfDocumento.setBounds(100, 94, 105, 20);
+		tfDocumento.setBounds(112, 94, 105, 20);
 		getPanelFormulario().add(tfDocumento);
 		tfDocumento.setColumns(10);
 
@@ -164,6 +169,7 @@ public class VentanaCliente extends VentanaGenerica {
 			}
 		});
 		tfTelefono.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -178,6 +184,7 @@ public class VentanaCliente extends VentanaGenerica {
 					e.consume();
 				}
 			}
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -187,7 +194,7 @@ public class VentanaCliente extends VentanaGenerica {
 				}
 			}
 		});
-		tfTelefono.setBounds(100, 154, 139, 20);
+		tfTelefono.setBounds(112, 154, 139, 20);
 		getPanelFormulario().add(tfTelefono);
 		tfTelefono.setColumns(10);
 
@@ -195,6 +202,7 @@ public class VentanaCliente extends VentanaGenerica {
 		tfDomicilio.setEditable(false);
 		tfDomicilio.setEnabled(false);
 		tfDomicilio.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -211,24 +219,24 @@ public class VentanaCliente extends VentanaGenerica {
 			}
 		});
 		tfDomicilio.setColumns(10);
-		tfDomicilio.setBounds(100, 212, 290, 20);
+		tfDomicilio.setBounds(112, 212, 278, 20);
 		getPanelFormulario().add(tfDomicilio);
 
 		tfEmail = new JTextField();
 		tfEmail.setEditable(false);
 		tfEmail.setEnabled(false);
-		tfEmail.setBounds(100, 270, 290, 20);
+		tfEmail.setBounds(112, 270, 278, 20);
 		getPanelFormulario().add(tfEmail);
 		tfEmail.setColumns(10);
 
 		lblValidarNombre = new JLabel("*Solo letras");
 		lblValidarNombre.setVisible(false);
 		lblValidarNombre.setForeground(Color.RED);
-		lblValidarNombre.setBounds(93, 57, 290, 14);
+		lblValidarNombre.setBounds(112, 57, 247, 14);
 		getPanelFormulario().add(lblValidarNombre);
 
 		lblDocumentoDuplicado = new JLabel("*Solo n\u00FAmeros");
-		lblDocumentoDuplicado.setBounds(93, 114, 158, 14);
+		lblDocumentoDuplicado.setBounds(112, 114, 158, 14);
 		getPanelFormulario().add(lblDocumentoDuplicado);
 		lblDocumentoDuplicado.setVisible(false);
 		lblDocumentoDuplicado.setForeground(Color.RED);
@@ -236,7 +244,7 @@ public class VentanaCliente extends VentanaGenerica {
 		lblValidarTelefono = new JLabel("*Caracter no v\u00E1lido");
 		lblValidarTelefono.setVisible(false);
 		lblValidarTelefono.setForeground(Color.RED);
-		lblValidarTelefono.setBounds(93, 173, 151, 14);
+		lblValidarTelefono.setBounds(112, 173, 151, 14);
 		getPanelFormulario().add(lblValidarTelefono);
 
 	}

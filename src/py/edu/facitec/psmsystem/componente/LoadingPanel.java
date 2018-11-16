@@ -8,8 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class LoadingPanel extends JPanel {
-
-	URL url = getClass().getResource("/img/ventanas/cargando.png");
+	private static final long serialVersionUID = 1L;
+	
+	URL url = getClass().getResource("/img/cargando.png");
 	Image image = new ImageIcon(url).getImage();
 	
 	public void paintComponent(Graphics g) {
