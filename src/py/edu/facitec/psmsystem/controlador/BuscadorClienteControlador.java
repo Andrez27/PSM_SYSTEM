@@ -14,7 +14,7 @@ import py.edu.facitec.psmsystem.tabla.TablaCliente;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class BuscadorClienteControlador implements KeyListener{
-	
+
 	private BuscadorCliente bCliente;
 	private InterfazBuscadorCliente interfaz;
 	private TablaCliente tCliente;
@@ -54,7 +54,7 @@ public class BuscadorClienteControlador implements KeyListener{
 		lista = dao.recuperarPorFiltro(bCliente.gettBuscador().getText());
 		tCliente.setLista(lista);
 		tCliente.fireTableDataChanged();
-		
+
 		TablaUtil.resizeTableColumnWidth(bCliente.getTable());
 	}
 

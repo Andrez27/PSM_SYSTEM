@@ -30,7 +30,7 @@ import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaInformeEmpenos extends JDialog {
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<Empeno> lista;
 	private TablaInformeEmpenos tablaInformeEmpenos;
 	private EmpenoDao dao;
@@ -42,7 +42,7 @@ public class VentanaInformeEmpenos extends JDialog {
 	private JFormattedTextField tfHastaFecha;
 	private JButton btnCancelar;
 	private JButton btnSalir;
-	
+
 	public VentanaInformeEmpenos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeEmpenos.class.getResource("/img/ventanas/icono.png")));
 		setTitle("Informe de Empe\u00F1os");
@@ -51,14 +51,14 @@ public class VentanaInformeEmpenos extends JDialog {
 		setLocationRelativeTo(this);
 		setModal(true);
 		setResizable(false);
-		
+
 		tablaInformeEmpenos = new TablaInformeEmpenos();
-		
+
 		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTotal.setBounds(420, 32, 57, 18);
 		getContentPane().add(lblTotal);
-		
+
 		lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
@@ -80,7 +80,7 @@ public class VentanaInformeEmpenos extends JDialog {
 			}
 		});
 		tfDesdeFecha.setColumns(10);
-		
+
 		tfHastaFecha = new JFormattedTextField(FechaUtil.getMascara());
 		tfHastaFecha.addKeyListener(new KeyAdapter() {
 			@SuppressWarnings("static-access")
@@ -95,7 +95,7 @@ public class VentanaInformeEmpenos extends JDialog {
 		tfHastaFecha.setBounds(339, 33, 70, 20);
 		getContentPane().add(tfHastaFecha);
 		tfHastaFecha.setColumns(10);
-		
+
 		btnProcesar = new JButton("Procesar");
 		btnProcesar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,14 +124,14 @@ public class VentanaInformeEmpenos extends JDialog {
 		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnProcesar.setBounds(552, 10, 122, 34);
 		getContentPane().add(btnProcesar);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(11, 61, 663, 268);
 		getContentPane().add(scrollPane);
-		
+
 		table = new JTable(tablaInformeEmpenos);
 		scrollPane.setViewportView(table);
-		
+
 		btnImprimir = new JButton("Imprimir");
 		btnImprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -141,7 +141,7 @@ public class VentanaInformeEmpenos extends JDialog {
 		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnImprimir.setBounds(10, 340, 122, 34);
 		getContentPane().add(btnImprimir);
-		
+
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -151,7 +151,7 @@ public class VentanaInformeEmpenos extends JDialog {
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnCancelar.setBounds(420, 340, 122, 34);
 		getContentPane().add(btnCancelar);
-		
+
 		btnSalir = new JButton("Salir");
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSalir.setBounds(552, 340, 122, 34);
@@ -161,20 +161,20 @@ public class VentanaInformeEmpenos extends JDialog {
 			}
 		});
 		getContentPane().add(btnSalir);
-		
+
 		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
 		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHastaFecha.setBounds(247, 35, 93, 18);
 		getContentPane().add(lblHastaFecha);
-		
+
 		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
 		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDesdeFecha.setBounds(247, 12, 93, 19);
 		getContentPane().add(lblDesdeFecha);
-		
+
 	}
 
-//-------------------------------------METODOS------------------------------------------------
+	//-------------------------------------METODOS------------------------------------------------
 	private void procesar() {
 		dao = new EmpenoDao();
 		Date fechaDesde = FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText());
@@ -186,14 +186,14 @@ public class VentanaInformeEmpenos extends JDialog {
 		TablaUtil.resizeTableColumnWidth(table);
 		lblTotalRegistros.setText(lista.size()+"");
 	}
-	
+
 	private void imprimir() {
 		if (lista == null) {
 			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
-						+ "Total registros: "+lblTotalRegistros.getText()+"";
+				+ "Total registros: "+lblTotalRegistros.getText()+"";
 		Map<String, Object> map = new HashMap<>();
 		map.put("filtros", filtros);
 		map.put("codigo", ""+((Math.random()*9999)+1000));
@@ -204,7 +204,7 @@ public class VentanaInformeEmpenos extends JDialog {
 		tfDesdeFecha.setValue(null);
 		tfHastaFecha.setValue(null);
 		lista.removeAll(lista);
-		
+
 		tablaInformeEmpenos.setLista(lista);
 		tablaInformeEmpenos.fireTableDataChanged();
 		tfDesdeFecha.requestFocus();

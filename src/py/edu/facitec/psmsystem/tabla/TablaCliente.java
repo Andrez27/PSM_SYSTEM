@@ -9,14 +9,14 @@ import py.edu.facitec.psmsystem.entidad.Cliente;
 
 public class TablaCliente extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String[] columnas = { "ID", "NOMBRE Y APELLIDO", "DOCUMENTO", "TELEFONO" };
 	private List<Cliente> lista = new ArrayList<>();
-	
+
 	public void setLista(List<Cliente> lista) {
 		this.lista = lista;
 	}
-	
+
 	@Override
 	public String getColumnName(int column) {
 		return columnas[column];
@@ -50,7 +50,7 @@ public class TablaCliente extends AbstractTableModel {
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		if(columnIndex == 0) return Integer.class;
-		
+
 		return super.getColumnClass(columnIndex);
 	}
 }

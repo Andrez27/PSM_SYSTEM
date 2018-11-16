@@ -7,21 +7,21 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class Factory {
 	private static SessionFactory sessionFactory;
-	
+
 	public static void setUp(){
 		StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-			.configure()
-			.build();
+				.configure()
+				.build();
 		try {
 			sessionFactory = new MetadataSources(registry)
-				.buildMetadata()
-				.buildSessionFactory();
+					.buildMetadata()
+					.buildSessionFactory();
 		} catch (Exception e) {
 			StandardServiceRegistryBuilder.destroy(registry);
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			setUp();

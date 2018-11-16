@@ -24,7 +24,7 @@ import py.edu.facitec.psmsystem.controlador.VentanaProductoControlador;
 
 public class VentanaProducto extends VentanaGenerica {
 	private static final long serialVersionUID = 1L;
-	
+
 	private JTextField tfDescripcion;
 	private NumberTextField tfPrecioVenta;
 	private JLabel lblDetalle;
@@ -34,9 +34,9 @@ public class VentanaProducto extends VentanaGenerica {
 	@SuppressWarnings("rawtypes")
 	private JComboBox cbEstado;
 	private JLabel lblVerificarPrecio;
-	
+
 	public void setUpControlador() {
-			new VentanaProductoControlador(this);
+		new VentanaProductoControlador(this);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -61,37 +61,37 @@ public class VentanaProducto extends VentanaGenerica {
 		setLocationRelativeTo(this);
 		setModal(true);
 		setResizable(false);
-		
+
 		JLabel lblDescripcion = new JLabel("Descripci\u00F3n: ");
 		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDescripcion.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDescripcion.setBounds(-5, 32, 120, 19);
 		getPanelFormulario().add(lblDescripcion);
-		
+
 		JLabel lblPCompra = new JLabel("P. Compra: ");
 		lblPCompra.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPCompra.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPCompra.setBounds(14, 77, 101, 19);
 		getPanelFormulario().add(lblPCompra);
-		
+
 		JLabel lblPVenta = new JLabel("P. Venta: ");
 		lblPVenta.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPVenta.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPVenta.setBounds(14, 122, 101, 19);
 		getPanelFormulario().add(lblPVenta);
-		
+
 		lblDetalle = new JLabel("Detalle: ");
 		lblDetalle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblDetalle.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDetalle.setBounds(37, 167, 78, 19);
 		getPanelFormulario().add(lblDetalle);
-		
+
 		lblEstado = new JLabel("Estado: ");
 		lblEstado.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblEstado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEstado.setBounds(37, 264, 78, 20);
 		getPanelFormulario().add(lblEstado);
-		
+
 		tfDescripcion = new JTextField();
 		tfDescripcion.setEditable(false);
 		tfDescripcion.setEnabled(false);
@@ -115,7 +115,7 @@ public class VentanaProducto extends VentanaGenerica {
 		tfDescripcion.setBounds(115, 31, 275, 20);
 		getPanelFormulario().add(tfDescripcion);
 		tfDescripcion.setColumns(10);
-		
+
 		tfPrecioCompra = new NumberTextField();
 		tfPrecioCompra.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfPrecioCompra.setEditable(false);
@@ -143,7 +143,7 @@ public class VentanaProducto extends VentanaGenerica {
 		tfPrecioCompra.setColumns(10);
 		tfPrecioCompra.setBounds(115, 76, 102, 20);
 		getPanelFormulario().add(tfPrecioCompra);
-		
+
 		tfPrecioVenta = new NumberTextField();
 		tfPrecioVenta.addFocusListener(new FocusAdapter() {
 			@Override
@@ -174,7 +174,7 @@ public class VentanaProducto extends VentanaGenerica {
 		tfPrecioVenta.setColumns(10);
 		tfPrecioVenta.setBounds(115, 121, 102, 19);
 		getPanelFormulario().add(tfPrecioVenta);
-		
+
 		tfDetalle = new JTextPane();
 		tfDetalle.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tfDetalle.setEditable(false);
@@ -191,43 +191,43 @@ public class VentanaProducto extends VentanaGenerica {
 		});
 		tfDetalle.setBounds(115, 167, 275, 80);
 		getPanelFormulario().add(tfDetalle);
-		
+
 		cbEstado = new JComboBox();
 		cbEstado.setEnabled(false);
 		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"Activo", "En venta", "Vendido", "Anulado"}));
 		cbEstado.setToolTipText("");
 		cbEstado.setBounds(115, 266, 146, 19);
 		getPanelFormulario().add(cbEstado);
-		
+
 		lblVerificarPrecio = new JLabel("*No se permite precio de venta menor al de compra");
 		lblVerificarPrecio.setVisible(false);
 		lblVerificarPrecio.setForeground(Color.RED);
 		lblVerificarPrecio.setBounds(110, 142, 274, 14);
 		getPanelFormulario().add(lblVerificarPrecio);
-		
+
 		JLabel lblGs = new JLabel("Gs.");
 		lblGs.setBounds(220, 81, 24, 14);
 		getPanelFormulario().add(lblGs);
-		
+
 		JLabel label = new JLabel("Gs.");
 		label.setBounds(220, 126, 24, 14);
 		getPanelFormulario().add(label);
-		
+
 	}
 	//----------------------------------PARA VALIDAR EL PRECIO DE VENTA---------------------------------
-		public boolean validarPrecio() {
-			double compra = Double.parseDouble(tfPrecioCompra.getText());
-			double venta = Double.parseDouble(tfPrecioVenta.getText());
-			if (venta < compra) {
-				lblVerificarPrecio.setVisible(true);
-				tfPrecioVenta.requestFocus();
-				tfPrecioVenta.selectAll();
-				return false;
-			}else {
-				lblVerificarPrecio.setVisible(false);
-			}
-			return true;
+	public boolean validarPrecio() {
+		double compra = Double.parseDouble(tfPrecioCompra.getText());
+		double venta = Double.parseDouble(tfPrecioVenta.getText());
+		if (venta < compra) {
+			lblVerificarPrecio.setVisible(true);
+			tfPrecioVenta.requestFocus();
+			tfPrecioVenta.selectAll();
+			return false;
+		}else {
+			lblVerificarPrecio.setVisible(false);
 		}
+		return true;
+	}
 
 	public JTextField gettfDescripcion() {
 		return tfDescripcion;

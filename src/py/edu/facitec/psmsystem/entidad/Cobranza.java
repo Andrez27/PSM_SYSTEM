@@ -30,7 +30,7 @@ public class Cobranza {
 
 	@OneToMany(mappedBy="cobranza",fetch=FetchType.EAGER)
 	private List<DeudaCliente> deudaClientes;
-	
+
 
 	public int getId() {
 		return id;

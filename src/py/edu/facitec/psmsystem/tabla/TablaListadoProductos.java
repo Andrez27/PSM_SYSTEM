@@ -9,7 +9,7 @@ import py.edu.facitec.psmsystem.entidad.Producto;
 
 public class TablaListadoProductos extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String[] columnas = { "ID", "DESCRIPCIÓN", "PRECIO COMPRA", "PRECIO VENTA", "ESTADO" };
 	private List<Producto> lista = new ArrayList<>();
 
@@ -58,19 +58,19 @@ public class TablaListadoProductos extends AbstractTableModel {
 					}
 				}
 			}
-				
+
 		default:
 			break;
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		if(columnIndex == 0) return Integer.class;
 		if(columnIndex == 2) return Double.class;
 		if(columnIndex == 3) return Double.class;
-		
+
 		return super.getColumnClass(columnIndex);
 	}
 }

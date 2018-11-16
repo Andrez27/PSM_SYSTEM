@@ -7,12 +7,12 @@ public class BuscadorProductoControlador {
 
 	private BuscadorProducto bProducto;
 	private TablaProducto tProducto;
-	
+
 	public BuscadorProductoControlador (BuscadorProducto bProducto) {
 		this.bProducto = bProducto;
-		
+
 		tProducto = new TablaProducto();
-		
+
 		this.bProducto.getTable().setModel(tProducto);
 	}
 }

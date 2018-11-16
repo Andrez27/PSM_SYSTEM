@@ -23,7 +23,7 @@ public class BuscadorCobranzaControlador implements KeyListener{
 	public void setInterfaz(InterfazBuscadorCobranza interfaz) {
 		this.interfaz = interfaz;
 	}
-	
+
 	public BuscadorCobranzaControlador (BuscadorCobranza bCobranza) {
 		this.bCobranza = bCobranza;
 
@@ -37,7 +37,7 @@ public class BuscadorCobranzaControlador implements KeyListener{
 
 		recuperarPorFiltro();
 	}
-	
+
 	private void setUpEvents() {
 		bCobranza.gettBuscador().addKeyListener(this);
 		bCobranza.getTable().addMouseListener(new MouseAdapter(){
@@ -49,7 +49,7 @@ public class BuscadorCobranzaControlador implements KeyListener{
 			}
 		});
 	}
-	
+
 	private void recuperarPorFiltro() {
 
 		lista = dao.recuperarPorFiltro(bCobranza.gettBuscador().getText());

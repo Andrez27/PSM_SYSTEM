@@ -31,7 +31,7 @@ import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaInformeCobranzas extends JDialog {
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<Cobranza> lista;
 	private TablaInformeCobranzas tablaInformeCobranzas;
 	private CobranzaDao dao;
@@ -44,7 +44,7 @@ public class VentanaInformeCobranzas extends JDialog {
 	private JButton btnCancelar;
 	private JButton btnSalir;
 	private JCheckBox chDetallado;
-	
+
 	public VentanaInformeCobranzas() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeCobranzas.class.getResource("/img/icono.png")));
 		setTitle("Informe de Cobranzas");
@@ -53,20 +53,20 @@ public class VentanaInformeCobranzas extends JDialog {
 		setLocationRelativeTo(this);
 		setModal(true);
 		setResizable(false);
-		
+
 		tablaInformeCobranzas = new TablaInformeCobranzas();
-		
+
 		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTotal.setBounds(414, 32, 64, 18);
 		getContentPane().add(lblTotal);
-		
+
 		lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTotalRegistros.setBounds(480, 32, 34, 18);
 		getContentPane().add(lblTotalRegistros);
-		
+
 		tfDesdeFecha = new JFormattedTextField(FechaUtil.getMascara());
 		tfDesdeFecha.setBounds(336, 10, 70, 20);
 		getContentPane().add(tfDesdeFecha);
@@ -82,7 +82,7 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		tfDesdeFecha.setColumns(10);
-		
+
 		tfHastaFecha = new JFormattedTextField(FechaUtil.getMascara());
 		tfHastaFecha.addKeyListener(new KeyAdapter() {
 			@SuppressWarnings("static-access")
@@ -97,7 +97,7 @@ public class VentanaInformeCobranzas extends JDialog {
 		tfHastaFecha.setBounds(336, 33, 70, 20);
 		getContentPane().add(tfHastaFecha);
 		tfHastaFecha.setColumns(10);
-		
+
 		btnProcesar = new JButton("Procesar");
 		btnProcesar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,14 +119,14 @@ public class VentanaInformeCobranzas extends JDialog {
 		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnProcesar.setBounds(552, 10, 122, 34);
 		getContentPane().add(btnProcesar);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(11, 61, 663, 268);
 		getContentPane().add(scrollPane);
-		
+
 		table = new JTable(tablaInformeCobranzas);
 		scrollPane.setViewportView(table);
-		
+
 		btnImprimir = new JButton("Imprimir");
 		btnImprimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -136,7 +136,7 @@ public class VentanaInformeCobranzas extends JDialog {
 		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnImprimir.setBounds(10, 340, 122, 34);
 		getContentPane().add(btnImprimir);
-		
+
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -146,7 +146,7 @@ public class VentanaInformeCobranzas extends JDialog {
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnCancelar.setBounds(420, 340, 122, 34);
 		getContentPane().add(btnCancelar);
-		
+
 		btnSalir = new JButton("Salir");
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSalir.setBounds(552, 340, 122, 34);
@@ -156,23 +156,23 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		getContentPane().add(btnSalir);
-		
+
 		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
 		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDesdeFecha.setBounds(247, 11, 90, 19);
 		getContentPane().add(lblDesdeFecha);
-		
+
 		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
 		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHastaFecha.setBounds(247, 33, 90, 18);
 		getContentPane().add(lblHastaFecha);
-		
+
 		chDetallado = new JCheckBox("Detallado");
 		chDetallado.setBounds(138, 348, 97, 23);
 		getContentPane().add(chDetallado);
 	}
 
-//-------------------------------------METODOS------------------------------------------------
+	//-------------------------------------METODOS------------------------------------------------
 	private void procesar() {
 		dao = new CobranzaDao();
 		Date fechaDesde = FechaUtil.convertirStringADateUtil(tfDesdeFecha.getText());
@@ -184,7 +184,7 @@ public class VentanaInformeCobranzas extends JDialog {
 		TablaUtil.resizeTableColumnWidth(table);
 		lblTotalRegistros.setText(lista.size()+"");
 	}
-	
+
 	private void imprimir() {
 		if (lista == null) {
 			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
@@ -192,14 +192,14 @@ public class VentanaInformeCobranzas extends JDialog {
 		}
 		if (chDetallado.isSelected()) {
 			String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
-						   + "Total registros: "+lblTotalRegistros.getText()+"";
+					+ "Total registros: "+lblTotalRegistros.getText()+"";
 			Map<String, Object> map = new HashMap<>();
 			map.put("filtros", filtros);
 			map.put("codigo", ""+((Math.random()*9999)+1000));
 			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzasDetallado");
 		} else {
 			String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
-						   + "Total registros: "+lblTotalRegistros.getText()+"";
+					+ "Total registros: "+lblTotalRegistros.getText()+"";
 			Map<String, Object> map = new HashMap<>();
 			map.put("filtros", filtros);
 			map.put("codigo", ""+((Math.random()*9999)+1000));
@@ -210,7 +210,7 @@ public class VentanaInformeCobranzas extends JDialog {
 	private void cancelar() {
 		tfDesdeFecha.setValue(null);
 		tfHastaFecha.setValue(null);
-		
+
 		lista.removeAll(lista);
 		tablaInformeCobranzas.setLista(lista);
 		tablaInformeCobranzas.fireTableDataChanged();

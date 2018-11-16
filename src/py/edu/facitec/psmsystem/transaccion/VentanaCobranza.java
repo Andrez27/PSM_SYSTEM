@@ -20,7 +20,7 @@ import py.edu.facitec.psmsystem.util.FechaUtil;
 
 public class VentanaCobranza extends VentanaGenerica{
 	private static final long serialVersionUID = 1L;
-	
+
 	private JLabel lblFechaCobro;
 	private JFormattedTextField tfFechaCobro;
 	private JLabel lblMontoACobrar;
@@ -47,7 +47,7 @@ public class VentanaCobranza extends VentanaGenerica{
 		getMiToolBar().btncnEliminar.setText("Anular");
 		getMiToolBar().btncnEliminar.setActionCommand("Eliminar");
 		getMiToolBar().btncnModificar.setVisible(false);
-		
+
 		gettBuscador().setToolTipText("Buscar por ID o cliente");
 		setTitle("Formulario de Cobranza");
 		setBounds(100, 100, 890, 500);
@@ -55,7 +55,7 @@ public class VentanaCobranza extends VentanaGenerica{
 		setLocationRelativeTo(this);
 		setModal(true);
 		setResizable(false);
-		
+
 		JLabel lblGs = new JLabel("Gs.");
 		lblGs.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblGs.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -149,17 +149,17 @@ public class VentanaCobranza extends VentanaGenerica{
 		tfVuelto.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfVuelto.setBounds(256, 312, 87, 20);
 		getPanelFormulario().add(tfVuelto);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		tablaDeuda = new JTable();
 		scrollPane.setViewportView(tablaDeuda);
 		scrollPane.setBounds(10, 36, 381, 222);
 		getPanelFormulario().add(scrollPane);
-		
+
 		JLabel lblNroDeuda = new JLabel("Nro. Deuda:");
 		lblNroDeuda.setBounds(14, 14, 70, 14);
 		getPanelFormulario().add(lblNroDeuda);
-		
+
 		btnBuscarDeuda = new JButton("Agregar");
 		btnBuscarDeuda.setEnabled(false);
 		btnBuscarDeuda.addKeyListener(new KeyAdapter() {
@@ -177,19 +177,19 @@ public class VentanaCobranza extends VentanaGenerica{
 		btnBuscarDeuda.setActionCommand("BuscarDeuda");
 		btnBuscarDeuda.setBounds(192, 9, 94, 23);
 		getPanelFormulario().add(btnBuscarDeuda);
-		
+
 		btnRemover = new JButton("Remover");
 		btnRemover.setEnabled(false);
 		btnRemover.setActionCommand("RemoverDeuda");
 		btnRemover.setBounds(296, 9, 94, 23);
 		getPanelFormulario().add(btnRemover);
 	}
-	
-//-----------------------------METODO PARA CALCULAR EL VUELTO DE LA COBRANZA--------------------------------------------------------
+
+	//-----------------------------METODO PARA CALCULAR EL VUELTO DE LA COBRANZA--------------------------------------------------------
 	private void calcularVuelto() {
 		tfVuelto.setText((Double.parseDouble(tfAbonado.getText()) - Double.parseDouble(tfMontoTotal.getText()))+"");
 	}
-	
+
 	public JTable getTablaCobranza() {
 		return getTable();
 	}

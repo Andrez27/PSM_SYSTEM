@@ -25,12 +25,12 @@ public class BotonIconoVentana extends JButton{
 		setIcono(text);
 		super.setText(text);
 	}
-	
+
 	public void setIcono(String nombreIcono){
 		try {
 			URL url = BotonIconoVentana.class.getResource("/img/32bits/"+nombreIcono.toLowerCase()+".png");
 			setIcon(new ImageIcon(url));
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

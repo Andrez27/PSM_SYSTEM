@@ -19,7 +19,7 @@ import javax.swing.border.LineBorder;
 
 public class VentanaGenerica extends JDialog {
 	private static final long serialVersionUID = 1L;
-	
+
 	private MiToolBar miToolBar;
 	public JTable table;
 	private JTextField tBuscador;

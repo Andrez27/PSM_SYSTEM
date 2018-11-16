@@ -27,7 +27,7 @@ import py.edu.facitec.psmsystem.util.FechaUtil;
 
 public class VentanaEmpeno extends VentanaGenerica{
 	private static final long serialVersionUID = 1L;
-	
+
 	@SuppressWarnings("rawtypes")
 	private JComboBox cbEstado;
 	private JFormattedTextField tfFechaRegistro;
@@ -51,7 +51,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 	public VentanaEmpeno() {
 		gettBuscador().setLocation(420, 55);
 		getMiToolBar().setBounds(10, 11, 400, 64);
-		
+
 		getMiToolBar().btncnEliminar.setText("Anular");
 		getMiToolBar().btncnEliminar.setActionCommand("Eliminar");
 		getMiToolBar().btncnModificar.setVisible(false);
@@ -202,7 +202,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 		tfValorEmpeno.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfValorEmpeno.setBounds(115, 194, 109, 20);
 		getPanelFormulario().add(tfValorEmpeno);
-		
+
 		tfCuota = new NumberTextField();
 		tfCuota.addFocusListener(new FocusAdapter() {
 			@Override
@@ -255,13 +255,13 @@ public class VentanaEmpeno extends VentanaGenerica{
 				}
 			}
 		});
-		
+
 		lblValidarCuota = new JLabel("*Solo n\u00FAmeros");
 		lblValidarCuota.setVisible(false);
 		lblValidarCuota.setForeground(Color.RED);
 		lblValidarCuota.setBounds(316, 214, 84, 14);
 		getPanelFormulario().add(lblValidarCuota);
-		
+
 		tfObs.setEditable(false);
 		tfObs.setEnabled(false);
 		tfObs.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -303,7 +303,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 				}
 			}
 		});
-		
+
 		JLabel label = new JLabel("Gs.");
 		label.setBounds(818, 518, 25, 14);
 		getContentPane().add(label);
@@ -329,7 +329,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 
 	}
 
-//-------------------------------------------METODO PARA CALCULAR VALOR TOTAL-------------------------------------------
+	//-------------------------------------------METODO PARA CALCULAR VALOR TOTAL-------------------------------------------
 	private void calculoTotal() {
 		tfFechaVencimiento.setValue(FechaUtil.convertirDateUtilAString(FechaUtil.sumarMes(FechaUtil.convertirStringADateUtil(tfFechaRegistro.getText()), Integer.parseInt(tfCuota.getText()) )));
 		ConfiguracionDao dao = new ConfiguracionDao();
@@ -337,7 +337,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 		Double interes = ((Double.parseDouble(tfValorEmpeno.getText())*configuracion.getInteres()) / 100) * tfCuota.getValue();
 		tfValorTotal.setText((interes + Double.parseDouble(tfValorEmpeno.getText()))+"");
 	}
-	
+
 
 	@SuppressWarnings("rawtypes")
 	public JComboBox getCbEstado() {

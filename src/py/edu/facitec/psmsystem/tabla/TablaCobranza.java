@@ -10,10 +10,10 @@ import py.edu.facitec.psmsystem.entidad.Cobranza;
 
 public class TablaCobranza extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String[] columnas = { "ID", "FECHA COBRO", "VALOR TOTAL", "ESTADO"};
 	private List<Cobranza> lista = new ArrayList<>();
-	
+
 	public void setLista(List<Cobranza> lista) {
 		this.lista = lista;
 	}
@@ -30,7 +30,7 @@ public class TablaCobranza extends AbstractTableModel {
 	public int getRowCount() {
 		return lista.size();
 	}
-	
+
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {

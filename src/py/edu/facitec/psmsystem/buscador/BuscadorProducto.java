@@ -5,19 +5,19 @@ import py.edu.facitec.psmsystem.controlador.BuscadorProductoControlador;
 
 public class BuscadorProducto extends BuscadorGenerico {
 	private static final long serialVersionUID = 1L;
-	
+
 	private BuscadorProductoControlador controlador;
-	
+
 	public void setUpController() {
 		controlador = new BuscadorProductoControlador(this);
 	}
-	
+
 	public BuscadorProductoControlador getControlador( ){
 		return controlador;
 	}
 
 	public BuscadorProducto(){
-		
+
 	}
 
 }

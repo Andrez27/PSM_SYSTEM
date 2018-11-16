@@ -25,7 +25,7 @@ import py.edu.facitec.psmsystem.entidad.Configuracion;
 
 public class VentanaConfiguracion extends JDialog {
 	private static final long serialVersionUID = 1L;
-	
+
 	private JTextField tfNombre;
 	private JTextField tfRuc;
 	private JTextField tfTelefono;
@@ -78,17 +78,17 @@ public class VentanaConfiguracion extends JDialog {
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblEmail.setBounds(10, 116, 176, 20);
 		getContentPane().add(lblEmail);
-		
+
 		JLabel lblTazaInteres = new JLabel("Taza de  inter\u00E9s : ");
 		lblTazaInteres.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTazaInteres.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblTazaInteres.setBounds(10, 150, 176, 20);
 		getContentPane().add(lblTazaInteres);
-		
+
 		JLabel label = new JLabel("%");
 		label.setBounds(230, 155, 27, 14);
 		getContentPane().add(label);
-		
+
 		tfNombre = new JTextField();
 		tfNombre.addFocusListener(new FocusAdapter() {
 			@Override
@@ -186,7 +186,7 @@ public class VentanaConfiguracion extends JDialog {
 					tfEmail.requestFocus();
 					tfEmail.selectAll();
 				}
-				
+
 			}
 		});
 		tfTelefono.setBounds(185, 82, 195, 20);
@@ -209,7 +209,7 @@ public class VentanaConfiguracion extends JDialog {
 		tfEmail.setBounds(185, 116, 195, 20);
 		getContentPane().add(tfEmail);
 		tfEmail.setColumns(10);
-		
+
 		tfInteres = new NumberTextField();
 		tfInteres.setHorizontalAlignment(SwingConstants.RIGHT);
 		tfInteres.setBounds(185, 150, 44, 20);
@@ -225,8 +225,8 @@ public class VentanaConfiguracion extends JDialog {
 		});
 		getContentPane().add(tfInteres);
 		tfInteres.setColumns(10);
-		
-	
+
+
 		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnActualizar.addActionListener(new ActionListener() {
@@ -242,7 +242,7 @@ public class VentanaConfiguracion extends JDialog {
 		});
 		btnActualizar.setBounds(24, 194, 97, 34);
 		getContentPane().add(btnActualizar);
-		
+
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnBorrar.addActionListener(new ActionListener() {
@@ -250,9 +250,9 @@ public class VentanaConfiguracion extends JDialog {
 				vaciarFormulario();
 			}
 		});
-			btnBorrar.setBounds(145, 194, 97, 34);
+		btnBorrar.setBounds(145, 194, 97, 34);
 		getContentPane().add(btnBorrar);
-	
+
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -263,20 +263,20 @@ public class VentanaConfiguracion extends JDialog {
 		});
 		btnCancelar.setBounds(266, 194, 97, 34);
 		getContentPane().add(btnCancelar);
-		
+
 		lblValidarTelefono = new JLabel("*Solo n\u00FAmeros");
 		lblValidarTelefono.setVisible(false);
 		lblValidarTelefono.setForeground(Color.RED);
 		lblValidarTelefono.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblValidarTelefono.setBounds(185, 101, 178, 14);
 		getContentPane().add(lblValidarTelefono);
-		
+
 		lblValidarRuc = new JLabel("*Caracter no permitido");
 		lblValidarRuc.setVisible(false);
 		lblValidarRuc.setForeground(Color.RED);
 		lblValidarRuc.setBounds(184, 68, 154, 15);
 		getContentPane().add(lblValidarRuc);
-		
+
 		lblValidarNombre = new JLabel("*No se permite m\u00E1s caracteres");
 		lblValidarNombre.setVisible(false);
 		lblValidarNombre.setForeground(Color.RED);
@@ -284,10 +284,10 @@ public class VentanaConfiguracion extends JDialog {
 		getContentPane().add(lblValidarNombre);
 
 		datosActuales();
-	
+
 	}
 
-//-------------------------FIN DEL CONSTRUCTOR--------------------------------
+	//-------------------------FIN DEL CONSTRUCTOR--------------------------------
 
 	private void cargarDatos() {
 		configuracion = new Configuracion();
@@ -344,8 +344,8 @@ public class VentanaConfiguracion extends JDialog {
 		tfEmail.setText("");
 		tfInteres.setText("");
 	}
-	
-//-----------------------------------VALIDAR CAMPOS-------------------------------------
+
+	//-----------------------------------VALIDAR CAMPOS-------------------------------------
 
 	private boolean validarCampos() {
 		dao = new ConfiguracionDao();
@@ -360,7 +360,7 @@ public class VentanaConfiguracion extends JDialog {
 		return false;
 	}
 
-//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
+	//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
 
 	public void inicializarConfiguracion() {
 		String tabla = "tb_configuracion";
@@ -376,7 +376,7 @@ public class VentanaConfiguracion extends JDialog {
 		VentanaPrincipal.lblEmail.setText("");
 
 	}
-	
+
 	public JTextField gettfNombre() {
 		return tfNombre;
 	}

@@ -49,7 +49,7 @@ import py.edu.facitec.psmsystem.transaccion.VentanaEmpeno;
 
 public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 	private static final long serialVersionUID = 1L;
-	
+
 	private PanelFondo contentPane;
 	public static JLabel lblNombre;
 	public static JLabel lblRuc;
@@ -86,7 +86,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 				if (a == null || a.getInteres() == 0) {
 					JOptionPane.showMessageDialog(null, "Informe porcentaje % de interÃ©s");
 					abrirFormularioConfiguracion();
-					
+
 				} else {
 					abrirFormularioEmpeno();
 				}
@@ -100,11 +100,11 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 				abrirFormularioCobranza();
 			}
 		});
-		
+
 		JSeparator separator = new JSeparator();
 		mnProcesos.add(separator);
 		mnProcesos.add(mntmCobranza);
-		
+
 		JMenu mnTablas = new JMenu("Tablas");
 		menuBar.add(mnTablas);
 
@@ -124,7 +124,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 				abrirFormularioProducto();
 			}
 		});
-		
+
 		JSeparator separator_1 = new JSeparator();
 		mnTablas.add(separator_1);
 		mnTablas.add(mntmProducto);
@@ -147,7 +147,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 			}
 		});
 		mnInformes.add(mntmListadoDeProductos);
-		
+
 		JSeparator separator_3 = new JSeparator();
 		mnInformes.add(separator_3);
 
@@ -166,7 +166,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 			}
 		});
 		mnInformes.add(mntmInformeDeCobranzas);
-		
+
 		JMenuItem mntmInformeDeDeudas = new JMenuItem("Informe de Deudas");
 		mntmInformeDeDeudas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -180,7 +180,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 
 		JMenuItem mntmInicializacinDeDatos = new JMenuItem("Inicializaci\u00F3n de Datos");
 		mntmInicializacinDeDatos.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				int respuesta = JOptionPane.showConfirmDialog(null, "Desea restablecer base de datos?\nSerán eliminado permanentemente todos los datos almacenados", "Atención!", JOptionPane.YES_NO_OPTION);
 				if (respuesta==JOptionPane.YES_OPTION) {
@@ -200,7 +200,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 				abrirFormularioConfiguracion();
 			}
 		});
-		
+
 		JSeparator separator_2 = new JSeparator();
 		mnUtilidades.add(separator_2);
 		mnUtilidades.add(mntmConfiguraciones);
@@ -209,7 +209,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		contentPane.setBackground(Color.BLACK);
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-				
+
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBorderPainted(false);
 		toolBar.setForeground(new Color(240, 240, 240));
@@ -218,47 +218,47 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		toolBar.setOpaque(false);//transparente
 		toolBar.setFloatable(false);
 		contentPane.add(toolBar, BorderLayout.NORTH);
-		
+
 		BotonIconoPrincipal btncnEmpeno = new BotonIconoPrincipal();
 		btncnEmpeno.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		ConfiguracionDao dao = new ConfiguracionDao();
-		Configuracion a = new Configuracion();
-		a = dao.recuperarPorId(1);
-		if (a == null) {
-		JOptionPane.showMessageDialog(null, "Informe porcentaje % de interés");
-		abrirFormularioConfiguracion();
-		
-		} else {
-			abrirFormularioEmpeno();
+			public void actionPerformed(ActionEvent e) {
+				ConfiguracionDao dao = new ConfiguracionDao();
+				Configuracion a = new Configuracion();
+				a = dao.recuperarPorId(1);
+				if (a == null) {
+					JOptionPane.showMessageDialog(null, "Informe porcentaje % de interés");
+					abrirFormularioConfiguracion();
+
+				} else {
+					abrirFormularioEmpeno();
+				}
 			}
-		}
 		});
 		btncnEmpeno.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/64bits/empe\u00F1o.png")));
 		btncnEmpeno.setText("Empe\u00F1o");
 		toolBar.add(btncnEmpeno);
-								
+
 		BotonIconoPrincipal btncnCobranza = new BotonIconoPrincipal();
 		btncnCobranza.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/64bits/cobranza.png")));
 		btncnCobranza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					abrirFormularioCobranza();
-				}
+				abrirFormularioCobranza();
+			}
 		});
-		
+
 		btncnCobranza.setText("Cobranza");
 		toolBar.add(btncnCobranza);
-										
+
 		BotonIconoPrincipal btncnCliente = new BotonIconoPrincipal();
 		btncnCliente.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/64bits/cliente.png")));
 		btncnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirFormularioCliente();
-				}
+			}
 		});
 		btncnCliente.setText("Cliente");
 		toolBar.add(btncnCliente);
-												
+
 		BotonIconoPrincipal btncnSalir = new BotonIconoPrincipal();
 		btncnSalir.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/64bits/salir.png")));
 		btncnSalir.addActionListener(new ActionListener() {
@@ -268,7 +268,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		});											
 		btncnSalir.setText("Salir");
 		toolBar.add(btncnSalir);
-		
+
 		jPanelConfig = new JPanel();
 		jPanelConfig.setOpaque(false);
 		contentPane.add(jPanelConfig, BorderLayout.SOUTH);
@@ -278,7 +278,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		gbl_jPanelConfig.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_jPanelConfig.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		jPanelConfig.setLayout(gbl_jPanelConfig);
-		
+
 		lblNombre = new JLabel("");
 		lblNombre.setVerticalTextPosition(SwingConstants.BOTTOM);
 		lblNombre.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -292,7 +292,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		gbc_lblNombre.gridx = 1;
 		gbc_lblNombre.gridy = 2;
 		jPanelConfig.add(lblNombre, gbc_lblNombre);
-						
+
 		lblRuc = new JLabel("");
 		lblRuc.setHorizontalTextPosition(SwingConstants.LEFT);
 		lblRuc.setHorizontalAlignment(SwingConstants.LEFT);
@@ -306,7 +306,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		gbc_lblRuc.gridx = 1;
 		gbc_lblRuc.gridy = 4;
 		jPanelConfig.add(lblRuc, gbc_lblRuc);
-		
+
 		lblTelefono = new JLabel("");
 		lblTelefono.setForeground(Color.DARK_GRAY);
 		lblTelefono.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 28));
@@ -317,7 +317,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		gbc_lblTelefono.gridx = 1;
 		gbc_lblTelefono.gridy = 6;
 		jPanelConfig.add(lblTelefono, gbc_lblTelefono);
-										
+
 		lblEmail = new JLabel("");
 		lblEmail.setForeground(Color.DARK_GRAY);
 		lblEmail.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 28));
@@ -328,7 +328,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		gbc_lblEmail.gridx = 1;
 		gbc_lblEmail.gridy = 8;
 		jPanelConfig.add(lblEmail, gbc_lblEmail);
-												
+
 		JLabel label = new JLabel("Desarrollado Por: Andres Ramiro Garcia y Luis Enrique Arias ");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setForeground(Color.DARK_GRAY);
@@ -344,7 +344,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 
 	}
 
-//---------------FORMULARIOS-------------------------------------------------------------
+	//---------------FORMULARIOS-------------------------------------------------------------
 	public void abrirFormularioConfiguracion() {
 		VentanaConfiguracion ventanaConfiguracion = new VentanaConfiguracion();
 		ventanaConfiguracion.setVisible(true);
@@ -389,8 +389,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		VentanaInformeDeudas ventanaInformeDeudas = new VentanaInformeDeudas();
 		ventanaInformeDeudas.setVisible(true);
 	}
-	
-//----------------DESACTIVAR FALLA TECLA F10------------------------------------------
+
+	//----------------DESACTIVAR FALLA TECLA F10------------------------------------------
 	@SuppressWarnings("static-access")
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		if(e.getID() == e.KEY_PRESSED){
@@ -400,8 +400,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		}
 		return false;
 	}
-	
-//-----------------CARGAR FORMULARIO DE LA EMPRESA--------------------------------------
+
+	//-----------------CARGAR FORMULARIO DE LA EMPRESA--------------------------------------
 	public void cargarConfiguracion() {
 		configuracionDao = new ConfiguracionDao();
 		configuracion = configuracionDao.recuperarTodo();
@@ -411,8 +411,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		lblTelefono.setText(configuracion.get(0).getTelefono());
 		lblEmail.setText(configuracion.get(0).getEmail());
 	}
-	
-//----------------VERIFICAR VENCIMIENTO DEUDAS------------------------------------------
+
+	//----------------VERIFICAR VENCIMIENTO DEUDAS------------------------------------------
 	private void verificarFechasVencimiento() {
 		DeudaClienteDao deudaClienteDao = new DeudaClienteDao();
 		List<DeudaCliente> deudas = deudaClienteDao.comprobarDeudasVencidas();
@@ -427,8 +427,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 			}
 		}
 	}
-	
-//----------------INICIALIZAR BASE DE DATOS------------------------------------------
+
+	//----------------INICIALIZAR BASE DE DATOS------------------------------------------
 	public void inicializarBaseDeDatos() {
 		VentanaCliente a = new VentanaCliente();
 		VentanaClienteControlador ventanaClienteControlador = new VentanaClienteControlador(a);
@@ -444,7 +444,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		VentanaEmpeno d = new VentanaEmpeno();
 		VentanaEmpenoControlador ventanaEmpenoControlador = new VentanaEmpenoControlador(d);
 		ventanaEmpenoControlador.inicializarEmpeno();
-		
+
 		VentanaCobranza c = new VentanaCobranza();
 		VentanaCobranzaControlador ventanaCobranzaControlador = new VentanaCobranzaControlador(c);
 		ventanaCobranzaControlador.inicializarCobranza();

@@ -15,7 +15,7 @@ public class PanelFondo extends JPanel {
 	//estira la imagen desde la carpeta
 	URL url = getClass().getResource("/img/fondo.png");
 	Image image = new ImageIcon(url).getImage();
-	
+
 	//pasa la imagen a la pantalla
 	public void paintComponent(Graphics g) {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);

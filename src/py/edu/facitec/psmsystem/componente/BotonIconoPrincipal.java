@@ -25,12 +25,12 @@ public class BotonIconoPrincipal extends JButton{
 		setIcono(text);
 		super.setText(text);
 	}
-	
+
 	public void setIcono(String nombreIcono){
 		try {
 			URL url = BotonIconoPrincipal.class.getResource("/img/64bits/"+nombreIcono.toLowerCase()+".png");
 			setIcon(new ImageIcon(url));
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

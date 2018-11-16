@@ -27,12 +27,12 @@ public class Producto {
 	private String detalle;
 	@Column(name="pro_estado", nullable=false)
 	private int estado;
-	
-	
+
+
 	@OneToOne
 	private Empeno empeno;
-	
-	
+
+
 	public int getId() {
 		return id;
 	}

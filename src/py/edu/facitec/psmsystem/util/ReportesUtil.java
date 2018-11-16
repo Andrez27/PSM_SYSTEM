@@ -16,15 +16,15 @@ import net.sf.jasperreports.view.JasperViewer;
 public class ReportesUtil<E>{
 	private static JasperPrint print;
 	private static JasperViewer viewer;
-	
+
 	public static void GenerarInforme(List<?> lista, Map<String, Object> map, String reporte){
-		
+
 		InputStream logo = ReportesUtil.class.getResourceAsStream("/img/icono.png");
 		map.put("logo", logo);
-		
+
 		String urlReporte = "/py/edu/facitec/psmsystem/jasper/"+reporte+".jrxml";
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(lista);
-		
+
 		try {
 			InputStream stream = ReportesUtil.class.getResourceAsStream(urlReporte);
 			JasperReport report= JasperCompileManager.compileReport(stream);
@@ -36,7 +36,7 @@ public class ReportesUtil<E>{
 			e.printStackTrace();
 		}
 	}
-	
+
 	@SuppressWarnings("unused")
 	public void primeraConexion() throws JRException{
 		InputStream stream = ReportesUtil.class.getResourceAsStream("/py/edu/facitec/psmsystem/jasper/ListadoClientes.jrxml");

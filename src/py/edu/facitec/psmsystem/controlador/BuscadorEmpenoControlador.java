@@ -49,7 +49,7 @@ public class BuscadorEmpenoControlador implements KeyListener{
 			}
 		});
 	}
-	
+
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(bEmpeno.gettBuscador().getText());
 		tEmpeno.setLista(lista);

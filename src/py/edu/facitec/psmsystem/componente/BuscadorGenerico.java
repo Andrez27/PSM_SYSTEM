@@ -7,33 +7,33 @@ import javax.swing.JTextField;
 
 public class BuscadorGenerico extends JDialog {
 	private static final long serialVersionUID = 1L;
-	
+
 	private JTextField tfBuscador;
 	private JTable table;
-	
+
 	public BuscadorGenerico() {
 		setBounds(100, 100, 600, 400);
-				
+
 		// Centra la ventana
 		setLocationRelativeTo(this);
-		
+
 		// Evita que la ventana pierda el foco
 		setModal(true);
-		
+
 		getContentPane().setLayout(null);
-		
+
 		tfBuscador = new JTextField();
 		tfBuscador.setBounds(10, 11, 564, 20);
 		getContentPane().add(tfBuscador);
 		tfBuscador.setColumns(10);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 42, 564, 308);
 		getContentPane().add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
+
 	}
 
 	public JTextField gettBuscador() {

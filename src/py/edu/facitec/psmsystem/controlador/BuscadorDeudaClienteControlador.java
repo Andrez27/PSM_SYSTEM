@@ -50,12 +50,12 @@ public class BuscadorDeudaClienteControlador implements KeyListener{
 			}
 		});
 	}
-	
+
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(bDeuda.gettBuscador().getText());
 		tDeuda.setLista(lista);
 		tDeuda.fireTableDataChanged();
-		
+
 		TablaUtil.resizeTableColumnWidth(bDeuda.getTable());
 	}
 

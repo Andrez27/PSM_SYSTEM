@@ -23,7 +23,7 @@ import py.edu.facitec.psmsystem.util.ReportesUtil;
 
 public class Cargando extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
+
 	private LoadingPanel contentPane;
 	private JLabel lblVersion;
 	private JLabel lblGif;
@@ -54,7 +54,7 @@ public class Cargando extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Cargando() {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,7 +86,7 @@ public class Cargando extends JFrame {
 		contentPane.add(lblVersion);
 		conectarReporte();
 	}
-	
+
 	public void abrirMenu(){
 		Factory.setUp();
 		conectarReporte();
@@ -94,7 +94,7 @@ public class Cargando extends JFrame {
 		ventanaPrincipal.setVisible(true);
 		dispose();
 	}
-	
+
 	public void conectarReporte(){
 		ReportesUtil<VentanaPrincipal> conexionReportes = new ReportesUtil<VentanaPrincipal>();
 		try {

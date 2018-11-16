@@ -5,7 +5,7 @@ import py.edu.facitec.psmsystem.controlador.BuscadorDeudaClienteControlador;
 
 public class BuscadorDeudaCliente extends BuscadorGenerico {
 	private static final long serialVersionUID = 1L;
-	
+
 	private BuscadorDeudaClienteControlador controlador;
 
 	public void setUpController() {

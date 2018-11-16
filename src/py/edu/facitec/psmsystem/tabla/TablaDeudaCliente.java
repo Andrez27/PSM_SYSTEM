@@ -10,10 +10,10 @@ import py.edu.facitec.psmsystem.entidad.DeudaCliente;
 
 public class TablaDeudaCliente extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String[] columnas = { "ID", "CLIENTE", "FECHA VENCIMIENTO", "MONTO", "ESTADO"};
 	private List<DeudaCliente> lista = new ArrayList<>();
-	
+
 	public void setLista(List<DeudaCliente> lista) {
 		this.lista = lista;
 	}
@@ -64,7 +64,7 @@ public class TablaDeudaCliente extends AbstractTableModel {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		if(columnIndex == 0) return Integer.class;

@@ -19,7 +19,7 @@ import py.edu.facitec.psmsystem.controlador.VentanaClienteControlador;
 
 public class VentanaCliente extends VentanaGenerica {
 	private static final long serialVersionUID = 1L;
-	
+
 	private JTextField tfNombre;
 	private JTextField tfDocumento;
 	private JTextField tfTelefono;
@@ -28,7 +28,7 @@ public class VentanaCliente extends VentanaGenerica {
 	private JLabel lblValidarNombre;
 	private JLabel lblValidarTelefono;
 	private JLabel lblDocumentoDuplicado;
-	
+
 	public void setUpControlador() {
 		new VentanaClienteControlador(this);
 	}
@@ -93,19 +93,19 @@ public class VentanaCliente extends VentanaGenerica {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-					if (Character.isDigit(c) & c!= e.VK_ENTER) {
-						e.consume();
-						lblValidarNombre.setText("*Solo letras");
-						lblValidarNombre.setVisible(true);
-					}else{
-						lblValidarNombre.setVisible(false);
-					}
-					if (tfNombre.getText().length() == 60) {
-						e.consume();
-						lblValidarNombre.setText("*No se permiten mas caracteres");
-						lblValidarNombre.setVisible(true);
-					}
+				if (Character.isDigit(c) & c!= e.VK_ENTER) {
+					e.consume();
+					lblValidarNombre.setText("*Solo letras");
+					lblValidarNombre.setVisible(true);
+				}else{
+					lblValidarNombre.setVisible(false);
 				}
+				if (tfNombre.getText().length() == 60) {
+					e.consume();
+					lblValidarNombre.setText("*No se permiten mas caracteres");
+					lblValidarNombre.setVisible(true);
+				}
+			}
 			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {

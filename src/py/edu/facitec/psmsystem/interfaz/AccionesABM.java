@@ -7,5 +7,5 @@ public interface AccionesABM {
 	public void eliminar();
 	public void guardar();
 	public void cancelar();
-	
+
 }

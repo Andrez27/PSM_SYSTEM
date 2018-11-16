@@ -18,7 +18,7 @@ import py.edu.facitec.psmsystem.tabla.TablaProducto;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
 public class VentanaProductoControlador implements AccionesABM, KeyListener, ActionListener {
-	
+
 	private VentanaProducto vProducto;
 	private ProductoDao dao;
 	private String accion;
@@ -144,11 +144,11 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 			}
 		}
 	}
-	
+
 	@Override
 	public void guardar() {
 		if (!validarCampos())	{return;}
-		
+
 		if (accion.equals("NUEVO")) {
 			producto = new Producto();
 		}
@@ -177,7 +177,7 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		estadoInicialCampos2(false);
 		this.vProducto.getTable().setEnabled(true);
 	}	
-	
+
 	@Override
 	public void cancelar() {
 		this.vProducto.getMiToolBar().estadoInicialToolBar(true,2);
@@ -187,8 +187,8 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		vaciarFormulario();
 		this.vProducto.getTable().setEnabled(true);
 	}
-	
-//-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------
+
+	//-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------
 	private boolean validarCampos() {
 		if (vProducto.gettfDescripcion().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El campo \"DESCRIPCIÓN\" es obligatorio!", "Atención!", JOptionPane.INFORMATION_MESSAGE);
@@ -198,7 +198,7 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 		return true;
 	}
 
-//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
+	//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
 	public void inicializarProducto() {
 		String tabla = "tb_producto";
 		dao.eliminarTodos(tabla);
@@ -208,8 +208,8 @@ public class VentanaProductoControlador implements AccionesABM, KeyListener, Act
 			dao.rollback();
 		}
 	}
-	
-//----------------------------------------------------------------------------------------------------------
+
+	//----------------------------------------------------------------------------------------------------------
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource() == vProducto.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {

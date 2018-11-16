@@ -10,7 +10,7 @@ import py.edu.facitec.psmsystem.interfaz.AccionesABM;
 
 public class MiToolBar extends JToolBar implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	
+
 	public BotonIconoVentana btncnNuevo;
 	public BotonIconoVentana btncnModificar;
 	public BotonIconoVentana btncnEliminar;
@@ -65,7 +65,7 @@ public class MiToolBar extends JToolBar implements ActionListener {
 		btncnEliminar.addActionListener(this);
 		btncnCancelar.addActionListener(this);
 	}
-	
+
 	public void estadoInicialToolBar(boolean b, int a) {
 		if (a==1) {
 			btncnNuevo.setEnabled(!b);
@@ -110,5 +110,5 @@ public class MiToolBar extends JToolBar implements ActionListener {
 			break;
 		}
 	}
-	
+
 }

@@ -8,11 +8,11 @@ import org.hibernate.query.Query;
 import py.edu.facitec.psmsystem.entidad.DeudaCliente;
 
 public class DeudaClienteDao extends GenericDao<DeudaCliente> {
-	
+
 	public DeudaClienteDao() {
 		super (DeudaCliente.class);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<DeudaCliente> recuperarPorFiltro(String filtro) {
 		getSession().beginTransaction();
@@ -20,7 +20,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		String sql = "from DeudaCliente where UPPER(empeno.cliente.nombre) like :descri and estado < 2 "
 				+"or id = :id "
 				+"and estado < 2 order by id";
-		
+
 		Query<DeudaCliente> query = getSession().createQuery(sql);
 		query.setParameter("descri", "%" + filtro.toUpperCase() + "%");
 
@@ -33,7 +33,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		commit();
 		return lista;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<DeudaCliente> recuperarPorNombre(String filtro) {
 		getSession().beginTransaction();
@@ -44,7 +44,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		commit();
 		return lista;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<DeudaCliente> filtroInforme(String filtro, int estado){
 		getSession().beginTransaction();
@@ -56,7 +56,7 @@ public class DeudaClienteDao extends GenericDao<DeudaCliente> {
 		commit();
 		return lista;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<DeudaCliente> comprobarDeudasVencidas() {
 		getSession().beginTransaction();

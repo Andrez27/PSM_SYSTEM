@@ -28,16 +28,16 @@ public class DeudaCliente {
 	private double valor;
 	@Column(name="deu_estado", nullable=false)
 	private int estado;
-	
+
 	@ManyToOne
 	@JoinColumn(name="Empenoid", referencedColumnName="emp_id")
 	private Empeno empeno;
-	
+
 	@ManyToOne
 	@JoinColumn(name="Cobranzaid", referencedColumnName="cob_id")
 	private Cobranza cobranza;
 
-	
+
 	public int getId() {
 		return id;
 	}

@@ -45,7 +45,7 @@ public class VentanaListadoProductos extends JDialog {
 	private JTextField tfDesdeDescri;
 	private JTextField tfHastaDescri;
 	private JButton btnCancelar;
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaListadoProductos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoProductos.class.getResource("/img/ventanas/icono.png")));
@@ -55,35 +55,35 @@ public class VentanaListadoProductos extends JDialog {
 		setLocationRelativeTo(this);
 		setModal(true);
 		setResizable(false);
-		
+
 		tablaProductos = new TablaListadoProductos();
-		
+
 		JLabel lblDesdeId = new JLabel("Desde Id: ");
 		lblDesdeId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDesdeId.setBounds(8, 10, 60, 19);
 		getContentPane().add(lblDesdeId);
-		
+
 		JLabel lblHastaId = new JLabel("Hasta Id: ");
 		lblHastaId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHastaId.setBounds(8, 35, 60, 18);
 		getContentPane().add(lblHastaId);
-		
+
 		JLabel lblOrdenarPor = new JLabel("Ordenar por: ");
 		lblOrdenarPor.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblOrdenarPor.setBounds(382, 10, 77, 18);
 		getContentPane().add(lblOrdenarPor);
-		
+
 		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTotal.setBounds(382, 34, 77, 18);
 		getContentPane().add(lblTotal);
-		
+
 		lblTotalRegistros = new JLabel("");
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTotalRegistros.setBounds(461, 35, 34, 18);
 		getContentPane().add(lblTotalRegistros);
-		
+
 		tfDesdeId = new JTextField();
 		tfDesdeId.setBounds(68, 10, 91, 20);
 		getContentPane().add(tfDesdeId);
@@ -110,7 +110,7 @@ public class VentanaListadoProductos extends JDialog {
 			}
 		});
 		tfDesdeId.setColumns(10);
-		
+
 		tfHastaId = new JTextField();
 		tfHastaId.addKeyListener(new KeyAdapter() {
 			@SuppressWarnings("static-access")
@@ -153,7 +153,7 @@ public class VentanaListadoProductos extends JDialog {
 		tfDesdeDescri.setColumns(10);
 		tfDesdeDescri.setBounds(285, 10, 91, 20);
 		getContentPane().add(tfDesdeDescri);
-		
+
 		tfHastaDescri = new JTextField();
 		tfHastaDescri.addKeyListener(new KeyAdapter() {
 			@SuppressWarnings("static-access")
@@ -168,7 +168,7 @@ public class VentanaListadoProductos extends JDialog {
 		tfHastaDescri.setColumns(10);
 		tfHastaDescri.setBounds(285, 35, 91, 20);
 		getContentPane().add(tfHastaDescri);
-		
+
 		cbOrden = new JComboBox();
 		cbOrden.addKeyListener(new KeyAdapter() {
 			@SuppressWarnings("static-access")
@@ -184,7 +184,7 @@ public class VentanaListadoProductos extends JDialog {
 		cbOrden.setSelectedIndex(0);
 		cbOrden.setBounds(461, 10, 84, 20);
 		getContentPane().add(cbOrden);
-		
+
 		btnProcesar = new JButton("Procesar");
 		btnProcesar.addKeyListener(new KeyAdapter() {
 			@SuppressWarnings("static-access")
@@ -206,14 +206,14 @@ public class VentanaListadoProductos extends JDialog {
 		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnProcesar.setBounds(552, 10, 122, 34);
 		getContentPane().add(btnProcesar);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(11, 61, 663, 268);
 		getContentPane().add(scrollPane);
-		
+
 		table = new JTable(tablaProductos);
 		scrollPane.setViewportView(table);
-		
+
 		btnImprimir = new JButton("Imprimir");
 		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnImprimir.addActionListener(new ActionListener() {
@@ -223,7 +223,7 @@ public class VentanaListadoProductos extends JDialog {
 		});
 		btnImprimir.setBounds(10, 340, 122, 34);
 		getContentPane().add(btnImprimir);
-		
+
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnSalir.setBounds(552, 340, 122, 34);
@@ -233,17 +233,17 @@ public class VentanaListadoProductos extends JDialog {
 			}
 		});
 		getContentPane().add(btnSalir);
-		
+
 		JLabel lblDesdeDescri = new JLabel("Desde Descripci\u00F3n: ");
 		lblDesdeDescri.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDesdeDescri.setBounds(162, 10, 124, 19);
 		getContentPane().add(lblDesdeDescri);
-		
+
 		JLabel lblHastaDescri = new JLabel("Hasta Descripci\u00F3n: ");
 		lblHastaDescri.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHastaDescri.setBounds(162, 35, 124, 18);
 		getContentPane().add(lblHastaDescri);
-		
+
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -269,42 +269,42 @@ public class VentanaListadoProductos extends JDialog {
 
 		String descriDesde = tfDesdeDescri.getText();
 		String descriHasta = tfHastaDescri.getText()+"zzzz";
-		
+
 		lista = dao.recuperarPorRangos(idDesde, idHasta, descriDesde, descriHasta, cbOrden.getSelectedIndex());
 		tablaProductos.setLista(lista);
 		tablaProductos.fireTableDataChanged();
 		table.setModel(tablaProductos);
 		TablaUtil.resizeTableColumnWidth(table);
-		
+
 		lblTotalRegistros.setText(lista.size()+"");
 	}
-	
+
 	private void imprimir() {
 		if (lista == null) {
 			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String filtros = "Id: "+tfDesdeId.getText()+" "+"hasta"+" "+tfHastaId.getText()+" | "
-					   + "Nombre: "+tfDesdeDescri.getText()+" "+"hasta"+" "+tfHastaDescri.getText()+" | "
-					   + "Ordenado por: "+cbOrden.getSelectedItem().toString()+" | "
-					   + "Total registros: "+lblTotalRegistros.getText()+"";
+				+ "Nombre: "+tfDesdeDescri.getText()+" "+"hasta"+" "+tfHastaDescri.getText()+" | "
+				+ "Ordenado por: "+cbOrden.getSelectedItem().toString()+" | "
+				+ "Total registros: "+lblTotalRegistros.getText()+"";
 		Map<String, Object> map = new HashMap<>();
 		map.put("filtros", filtros);
 		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "ListadoProductos");
 	}
-	
+
 	private void cancelar() {
 		tfDesdeId.setText("");
 		tfDesdeDescri.setText("");
 		tfHastaId.setText("");
 		tfDesdeDescri.setText("");
 		tfDesdeId.requestFocus();
-		
+
 		lista.removeAll(lista);
 		tablaProductos.setLista(lista);
 		tablaProductos.fireTableDataChanged();
-		
+
 		lblTotalRegistros.setText(lista.size()+"");
 		tfDesdeId.requestFocus();
 	}

@@ -21,8 +21,8 @@ public class Configuracion {
 	private String email;
 	@Column(name="conf_interes")
 	public double interes;
-	
-	
+
+
 	public Integer getId() {
 		return id;
 	}

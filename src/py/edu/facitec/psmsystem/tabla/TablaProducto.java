@@ -11,7 +11,7 @@ public class TablaProducto extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
 	private String[] columnas = { "ID", "DESCRIPCIÓN", "DETALLE", "ESTADO" };
-	
+
 	private List<Producto> lista = new ArrayList<>();
 
 	public void setLista(List<Producto> lista) {
