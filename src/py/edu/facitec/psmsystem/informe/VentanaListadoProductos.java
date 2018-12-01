@@ -48,7 +48,7 @@ public class VentanaListadoProductos extends JDialog {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaListadoProductos() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoProductos.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoProductos.class.getResource("/img/icono.png")));
 		setTitle("Listado de Productos");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);

@@ -137,7 +137,7 @@ public class VentanaConfiguracion extends JDialog {
 				}else{
 					lblValidarRuc.setVisible(false);
 				}
-				if (tfTelefono.getText().length() == 20) {
+				if (tfRuc.getText().length() == 20) {
 					e.consume();
 				}
 			}
@@ -202,6 +202,12 @@ public class VentanaConfiguracion extends JDialog {
 				if (c == e.VK_ENTER) {
 					tfInteres.requestFocus();
 					tfInteres.selectAll();
+				}
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (tfEmail.getText().length() == 50) {
+					e.consume();
 				}
 			}
 		});
@@ -288,7 +294,6 @@ public class VentanaConfiguracion extends JDialog {
 	}
 
 	//-------------------------FIN DEL CONSTRUCTOR--------------------------------
-
 	private void cargarDatos() {
 		configuracion = new Configuracion();
 		configuracion.setId(1);
@@ -346,7 +351,6 @@ public class VentanaConfiguracion extends JDialog {
 	}
 
 	//-----------------------------------VALIDAR CAMPOS-------------------------------------
-
 	private boolean validarCampos() {
 		dao = new ConfiguracionDao();
 		campos = dao.recuperarTodo();
@@ -361,7 +365,6 @@ public class VentanaConfiguracion extends JDialog {
 	}
 
 	//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
-
 	public void inicializarConfiguracion() {
 		String tabla = "tb_configuracion";
 		dao.eliminarTodos(tabla);

@@ -50,7 +50,7 @@ public class VentanaListadoClientes extends JDialog {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaListadoClientes() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoClientes.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoClientes.class.getResource("/img/icono.png")));
 		setTitle("Listado de Clientes");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);

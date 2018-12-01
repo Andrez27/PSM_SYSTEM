@@ -44,7 +44,7 @@ public class VentanaInformeEmpenos extends JDialog {
 	private JButton btnSalir;
 
 	public VentanaInformeEmpenos() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeEmpenos.class.getResource("/img/ventanas/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeEmpenos.class.getResource("/img/icono.png")));
 		setTitle("Informe de Empe\u00F1os");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);

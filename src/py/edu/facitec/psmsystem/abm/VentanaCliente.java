@@ -100,7 +100,7 @@ public class VentanaCliente extends VentanaGenerica {
 				}else{
 					lblValidarNombre.setVisible(false);
 				}
-				if (tfNombre.getText().length() == 60) {
+				if (tfNombre.getText().length() == 50) {
 					e.consume();
 					lblValidarNombre.setText("*No se permiten mas caracteres");
 					lblValidarNombre.setVisible(true);
@@ -141,7 +141,7 @@ public class VentanaCliente extends VentanaGenerica {
 				}else{
 					lblDocumentoDuplicado.setVisible(false);
 				}
-				if (tfDocumento.getText().length() == 10) {
+				if (tfDocumento.getText().length() == 15) {
 					e.consume();
 				}
 			}
@@ -155,7 +155,7 @@ public class VentanaCliente extends VentanaGenerica {
 				}
 			}
 		});
-		tfDocumento.setBounds(112, 94, 105, 20);
+		tfDocumento.setBounds(112, 94, 117, 20);
 		getPanelFormulario().add(tfDocumento);
 		tfDocumento.setColumns(10);
 
@@ -194,7 +194,7 @@ public class VentanaCliente extends VentanaGenerica {
 				}
 			}
 		});
-		tfTelefono.setBounds(112, 154, 139, 20);
+		tfTelefono.setBounds(112, 154, 151, 20);
 		getPanelFormulario().add(tfTelefono);
 		tfTelefono.setColumns(10);
 
@@ -213,7 +213,7 @@ public class VentanaCliente extends VentanaGenerica {
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (tfDomicilio.getText().length() == 60) {
+				if (tfDomicilio.getText().length() == 100) {
 					e.consume();
 				}
 			}
@@ -225,6 +225,14 @@ public class VentanaCliente extends VentanaGenerica {
 		tfEmail = new JTextField();
 		tfEmail.setEditable(false);
 		tfEmail.setEnabled(false);
+		tfEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (tfEmail.getText().length() == 50) {
+					e.consume();
+				}
+			}
+		});
 		tfEmail.setBounds(112, 270, 278, 20);
 		getPanelFormulario().add(tfEmail);
 		tfEmail.setColumns(10);

@@ -107,7 +107,7 @@ public class VentanaProducto extends VentanaGenerica {
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (tfDescripcion.getText().length() == 40) {
+				if (tfDescripcion.getText().length() == 100) {
 					e.consume();
 				}
 			}
@@ -129,13 +129,10 @@ public class VentanaProducto extends VentanaGenerica {
 					tfPrecioVenta.requestFocus();
 					tfPrecioVenta.selectAll();
 				}
-				if (tfPrecioCompra.getText().length() == 12) {
-					e.consume();
-				}
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (tfPrecioCompra.getText().length() == 12) {
+				if (tfPrecioCompra.getText().length() == 16) {
 					e.consume();
 				}
 			}
@@ -166,7 +163,7 @@ public class VentanaProducto extends VentanaGenerica {
 			}
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (tfPrecioVenta.getText().length() == 12) {
+				if (tfPrecioVenta.getText().length() == 16) {
 					e.consume();
 				}
 			}
@@ -186,6 +183,12 @@ public class VentanaProducto extends VentanaGenerica {
 				char c = e.getKeyChar();
 				if (c == e.VK_TAB) {
 					cbEstado.requestFocus();
+				}
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (tfDetalle.getText().length() == 100) {
+					e.consume();
 				}
 			}
 		});
