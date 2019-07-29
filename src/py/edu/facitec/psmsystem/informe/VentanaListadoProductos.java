@@ -221,18 +221,18 @@ public class VentanaListadoProductos extends JDialog {
 				imprimir();
 			}
 		});
-		btnImprimir.setBounds(10, 340, 122, 34);
+		btnImprimir.setBounds(423, 340, 122, 34);
 		getContentPane().add(btnImprimir);
 
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnSalir.setBounds(552, 340, 122, 34);
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		getContentPane().add(btnSalir);
+//		JButton btnSalir = new JButton("Salir");
+//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+//		btnSalir.setBounds(552, 340, 122, 34);
+//		btnSalir.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				dispose();
+//			}
+//		});
+//		getContentPane().add(btnSalir);
 
 		JLabel lblDesdeDescri = new JLabel("Desde Descripci\u00F3n: ");
 		lblDesdeDescri.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -251,7 +251,7 @@ public class VentanaListadoProductos extends JDialog {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnCancelar.setBounds(420, 340, 122, 34);
+		btnCancelar.setBounds(552, 340, 122, 34);
 		getContentPane().add(btnCancelar);
 	}
 

@@ -235,7 +235,7 @@ public class VentanaListadoClientes extends JDialog {
 			}
 		});
 		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnImprimir.setBounds(10, 340, 122, 34);
+		btnImprimir.setBounds(420, 340, 122, 34);
 		getContentPane().add(btnImprimir);
 
 
@@ -246,18 +246,18 @@ public class VentanaListadoClientes extends JDialog {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnCancelar.setBounds(420, 340, 122, 34);
+		btnCancelar.setBounds(552, 340, 122, 34);
 		getContentPane().add(btnCancelar);
 
-		btnSalir = new JButton("Salir");
-		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnSalir.setBounds(552, 340, 122, 34);
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		getContentPane().add(btnSalir);
+//		btnSalir = new JButton("Salir");
+//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+//		btnSalir.setBounds(552, 340, 122, 34);
+//		btnSalir.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				dispose();
+//			}
+//		});
+//		getContentPane().add(btnSalir);
 
 	}
 

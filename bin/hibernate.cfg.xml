@@ -18,8 +18,11 @@
    
     <property name="hibernate.current_session_context_class">thread</property>
 <!-- 	<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property> -->
-    <property name="hbm2ddl.auto">update</property>
+
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+    
     <property name="connection_pool_size">1</property>
+    
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
 
    <!-- List of Class mapping -->

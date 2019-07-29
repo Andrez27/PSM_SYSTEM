@@ -28,6 +28,8 @@ import py.edu.facitec.psmsystem.tabla.TablaInformeCobranzas;
 import py.edu.facitec.psmsystem.util.FechaUtil;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class VentanaInformeCobranzas extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -44,6 +46,7 @@ public class VentanaInformeCobranzas extends JDialog {
 	private JButton btnCancelar;
 	private JButton btnSalir;
 	private JCheckBox chDetallado;
+	private JComboBox cbDetallado;
 
 	public VentanaInformeCobranzas() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeCobranzas.class.getResource("/img/icono.png")));
@@ -134,7 +137,7 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnImprimir.setBounds(10, 340, 122, 34);
+		btnImprimir.setBounds(420, 340, 122, 34);
 		getContentPane().add(btnImprimir);
 
 		btnCancelar = new JButton("Cancelar");
@@ -144,18 +147,18 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnCancelar.setBounds(420, 340, 122, 34);
+		btnCancelar.setBounds(552, 340, 122, 34);
 		getContentPane().add(btnCancelar);
 
-		btnSalir = new JButton("Salir");
-		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnSalir.setBounds(552, 340, 122, 34);
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		getContentPane().add(btnSalir);
+//		btnSalir = new JButton("Salir");
+//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+//		btnSalir.setBounds(552, 340, 122, 34);
+//		btnSalir.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				dispose();
+//			}
+//		});
+//		getContentPane().add(btnSalir);
 
 		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
 		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -167,9 +170,16 @@ public class VentanaInformeCobranzas extends JDialog {
 		lblHastaFecha.setBounds(247, 33, 90, 18);
 		getContentPane().add(lblHastaFecha);
 
-		chDetallado = new JCheckBox("Detallado");
-		chDetallado.setBounds(138, 348, 97, 23);
-		getContentPane().add(chDetallado);
+//		chDetallado = new JCheckBox("Detallado");
+//		chDetallado.setBounds(309, 348, 97, 23);
+//		getContentPane().add(chDetallado);
+		
+		cbDetallado = new JComboBox();
+		cbDetallado.setToolTipText("");
+		cbDetallado.setModel(new DefaultComboBoxModel(new String[] {"Sintetico", "Detallado"}));
+		cbDetallado.setSelectedIndex(0);
+		cbDetallado.setBounds(313, 340, 97, 20);
+		getContentPane().add(cbDetallado);
 	}
 
 	//-------------------------------------METODOS------------------------------------------------
@@ -190,20 +200,20 @@ public class VentanaInformeCobranzas extends JDialog {
 			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		if (chDetallado.isSelected()) {
-			String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
-					+ "Total registros: "+lblTotalRegistros.getText()+"";
-			Map<String, Object> map = new HashMap<>();
-			map.put("filtros", filtros);
-			map.put("codigo", ""+((Math.random()*9999)+1000));
-			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzasDetallado");
-		} else {
+		if (cbDetallado.getSelectedIndex() == 0) {
 			String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
 					+ "Total registros: "+lblTotalRegistros.getText()+"";
 			Map<String, Object> map = new HashMap<>();
 			map.put("filtros", filtros);
 			map.put("codigo", ""+((Math.random()*9999)+1000));
 			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzas");
+		} else {
+			String filtros = "Fecha: "+tfDesdeFecha.getText()+" "+"hasta"+" "+tfHastaFecha.getText()+" | "
+					+ "Total registros: "+lblTotalRegistros.getText()+"";
+			Map<String, Object> map = new HashMap<>();
+			map.put("filtros", filtros);
+			map.put("codigo", ""+((Math.random()*9999)+1000));
+			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzasDetallado");
 		}
 	}
 
