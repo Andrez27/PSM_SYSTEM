@@ -3,35 +3,34 @@
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-   <session-factory>
-   
-   <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect </property>
-   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect </property>
+		
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 
-   <!-- Assume test is the database name -->
-   		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/psmsystem_db
-   </property>
-   <property name="hibernate.connection.username">postgres
-   </property>
-   <property name="hibernate.connection.password">12345
-   </property>
-   
-    <property name="hibernate.current_session_context_class">thread</property>
-<!-- 	<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property> -->
+		<!-- Assume test is the database name -->
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/psm_system</property>
+		
+		<property name="hibernate.connection.username">postgres</property>
+		
+		<property name="hibernate.connection.password">12345</property>
 
-    <!-- <property name="hbm2ddl.auto">update</property> -->
-    
-    <property name="connection_pool_size">1</property>
-    
-    <property name="hibernate.enable_lazy_load_no_trans">true</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<!-- <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property> -->
 
-   <!-- List of Class mapping -->
-    <mapping class="py.edu.facitec.psmsystem.entidad.Cliente"/>
-    <mapping class="py.edu.facitec.psmsystem.entidad.Cobranza"/>
-    <mapping class="py.edu.facitec.psmsystem.entidad.DeudaCliente"/>
-    <mapping class="py.edu.facitec.psmsystem.entidad.Empeno"/>
-    <mapping class="py.edu.facitec.psmsystem.entidad.Producto"/>
-    <mapping class="py.edu.facitec.psmsystem.entidad.Configuracion"/>
-    
-</session-factory>
+		<!-- <property name="hbm2ddl.auto">update</property> -->
+
+		<property name="connection_pool_size">1</property>
+
+		<property name="hibernate.enable_lazy_load_no_trans">true</property>
+
+		<!-- List of Class mapping -->
+		<mapping class="py.edu.facitec.psmsystem.entidad.Cliente" />
+		<mapping class="py.edu.facitec.psmsystem.entidad.Cobranza" />
+		<mapping class="py.edu.facitec.psmsystem.entidad.DeudaCliente" />
+		<mapping class="py.edu.facitec.psmsystem.entidad.Empeno" />
+		<mapping class="py.edu.facitec.psmsystem.entidad.Producto" />
+		<mapping class="py.edu.facitec.psmsystem.entidad.Configuracion" />
+
+	</session-factory>
 </hibernate-configuration>
