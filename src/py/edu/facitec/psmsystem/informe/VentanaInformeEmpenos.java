@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
@@ -31,17 +30,13 @@ import py.edu.facitec.psmsystem.util.TablaUtil;
 public class VentanaInformeEmpenos extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	private List<Empeno> lista;
+	private JFormattedTextField tfDesdeFecha, tfHastaFecha;
+	private JButton btnProcesar, btnImprimir, btnCancelar;
+	private JLabel lblTotalRegistros;
 	private TablaInformeEmpenos tablaInformeEmpenos;
+	private List<Empeno> lista;
 	private EmpenoDao dao;
 	private JTable table;
-	private AbstractButton btnImprimir;
-	private JLabel lblTotalRegistros;
-	private JButton btnProcesar;
-	private JFormattedTextField tfDesdeFecha;
-	private JFormattedTextField tfHastaFecha;
-	private JButton btnCancelar;
-	private JButton btnSalir;
 
 	public VentanaInformeEmpenos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeEmpenos.class.getResource("/img/icono.png")));
@@ -69,11 +64,10 @@ public class VentanaInformeEmpenos extends JDialog {
 		tfDesdeFecha.setBounds(339, 10, 70, 20);
 		getContentPane().add(tfDesdeFecha);
 		tfDesdeFecha.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfHastaFecha.requestFocus();
 					tfHastaFecha.selectAll();
 				}
@@ -83,11 +77,10 @@ public class VentanaInformeEmpenos extends JDialog {
 
 		tfHastaFecha = new JFormattedTextField(FechaUtil.getMascara());
 		tfHastaFecha.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					btnProcesar.requestFocus();
 				}
 			}
@@ -111,11 +104,10 @@ public class VentanaInformeEmpenos extends JDialog {
 			}
 		});
 		btnProcesar.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					procesar();
 					btnImprimir.requestFocus();
 				}
@@ -152,16 +144,6 @@ public class VentanaInformeEmpenos extends JDialog {
 		btnCancelar.setBounds(552, 340, 122, 34);
 		getContentPane().add(btnCancelar);
 
-//		btnSalir = new JButton("Salir");
-//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-//		btnSalir.setBounds(552, 340, 122, 34);
-//		btnSalir.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				dispose();
-//			}
-//		});
-//		getContentPane().add(btnSalir);
-
 		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
 		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblHastaFecha.setBounds(247, 35, 93, 18);
@@ -187,6 +169,17 @@ public class VentanaInformeEmpenos extends JDialog {
 		lblTotalRegistros.setText(lista.size()+"");
 	}
 
+	private void cancelar() {
+		tfDesdeFecha.setValue(null);
+		tfHastaFecha.setValue(null);
+		lista.removeAll(lista);
+
+		tablaInformeEmpenos.setLista(lista);
+		tablaInformeEmpenos.fireTableDataChanged();
+		tfDesdeFecha.requestFocus();
+		lblTotalRegistros.setText(lista.size()+"");
+	}
+
 	private void imprimir() {
 		if (lista == null) {
 			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
@@ -198,16 +191,5 @@ public class VentanaInformeEmpenos extends JDialog {
 		map.put("filtros", filtros);
 		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "InformeEmpenos");
-	}
-
-	private void cancelar() {
-		tfDesdeFecha.setValue(null);
-		tfHastaFecha.setValue(null);
-		lista.removeAll(lista);
-
-		tablaInformeEmpenos.setLista(lista);
-		tablaInformeEmpenos.fireTableDataChanged();
-		tfDesdeFecha.requestFocus();
-		lblTotalRegistros.setText(lista.size()+"");
 	}
 }

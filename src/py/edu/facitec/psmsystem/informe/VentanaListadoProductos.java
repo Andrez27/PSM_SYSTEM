@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,23 +27,17 @@ import py.edu.facitec.psmsystem.tabla.TablaListadoProductos;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
-@SuppressWarnings("serial")
 public class VentanaListadoProductos extends JDialog {
+	private static final long serialVersionUID = 1L;
 
-	private List<Producto> lista;
+	private JTextField tfDesdeId, tfHastaId, tfDesdeDescri, tfHastaDescri;
+	private JButton btnProcesar, btnCancelar, btnImprimir;
+	private JLabel lblTotalRegistros;
 	private TablaListadoProductos tablaProductos;
+	private List<Producto> lista;
 	private ProductoDao dao;
 	private JTable table;
-	private JTextField tfDesdeId;
-	private JTextField tfHastaId;
-	@SuppressWarnings("rawtypes")
-	private JComboBox cbOrden;
-	private AbstractButton btnImprimir;
-	private JLabel lblTotalRegistros;
-	private JButton btnProcesar;
-	private JTextField tfDesdeDescri;
-	private JTextField tfHastaDescri;
-	private JButton btnCancelar;
+	private JComboBox<String> cbOrden;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaListadoProductos() {
@@ -88,20 +81,18 @@ public class VentanaListadoProductos extends JDialog {
 		tfDesdeId.setBounds(68, 10, 91, 20);
 		getContentPane().add(tfDesdeId);
 		tfDesdeId.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfHastaId.requestFocus();
 					tfHastaId.selectAll();
 				}
 			}
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE) {
 					e.consume();
 				}
 				if (tfDesdeId.getText().length() == 5) {
@@ -113,20 +104,18 @@ public class VentanaListadoProductos extends JDialog {
 
 		tfHastaId = new JTextField();
 		tfHastaId.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfDesdeDescri.requestFocus();
 					tfDesdeDescri.selectAll();
 				}
 			}
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE) {
 					e.consume();
 				}
 				if (tfDesdeId.getText().length() == 5) {
@@ -140,11 +129,10 @@ public class VentanaListadoProductos extends JDialog {
 
 		tfDesdeDescri = new JTextField();
 		tfDesdeDescri.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfHastaDescri.requestFocus();
 					tfHastaDescri.selectAll();
 				}
@@ -156,11 +144,10 @@ public class VentanaListadoProductos extends JDialog {
 
 		tfHastaDescri = new JTextField();
 		tfHastaDescri.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					cbOrden.requestFocus();
 				}
 			}
@@ -171,11 +158,10 @@ public class VentanaListadoProductos extends JDialog {
 
 		cbOrden = new JComboBox();
 		cbOrden.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					btnProcesar.requestFocus();
 				}
 			}
@@ -187,11 +173,10 @@ public class VentanaListadoProductos extends JDialog {
 
 		btnProcesar = new JButton("Procesar");
 		btnProcesar.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					procesar();
 					btnImprimir.requestFocus();
 				}
@@ -224,15 +209,15 @@ public class VentanaListadoProductos extends JDialog {
 		btnImprimir.setBounds(423, 340, 122, 34);
 		getContentPane().add(btnImprimir);
 
-//		JButton btnSalir = new JButton("Salir");
-//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-//		btnSalir.setBounds(552, 340, 122, 34);
-//		btnSalir.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				dispose();
-//			}
-//		});
-//		getContentPane().add(btnSalir);
+		//		JButton btnSalir = new JButton("Salir");
+		//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		//		btnSalir.setBounds(552, 340, 122, 34);
+		//		btnSalir.addActionListener(new ActionListener() {
+		//			public void actionPerformed(ActionEvent e) {
+		//				dispose();
+		//			}
+		//		});
+		//		getContentPane().add(btnSalir);
 
 		JLabel lblDesdeDescri = new JLabel("Desde Descripci\u00F3n: ");
 		lblDesdeDescri.setHorizontalAlignment(SwingConstants.RIGHT);

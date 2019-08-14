@@ -11,9 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.AbstractButton;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -28,26 +28,20 @@ import py.edu.facitec.psmsystem.tabla.TablaInformeCobranzas;
 import py.edu.facitec.psmsystem.util.FechaUtil;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class VentanaInformeCobranzas extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	private List<Cobranza> lista;
+	private JFormattedTextField tfDesdeFecha, tfHastaFecha;
+	private JButton btnProcesar, btnCancelar, btnImprimir;
+	private JLabel lblTotalRegistros;
 	private TablaInformeCobranzas tablaInformeCobranzas;
+	private List<Cobranza> lista;
 	private CobranzaDao dao;
 	private JTable table;
-	private AbstractButton btnImprimir;
-	private JLabel lblTotalRegistros;
-	private JButton btnProcesar;
-	private JFormattedTextField tfDesdeFecha;
-	private JFormattedTextField tfHastaFecha;
-	private JButton btnCancelar;
-	private JButton btnSalir;
-	private JCheckBox chDetallado;
-	private JComboBox cbDetallado;
+	private JComboBox<String> cbDetallado;
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaInformeCobranzas() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeCobranzas.class.getResource("/img/icono.png")));
 		setTitle("Informe de Cobranzas");
@@ -58,6 +52,45 @@ public class VentanaInformeCobranzas extends JDialog {
 		setResizable(false);
 
 		tablaInformeCobranzas = new TablaInformeCobranzas();
+
+		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
+		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDesdeFecha.setBounds(247, 11, 90, 19);
+		getContentPane().add(lblDesdeFecha);
+
+		tfDesdeFecha = new JFormattedTextField(FechaUtil.getMascara());
+		tfDesdeFecha.setBounds(336, 10, 70, 20);
+		getContentPane().add(tfDesdeFecha);
+		tfDesdeFecha.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (c == KeyEvent.VK_ENTER) {
+					tfHastaFecha.requestFocus();
+					tfHastaFecha.selectAll();
+				}
+			}
+		});
+		tfDesdeFecha.setColumns(10);
+
+		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
+		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblHastaFecha.setBounds(247, 33, 90, 18);
+		getContentPane().add(lblHastaFecha);
+
+		tfHastaFecha = new JFormattedTextField(FechaUtil.getMascara());
+		tfHastaFecha.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (c == KeyEvent.VK_ENTER) {
+					btnProcesar.requestFocus();
+				}
+			}
+		});
+		tfHastaFecha.setBounds(336, 33, 70, 20);
+		getContentPane().add(tfHastaFecha);
+		tfHastaFecha.setColumns(10);
 
 		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -70,37 +103,6 @@ public class VentanaInformeCobranzas extends JDialog {
 		lblTotalRegistros.setBounds(480, 32, 34, 18);
 		getContentPane().add(lblTotalRegistros);
 
-		tfDesdeFecha = new JFormattedTextField(FechaUtil.getMascara());
-		tfDesdeFecha.setBounds(336, 10, 70, 20);
-		getContentPane().add(tfDesdeFecha);
-		tfDesdeFecha.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
-			@Override
-			public void keyPressed(KeyEvent e) {
-				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
-					tfHastaFecha.requestFocus();
-					tfHastaFecha.selectAll();
-				}
-			}
-		});
-		tfDesdeFecha.setColumns(10);
-
-		tfHastaFecha = new JFormattedTextField(FechaUtil.getMascara());
-		tfHastaFecha.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
-			@Override
-			public void keyPressed(KeyEvent e) {
-				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
-					btnProcesar.requestFocus();
-				}
-			}
-		});
-		tfHastaFecha.setBounds(336, 33, 70, 20);
-		getContentPane().add(tfHastaFecha);
-		tfHastaFecha.setColumns(10);
-
 		btnProcesar = new JButton("Procesar");
 		btnProcesar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -109,11 +111,10 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		btnProcesar.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					procesar();
 					btnImprimir.requestFocus();
 				}
@@ -130,15 +131,12 @@ public class VentanaInformeCobranzas extends JDialog {
 		table = new JTable(tablaInformeCobranzas);
 		scrollPane.setViewportView(table);
 
-		btnImprimir = new JButton("Imprimir");
-		btnImprimir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				imprimir();
-			}
-		});
-		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnImprimir.setBounds(420, 340, 122, 34);
-		getContentPane().add(btnImprimir);
+		cbDetallado = new JComboBox();
+		cbDetallado.setToolTipText("");
+		cbDetallado.setModel(new DefaultComboBoxModel(new String[] {"Sintetico", "Detallado"}));
+		cbDetallado.setSelectedIndex(0);
+		cbDetallado.setBounds(313, 340, 97, 20);
+		getContentPane().add(cbDetallado);
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -147,39 +145,18 @@ public class VentanaInformeCobranzas extends JDialog {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnCancelar.setBounds(552, 340, 122, 34);
+		btnCancelar.setBounds(420, 340, 122, 34);
 		getContentPane().add(btnCancelar);
 
-//		btnSalir = new JButton("Salir");
-//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-//		btnSalir.setBounds(552, 340, 122, 34);
-//		btnSalir.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				dispose();
-//			}
-//		});
-//		getContentPane().add(btnSalir);
-
-		JLabel lblDesdeFecha = new JLabel("Desde Fecha: ");
-		lblDesdeFecha.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDesdeFecha.setBounds(247, 11, 90, 19);
-		getContentPane().add(lblDesdeFecha);
-
-		JLabel lblHastaFecha = new JLabel("Hasta Fecha: ");
-		lblHastaFecha.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHastaFecha.setBounds(247, 33, 90, 18);
-		getContentPane().add(lblHastaFecha);
-
-//		chDetallado = new JCheckBox("Detallado");
-//		chDetallado.setBounds(309, 348, 97, 23);
-//		getContentPane().add(chDetallado);
-		
-		cbDetallado = new JComboBox();
-		cbDetallado.setToolTipText("");
-		cbDetallado.setModel(new DefaultComboBoxModel(new String[] {"Sintetico", "Detallado"}));
-		cbDetallado.setSelectedIndex(0);
-		cbDetallado.setBounds(313, 340, 97, 20);
-		getContentPane().add(cbDetallado);
+		btnImprimir = new JButton("Imprimir");
+		btnImprimir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				imprimir();
+			}
+		});
+		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnImprimir.setBounds(552, 340, 122, 34);
+		getContentPane().add(btnImprimir);
 	}
 
 	//-------------------------------------METODOS------------------------------------------------
@@ -192,6 +169,17 @@ public class VentanaInformeCobranzas extends JDialog {
 		tablaInformeCobranzas.fireTableDataChanged();
 		table.setModel(tablaInformeCobranzas);
 		TablaUtil.resizeTableColumnWidth(table);
+		lblTotalRegistros.setText(lista.size()+"");
+	}
+
+	private void cancelar() {
+		tfDesdeFecha.setValue(null);
+		tfHastaFecha.setValue(null);
+
+		lista.removeAll(lista);
+		tablaInformeCobranzas.setLista(lista);
+		tablaInformeCobranzas.fireTableDataChanged();
+		tfDesdeFecha.requestFocus();
 		lblTotalRegistros.setText(lista.size()+"");
 	}
 
@@ -215,16 +203,5 @@ public class VentanaInformeCobranzas extends JDialog {
 			map.put("codigo", ""+((Math.random()*9999)+1000));
 			ReportesUtil.GenerarInforme(lista, map, "InformeCobranzasDetallado");
 		}
-	}
-
-	private void cancelar() {
-		tfDesdeFecha.setValue(null);
-		tfHastaFecha.setValue(null);
-
-		lista.removeAll(lista);
-		tablaInformeCobranzas.setLista(lista);
-		tablaInformeCobranzas.fireTableDataChanged();
-		tfDesdeFecha.requestFocus();
-		lblTotalRegistros.setText(lista.size()+"");
 	}
 }

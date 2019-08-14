@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,19 +30,14 @@ import py.edu.facitec.psmsystem.util.TablaUtil;
 public class VentanaInformeDeudas extends JDialog {
 	private static final long serialVersionUID = 1L;
 
+	private JTextField tfNombre;
+	private JLabel lblNombre, lblTotalRegistros;
 	private List<DeudaCliente> lista;
 	private TablaDeudaCliente tablaInformeDeudas;
 	private DeudaClienteDao dao;
 	private JTable table;
-	private AbstractButton btnImprimir;
-	private JButton btnProcesar;
-	private JButton btnCancelar;
-	private JButton btnSalir;
-	private JTextField tfNombre;
-	private JLabel lblNombre;
-	private JLabel lblTotalRegistros;
-	@SuppressWarnings("rawtypes")
-	private JComboBox cbEstado;
+	private JButton btnProcesar, btnCancelar, btnImprimir;
+	private JComboBox<String> cbEstado;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaInformeDeudas() {
@@ -82,46 +76,28 @@ public class VentanaInformeDeudas extends JDialog {
 				}
 			}
 		});
-		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnProcesar.setBounds(552, 10, 122, 34);
-		getContentPane().add(btnProcesar);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(11, 61, 663, 268);
-		getContentPane().add(scrollPane);
+		lblNombre = new JLabel("Nombre: ");
+		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNombre.setBounds(11, 10, 70, 19);
+		getContentPane().add(lblNombre);
 
-		table = new JTable(tablaInformeDeudas);
-		scrollPane.setViewportView(table);
+		tfNombre = new JTextField();
+		tfNombre.setBounds(80, 10, 304, 19);
+		getContentPane().add(tfNombre);
+		tfNombre.setColumns(10);
 
-		btnImprimir = new JButton("Imprimir");
-		btnImprimir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				imprimir();
-			}
-		});
-		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnImprimir.setBounds(420, 340, 122, 34);
-		getContentPane().add(btnImprimir);
+		JLabel lblEstado = new JLabel("Estado: ");
+		lblEstado.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEstado.setBounds(366, 10, 70, 14);
+		getContentPane().add(lblEstado);
 
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cancelar();
-			}
-		});
-		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnCancelar.setBounds(552, 340, 122, 34);
-		getContentPane().add(btnCancelar);
-
-//		btnSalir = new JButton("Salir");
-//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-//		btnSalir.setBounds(552, 340, 122, 34);
-//		btnSalir.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				dispose();
-//			}
-//		});
-//		getContentPane().add(btnSalir);
+		cbEstado = new JComboBox();
+		cbEstado.setToolTipText("");
+		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"Activo", "Vencido", "Cobrado", "Anulado", "Todos"}));
+		cbEstado.setSelectedIndex(0);
+		cbEstado.setBounds(439, 10, 92, 19);
+		getContentPane().add(cbEstado);
 
 		JLabel lblTotal = new JLabel("Total: ");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -133,27 +109,36 @@ public class VentanaInformeDeudas extends JDialog {
 		lblTotalRegistros.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblTotalRegistros.setBounds(439, 33, 34, 18);
 		getContentPane().add(lblTotalRegistros);
+		btnProcesar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnProcesar.setBounds(552, 10, 122, 34);
+		getContentPane().add(btnProcesar);
 
-		cbEstado = new JComboBox();
-		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"Activo", "Vencido", "Cobrado", "Anulado", "Todos"}));
-		cbEstado.setToolTipText("");
-		cbEstado.setBounds(439, 10, 92, 19);
-		getContentPane().add(cbEstado);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(11, 61, 663, 268);
+		getContentPane().add(scrollPane);
 
-		JLabel lblEstado = new JLabel("Estado: ");
-		lblEstado.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEstado.setBounds(366, 10, 70, 14);
-		getContentPane().add(lblEstado);
+		table = new JTable(tablaInformeDeudas);
+		scrollPane.setViewportView(table);
 
-		tfNombre = new JTextField();
-		tfNombre.setBounds(80, 10, 304, 19);
-		getContentPane().add(tfNombre);
-		tfNombre.setColumns(10);
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cancelar();
+			}
+		});
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnCancelar.setBounds(420, 341, 122, 34);
+		getContentPane().add(btnCancelar);
 
-		lblNombre = new JLabel("Nombre: ");
-		lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNombre.setBounds(11, 10, 70, 19);
-		getContentPane().add(lblNombre);
+		btnImprimir = new JButton("Imprimir");
+		btnImprimir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				imprimir();
+			}
+		});
+		btnImprimir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnImprimir.setBounds(552, 341, 122, 34);
+		getContentPane().add(btnImprimir);
 
 	}
 
@@ -172,6 +157,18 @@ public class VentanaInformeDeudas extends JDialog {
 		lblTotalRegistros.setText(lista.size()+"");
 	}
 
+	private void cancelar() {
+		tfNombre.setText("");
+		cbEstado.setSelectedIndex(0);
+
+		lista.removeAll(lista);
+		tablaInformeDeudas.setLista(lista);
+		tablaInformeDeudas.fireTableDataChanged();
+
+		tfNombre.requestFocus();
+		lblTotalRegistros.setText(lista.size()+"");
+	}
+
 	private void imprimir() {
 		if (lista == null) {
 			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
@@ -187,17 +184,5 @@ public class VentanaInformeDeudas extends JDialog {
 		map.put("filtros", filtros);
 		map.put("codigo", ""+((Math.random()*9999)+1000));
 		ReportesUtil.GenerarInforme(lista, map, "InformeDeudas");
-	}
-
-	private void cancelar() {
-		tfNombre.setText("");
-		cbEstado.setSelectedIndex(0);
-
-		lista.removeAll(lista);
-		tablaInformeDeudas.setLista(lista);
-		tablaInformeDeudas.fireTableDataChanged();
-
-		tfNombre.requestFocus();
-		lblTotalRegistros.setText(lista.size()+"");
 	}
 }

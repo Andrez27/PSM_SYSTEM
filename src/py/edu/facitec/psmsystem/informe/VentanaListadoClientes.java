@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,22 +30,14 @@ import py.edu.facitec.psmsystem.util.TablaUtil;
 public class VentanaListadoClientes extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	private List<Cliente> lista;
+	private JTextField tfDesdeNombre, tfHastaNombre,tfHastaId, tfDesdeId;
+	private JLabel lblOrdenarPor, lblTotalRegistros;
+	private JButton btnProcesar, btnCancelar, btnImprimir;
 	private TablaListadoClientes tablaClientes;
+	private List<Cliente> lista;
 	private ClienteDao dao;
 	private JTable table;
-	private JTextField tfDesdeNombre;
-	private JTextField tfHastaNombre;
-	@SuppressWarnings("rawtypes")
-	private JComboBox cbOrden;
-	private JLabel lblOrdenarPor;
-	private AbstractButton btnImprimir;
-	private JLabel lblTotalRegistros;
-	private JButton btnProcesar;
-	private JTextField tfHastaId;
-	private JTextField tfDesdeId;
-	private JButton btnCancelar;
-	private JButton btnSalir;
+	private JComboBox<String> cbOrden;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaListadoClientes() {
@@ -88,20 +79,18 @@ public class VentanaListadoClientes extends JDialog {
 
 		tfDesdeId = new JTextField();
 		tfDesdeId.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfHastaId.requestFocus();
 					tfHastaId.selectAll();
 				}
 			}
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE) {
 					e.consume();
 				}
 				if (tfDesdeId.getText().length() == 5) {
@@ -116,20 +105,18 @@ public class VentanaListadoClientes extends JDialog {
 
 		tfHastaId = new JTextField();
 		tfHastaId.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfDesdeNombre.requestFocus();
 					tfDesdeNombre.selectAll();
 				}
 			}
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE) {
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE) {
 					e.consume();
 				}
 				if (tfDesdeId.getText().length() == 5) {
@@ -156,11 +143,10 @@ public class VentanaListadoClientes extends JDialog {
 		tfDesdeNombre.setBounds(260, 10, 91, 20);
 		getContentPane().add(tfDesdeNombre);
 		tfDesdeNombre.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfHastaNombre.requestFocus();
 					tfHastaNombre.selectAll();
 				}
@@ -170,11 +156,10 @@ public class VentanaListadoClientes extends JDialog {
 
 		tfHastaNombre = new JTextField();
 		tfHastaNombre.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					cbOrden.requestFocus();
 				}
 			}
@@ -185,11 +170,10 @@ public class VentanaListadoClientes extends JDialog {
 
 		cbOrden = new JComboBox();
 		cbOrden.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					btnProcesar.requestFocus();
 				}
 			}
@@ -207,11 +191,10 @@ public class VentanaListadoClientes extends JDialog {
 			}
 		});
 		btnProcesar.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					procesar();
 					btnImprimir.requestFocus();
 				}
@@ -249,15 +232,15 @@ public class VentanaListadoClientes extends JDialog {
 		btnCancelar.setBounds(552, 340, 122, 34);
 		getContentPane().add(btnCancelar);
 
-//		btnSalir = new JButton("Salir");
-//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-//		btnSalir.setBounds(552, 340, 122, 34);
-//		btnSalir.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				dispose();
-//			}
-//		});
-//		getContentPane().add(btnSalir);
+		//		btnSalir = new JButton("Salir");
+		//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		//		btnSalir.setBounds(552, 340, 122, 34);
+		//		btnSalir.addActionListener(new ActionListener() {
+		//			public void actionPerformed(ActionEvent e) {
+		//				dispose();
+		//			}
+		//		});
+		//		getContentPane().add(btnSalir);
 
 	}
 
