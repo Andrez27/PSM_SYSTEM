@@ -60,7 +60,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 	private JPanel jPanelConfig;
 
 	public VentanaPrincipal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this); 
 
 		setTitle("PSMSystem v1.9");
@@ -234,12 +234,12 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 				}
 			}
 		});
-		btncnEmpeno.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/64bits/empe\u00F1o.png")));
+		btncnEmpeno.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/empe\u00F1o.png")));
 		btncnEmpeno.setText("Empe\u00F1o");
 		toolBar.add(btncnEmpeno);
 
 		BotonIconoPrincipal btncnCobranza = new BotonIconoPrincipal();
-		btncnCobranza.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/64bits/cobranza.png")));
+		btncnCobranza.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cobranza.png")));
 		btncnCobranza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirFormularioCobranza();
@@ -250,7 +250,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		toolBar.add(btncnCobranza);
 
 		BotonIconoPrincipal btncnCliente = new BotonIconoPrincipal();
-		btncnCliente.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/64bits/cliente.png")));
+		btncnCliente.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cliente.png")));
 		btncnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirFormularioCliente();
@@ -260,7 +260,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		toolBar.add(btncnCliente);
 
 		BotonIconoPrincipal btncnSalir = new BotonIconoPrincipal();
-		btncnSalir.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/64bits/salir.png")));
+		btncnSalir.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/salir.png")));
 		btncnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);

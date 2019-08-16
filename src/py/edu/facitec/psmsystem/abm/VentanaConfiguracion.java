@@ -48,7 +48,7 @@ public class VentanaConfiguracion extends JDialog {
 	public VentanaConfiguracion() {
 		setTitle("Configuración");
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaConfiguracion.class.getResource("/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaConfiguracion.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setBounds(100, 100, 396, 276);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(this);

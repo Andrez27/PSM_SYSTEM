@@ -13,7 +13,7 @@ public class PanelFondo extends JPanel {
 	public PanelFondo() {
 	}
 	//estira la imagen desde la carpeta
-	URL url = getClass().getResource("/img/fondo.png");
+	URL url = getClass().getResource("/py/edu/facitec/psmsystem/img/fondo.png");
 	Image image = new ImageIcon(url).getImage();
 
 	//pasa la imagen a la pantalla

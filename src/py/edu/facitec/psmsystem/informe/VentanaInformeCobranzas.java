@@ -43,7 +43,7 @@ public class VentanaInformeCobranzas extends JDialog {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaInformeCobranzas() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeCobranzas.class.getResource("/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeCobranzas.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setTitle("Informe de Cobranzas");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);

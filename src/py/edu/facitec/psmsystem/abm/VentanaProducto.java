@@ -54,7 +54,7 @@ public class VentanaProducto extends VentanaGenerica {
 		setMinimumSize(new Dimension(700, 500));
 		setMaximumSize(new Dimension(800, 600));
 		setSize(new Dimension(880, 500));
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaProducto.class.getResource("/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaProducto.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		gettBuscador().setLocation(421, 55);
 		getPanelFormulario().setBounds(10, 80, 400, 370);
 		getMiToolBar().setBounds(10, 10, 400, 65);

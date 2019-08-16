@@ -72,7 +72,7 @@ public class Cargando extends JFrame {
 		lblGif.setForeground(Color.DARK_GRAY);
 		lblGif.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblGif.setHorizontalAlignment(SwingConstants.LEFT);
-		lblGif.setIcon(new ImageIcon(Cargando.class.getResource("/img/gif.gif")));
+		lblGif.setIcon(new ImageIcon(Cargando.class.getResource("/py/edu/facitec/psmsystem/img/gif.gif")));
 		lblGif.setBounds(8, 208, 135, 68);
 		contentPane.add(lblGif);
 

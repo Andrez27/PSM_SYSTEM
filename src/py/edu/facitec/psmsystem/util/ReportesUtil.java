@@ -19,7 +19,7 @@ public class ReportesUtil<E>{
 
 	public static void GenerarInforme(List<?> lista, Map<String, Object> map, String reporte){
 
-		InputStream logo = ReportesUtil.class.getResourceAsStream("/img/icono.png");
+		InputStream logo = ReportesUtil.class.getResourceAsStream("/py/edu/facitec/psmsystem/img/icono.png");
 		map.put("logo", logo);
 
 		String urlReporte = "/py/edu/facitec/psmsystem/jasper/"+reporte+".jrxml";

@@ -39,7 +39,7 @@ public class VentanaInformeEmpenos extends JDialog {
 	private JTable table;
 
 	public VentanaInformeEmpenos() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeEmpenos.class.getResource("/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeEmpenos.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setTitle("Informe de Empe\u00F1os");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);

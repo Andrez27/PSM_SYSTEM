@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 public class LoadingPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	URL url = getClass().getResource("/img/cargando.png");
+	URL url = getClass().getResource("/py/edu/facitec/psmsystem/img/cargando.png");
 	Image image = new ImageIcon(url).getImage();
 
 	public void paintComponent(Graphics g) {

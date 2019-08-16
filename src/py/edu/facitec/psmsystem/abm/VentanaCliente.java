@@ -34,7 +34,7 @@ public class VentanaCliente extends VentanaGenerica {
 		getPanelFormulario().setSize(400, 370);
 		getPanelFormulario().setLocation(10, 80);
 		setTitle("Registro Cliente");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaCliente.class.getResource("/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaCliente.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		gettBuscador().setLocation(420, 55);
 		getMiToolBar().setBounds(new Rectangle(10, 10, 400, 65));
 		getMiToolBar().setOpaque(false);
@@ -83,7 +83,6 @@ public class VentanaCliente extends VentanaGenerica {
 		tfNombre.setEnabled(false);
 		tfNombre.setEditable(false);
 		tfNombre.addKeyListener(new KeyAdapter() {
-//			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -100,7 +99,6 @@ public class VentanaCliente extends VentanaGenerica {
 					lblValidarNombre.setVisible(true);
 				}
 			}
-//			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -124,12 +122,11 @@ public class VentanaCliente extends VentanaGenerica {
 		tfDocumento.setEditable(false);
 		tfDocumento.setEnabled(false);
 		tfDocumento.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				int k = (int) e.getKeyChar();
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=45) {
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE & k !=45) {
 					e.consume();
 					lblDocumentoDuplicado.setVisible(true);
 				}else{
@@ -139,11 +136,10 @@ public class VentanaCliente extends VentanaGenerica {
 					e.consume();
 				}
 			}
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfTelefono.requestFocus();
 					tfTelefono.selectAll();
 				}
@@ -163,12 +159,11 @@ public class VentanaCliente extends VentanaGenerica {
 			}
 		});
 		tfTelefono.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				int k = (int) e.getKeyChar();										//32= ESPACIO, 40= "(", 41= ")", 43= +, 45= -
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=32 & k !=43 & k !=40 & k !=41 & k !=45) {
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE & k !=32 & k !=43 & k !=40 & k !=41 & k !=45) {
 					e.consume();
 					lblValidarTelefono.setVisible(true);
 				}else{
@@ -178,11 +173,10 @@ public class VentanaCliente extends VentanaGenerica {
 					e.consume();
 				}
 			}
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfDomicilio.requestFocus();
 					tfDomicilio.selectAll();
 				}
@@ -196,11 +190,10 @@ public class VentanaCliente extends VentanaGenerica {
 		tfDomicilio.setEditable(false);
 		tfDomicilio.setEnabled(false);
 		tfDomicilio.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfEmail.requestFocus();
 					tfEmail.selectAll();
 				}

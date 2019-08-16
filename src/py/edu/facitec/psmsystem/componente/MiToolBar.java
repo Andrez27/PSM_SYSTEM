@@ -27,30 +27,30 @@ public class MiToolBar extends JToolBar implements ActionListener {
 		setFloatable(false);
 
 		btncnNuevo = new BotonIconoVentana();
-		btncnNuevo.setIcon(new ImageIcon(MiToolBar.class.getResource("/img/32bits/nuevo.png")));
+		btncnNuevo.setIcon(new ImageIcon(MiToolBar.class.getResource("/py/edu/facitec/psmsystem/img/32bits/nuevo.png")));
 		btncnNuevo.setText("Nuevo");
 		add(btncnNuevo);
 
 		btncnModificar = new BotonIconoVentana();
-		btncnModificar.setIcon(new ImageIcon(MiToolBar.class.getResource("/img/32bits/modificar.png")));
+		btncnModificar.setIcon(new ImageIcon(MiToolBar.class.getResource("/py/edu/facitec/psmsystem/img/32bits/modificar.png")));
 		btncnModificar.setEnabled(false);
 		btncnModificar.setText("Modificar");
 		add(btncnModificar);
 
 		btncnEliminar = new BotonIconoVentana();
-		btncnEliminar.setIcon(new ImageIcon(MiToolBar.class.getResource("/img/32bits/eliminar.png")));
+		btncnEliminar.setIcon(new ImageIcon(MiToolBar.class.getResource("/py/edu/facitec/psmsystem/img/32bits/eliminar.png")));
 		btncnEliminar.setEnabled(false);
 		btncnEliminar.setText("Eliminar");
 		add(btncnEliminar);
 
 		btncnGuardar = new BotonIconoVentana();
-		btncnGuardar.setIcon(new ImageIcon(MiToolBar.class.getResource("/img/32bits/guardar.png")));
+		btncnGuardar.setIcon(new ImageIcon(MiToolBar.class.getResource("/py/edu/facitec/psmsystem/img/32bits/guardar.png")));
 		btncnGuardar.setEnabled(false);
 		btncnGuardar.setText("Guardar");
 		add(btncnGuardar);
 
 		btncnCancelar = new BotonIconoVentana();
-		btncnCancelar.setIcon(new ImageIcon(MiToolBar.class.getResource("/img/32bits/cancelar.png")));
+		btncnCancelar.setIcon(new ImageIcon(MiToolBar.class.getResource("/py/edu/facitec/psmsystem/img/32bits/cancelar.png")));
 		btncnCancelar.setEnabled(false);
 		btncnCancelar.setText("Cancelar");
 		add(btncnCancelar);

@@ -26,7 +26,7 @@ public class VentanaGenerica extends JDialog {
 	private JPanel panelFormulario;
 
 	public VentanaGenerica() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaGenerica.class.getResource("/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaGenerica.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setMinimumSize(new Dimension(700, 500));
 		setMaximumSize(new Dimension(800, 600));
 		setBounds(100, 100, 890, 500);

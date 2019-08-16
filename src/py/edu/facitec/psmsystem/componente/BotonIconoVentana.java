@@ -28,7 +28,7 @@ public class BotonIconoVentana extends JButton{
 
 	public void setIcono(String nombreIcono){
 		try {
-			URL url = BotonIconoVentana.class.getResource("/img/32bits/"+nombreIcono.toLowerCase()+".png");
+			URL url = BotonIconoVentana.class.getResource("/py/edu/facitec/psmsystem/img/32bits/"+nombreIcono.toLowerCase()+".png");
 			setIcon(new ImageIcon(url));
 
 		} catch (Exception e) {

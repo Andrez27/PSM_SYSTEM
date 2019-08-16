@@ -41,7 +41,7 @@ public class VentanaInformeDeudas extends JDialog {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaInformeDeudas() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeDeudas.class.getResource("/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeDeudas.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setTitle("Informe de Deudas");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);
