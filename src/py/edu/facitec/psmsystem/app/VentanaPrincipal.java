@@ -83,8 +83,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 				ConfiguracionDao dao = new ConfiguracionDao();
 				Configuracion a = new Configuracion();
 				a = dao.recuperarPorId(1);
-				if (a == null || a.getInteres() == 0) {
-					JOptionPane.showMessageDialog(null, "Informe porcentaje % de interés");
+				if (a == null | a.getInteres() == 0) {
+					JOptionPane.showMessageDialog(null, "Informe porcentaje % de interes");
 					abrirFormularioConfiguracion();
 
 				} else {

@@ -135,11 +135,10 @@ public class VentanaEmpeno extends VentanaGenerica{
 
 		tfFechaRegistro = new JFormattedTextField(FechaUtil.getMascara());
 		tfFechaRegistro.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					btnBuscarCliente.requestFocus();
 				}
 			}
@@ -164,11 +163,10 @@ public class VentanaEmpeno extends VentanaGenerica{
 		btnBuscarCliente = new JButton(". . .");
 		btnBuscarCliente.setEnabled(false);
 		btnBuscarCliente.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfValorEmpeno.requestFocus();
 					tfValorEmpeno.selectAll();
 				}
@@ -187,11 +185,10 @@ public class VentanaEmpeno extends VentanaGenerica{
 			}
 		});
 		tfValorEmpeno.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfCuota.requestFocus();
 					tfCuota.selectAll();
 				}
@@ -212,11 +209,10 @@ public class VentanaEmpeno extends VentanaGenerica{
 			}
 		});
 		tfCuota.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c!= e.VK_ENTER & c != e.VK_BACK_SPACE) {
+				if (!Character.isDigit(c) & c!= KeyEvent.VK_ENTER & c != e.VK_BACK_SPACE) {
 					e.consume();
 					lblValidarCuota.setVisible(true);
 				}else{
@@ -226,11 +222,10 @@ public class VentanaEmpeno extends VentanaGenerica{
 					e.consume();
 				}
 			}
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfObs.requestFocus();
 					tfObs.selectAll();
 				}
@@ -245,11 +240,10 @@ public class VentanaEmpeno extends VentanaGenerica{
 
 		tfObs = new JTextPane();
 		tfObs.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_TAB) {
+				if (c == KeyEvent.VK_TAB) {
 					tfDescripcion.requestFocus();
 					tfDescripcion.selectAll();
 				}
@@ -293,11 +287,10 @@ public class VentanaEmpeno extends VentanaGenerica{
 
 		tfDescripcion = new JTextField();
 		tfDescripcion.addKeyListener(new KeyAdapter() {
-			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (c == e.VK_ENTER) {
+				if (c == KeyEvent.VK_ENTER) {
 					tfDetalle.requestFocus();
 					tfDetalle.selectAll();
 				}
