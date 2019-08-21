@@ -212,7 +212,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c!= KeyEvent.VK_ENTER & c != e.VK_BACK_SPACE) {
+				if (!Character.isDigit(c) & c!= KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE) {
 					e.consume();
 					lblValidarCuota.setVisible(true);
 				}else{
