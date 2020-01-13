@@ -22,19 +22,20 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 	private Cliente cliente;
 	private ClienteDao dao;
 	private List<Cliente> lista;
-	private TablaCliente mtCliente;
+	private TablaCliente tCliente;
 
 	public VentanaClienteControlador(VentanaCliente vCliente) {
 		this.vCliente = vCliente;
 
 		this.vCliente.getMiToolBar().setAcciones(this);
 
-		mtCliente = new TablaCliente();
-		this.vCliente.getTable().setModel(mtCliente);
+		tCliente = new TablaCliente();
 
-		estadoInicialCampos(true);
+		this.vCliente.getTable().setModel(tCliente);
 
 		dao = new ClienteDao();
+
+		estadoInicialCampos(true);
 
 		recuperarTodo();
 
@@ -51,17 +52,111 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vCliente.gettBuscador().addKeyListener(this);
 	}
 
+	@Override
+	public void nuevo() {
+		vaciarFormulario();
+		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 1);
+		estadoInicialCampos(true);
+		estadoInicialCampos2(true);
+		vCliente.gettfNombre().requestFocus();
+		this.vCliente.getTable().setEnabled(false);
+	}
+
+	@Override
+	public void modificar() {
+		estadoInicialCampos(true);
+		estadoInicialCampos2(true);
+		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 1);
+		accion = "MODIFICAR";
+		vCliente.gettfNombre().requestFocus();
+		vCliente.gettfNombre().selectAll();
+		this.vCliente.getTable().setEnabled(false);
+	}
+
+	@Override
+	public void eliminar() {
+		if (cliente == null) { // Verifica que se seleccione un registro
+			JOptionPane.showMessageDialog(null, "Seleccione un registro");
+		} else {
+			int respuesta = JOptionPane.showConfirmDialog(null,
+					"Esta seguro que desea eliminar el cliente: \n" + cliente.getId() + " - " + cliente.getNombre(),
+					"Atención!", JOptionPane.YES_NO_OPTION);
+			if (respuesta == JOptionPane.YES_OPTION) {
+				try {
+					dao.eliminar(cliente);
+					dao.commit();
+					recuperarTodo();
+					this.vCliente.getMiToolBar().estadoInicialToolBar(true, 2);
+					vaciarFormulario();
+				} catch (Exception e) {
+					dao.rollback();
+					JOptionPane.showMessageDialog(null,
+							"No se pudo eliminar el registro \nEl cliente esta vinculado a un empeño", "Error!",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
+	}
+
+	@Override
+	public void guardar() {
+		if (verificarDocumento()) {
+			return;
+		}
+
+		if (!validarCampos()) {
+			return;
+		}
+
+		if (accion.equals("NUEVO")) {
+			cliente = new Cliente();
+		}
+		cliente.setNombre(vCliente.gettfNombre().getText());
+		cliente.setDocumento(vCliente.gettfDocumento().getText());
+		cliente.setTelefono(vCliente.gettfTelefono().getText());
+		cliente.setDomicilio(vCliente.gettfDomicilio().getText());
+		cliente.setEmail(vCliente.gettfEmail().getText());
+		try {
+			if (accion.equals("NUEVO")) {
+				dao.insertar(cliente);
+			} else {
+				dao.modificar(cliente);
+			}
+			dao.commit();
+			vaciarFormulario();
+			this.vCliente.getMiToolBar().estadoInicialToolBar(true, 2);
+			estadoInicialCampos(false);
+			estadoInicialCampos2(false);
+			recuperarTodo();
+		} catch (Exception e) {
+			dao.rollback();
+			JOptionPane.showMessageDialog(null, "Se produjo un error al guardar", "Error!", JOptionPane.ERROR_MESSAGE);
+		}
+		estadoInicialCampos(false);
+		estadoInicialCampos2(false);
+		this.vCliente.getTable().setEnabled(true);
+	}
+
+	@Override
+	public void cancelar() {
+		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 2);
+		estadoInicialCampos(false);
+		estadoInicialCampos2(false);
+		vaciarFormulario();
+		this.vCliente.getTable().setEnabled(true);
+	}
+
 	private void recuperarTodo() {
 		lista = dao.recuperarTodo();
-		mtCliente.setLista(lista);
-		mtCliente.fireTableDataChanged();
+		tCliente.setLista(lista);
+		tCliente.fireTableDataChanged();
 		TablaUtil.resizeTableColumnWidth(vCliente.getTable());
 	}
 
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(vCliente.gettBuscador().getText());
-		mtCliente.setLista(lista);
-		mtCliente.fireTableDataChanged();
+		tCliente.setLista(lista);
+		tCliente.fireTableDataChanged();
 		TablaUtil.resizeTableColumnWidth(vCliente.getTable());
 	}
 
@@ -75,7 +170,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vCliente.gettfTelefono().setText(cliente.getTelefono());
 		vCliente.gettfDomicilio().setText(cliente.getDomicilio());
 		vCliente.gettfEmail().setText(cliente.getEmail());
-		this.vCliente.getMiToolBar().estadoInicialToolBar(true,3);
+		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 3);
 		estadoInicialCampos(true);
 		estadoInicialCampos2(false);
 	}
@@ -110,103 +205,16 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vCliente.getlblDocumentoDuplicado().setVisible(false);
 	}
 
-	@Override
-	public void nuevo() {
-		vaciarFormulario();
-		this.vCliente.getMiToolBar().estadoInicialToolBar(true,1);
-		estadoInicialCampos(true);
-		estadoInicialCampos2(true);
-		accion = "NUEVO";
-		vCliente.gettfNombre().requestFocus();
-		this.vCliente.getTable().setEnabled(false);
-	}
-
-	@Override
-	public void modificar() {
-		estadoInicialCampos(true);
-		estadoInicialCampos2(true);
-		this.vCliente.getMiToolBar().estadoInicialToolBar(true,1);
-		accion = "MODIFICAR";
-		vCliente.gettfNombre().requestFocus();
-		vCliente.gettfNombre().selectAll();
-		this.vCliente.getTable().setEnabled(false);
-	}
-
-	@Override
-	public void eliminar() {
-		if (cliente == null) {		// Verifica que se seleccione un registro
-			JOptionPane.showMessageDialog(null, "Seleccione un registro");
-		} else {
-			int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar el cliente: \n"+ cliente.getId()+" - "+cliente.getNombre(), "Atención!", JOptionPane.YES_NO_OPTION);
-			if (respuesta == JOptionPane.YES_OPTION) {
-				try {
-					dao.eliminar(cliente);
-					dao.commit();
-					recuperarTodo();
-					this.vCliente.getMiToolBar().estadoInicialToolBar(true,2);
-					vaciarFormulario();
-				} catch (Exception e) {
-					dao.rollback();
-					JOptionPane.showMessageDialog(null, "No se pudo eliminar el registro \nEl cliente esta vinculado a un empeño", "Error!", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		}
-	}
-
-	@Override
-	public void guardar() {
-		if(verificarDocumento()) {return;}
-
-		if (!validarCampos()) {return;}
-
-		if (accion.equals("NUEVO")) {
-			cliente = new Cliente();
-		}
-		cliente.setNombre(vCliente.gettfNombre().getText());
-		cliente.setDocumento(vCliente.gettfDocumento().getText());
-		cliente.setTelefono(vCliente.gettfTelefono().getText());
-		cliente.setDomicilio(vCliente.gettfDomicilio().getText());
-		cliente.setEmail(vCliente.gettfEmail().getText());
-		try {
-			if(accion.equals("NUEVO")){
-				dao.insertar(cliente);
-			} else {
-				dao.modificar(cliente);
-			}
-			dao.commit();
-			vaciarFormulario();
-			this.vCliente.getMiToolBar().estadoInicialToolBar(true,2);
-			estadoInicialCampos(false);
-			estadoInicialCampos2(false);
-			recuperarTodo();
-		} catch (Exception e) {
-			dao.rollback();
-			JOptionPane.showMessageDialog(null, "Se produjo un error al guardar", "Error!", JOptionPane.ERROR_MESSAGE);
-		}
-		estadoInicialCampos(false);
-		estadoInicialCampos2(false);
-		this.vCliente.getTable().setEnabled(true);
-	}
-
-	@Override
-	public void cancelar() {
-		this.vCliente.getMiToolBar().estadoInicialToolBar(true,2);
-		estadoInicialCampos(false);
-		estadoInicialCampos2(false);
-		vaciarFormulario();
-		this.vCliente.getTable().setEnabled(true);
-	}
-
-	//------------------------METODO PARA VERIFICAR DOCUMENTO---------------------------
+	// ------------------------VERIFICAR DOCUMENTO---------------------------
 	private boolean verificarDocumento() {
 		if (vCliente.gettfDocumento().getText().isEmpty()) {
 			vCliente.getlblDocumentoDuplicado().setVisible(false);
 			return false;
 		}
-		if(lista != null) {
+		if (lista != null) {
 			for (int i = 0; i < lista.size(); i++) {
 				boolean mismo = (!accion.equals("NUEVO") && cliente.getId() == lista.get(i).getId());
-				if(vCliente.gettfDocumento().getText().equals(lista.get(i).getDocumento()) && !mismo) {
+				if (vCliente.gettfDocumento().getText().equals(lista.get(i).getDocumento()) && !mismo) {
 					vCliente.getlblDocumentoDuplicado().setVisible(true);
 					vCliente.getlblDocumentoDuplicado().setText("*Documento duplicado");
 					vCliente.gettfDocumento().requestFocus();
@@ -219,27 +227,32 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		return false;
 	}
 
-	//--------------------------------VALIDAR CAMPOS OBLIGATORIOS---------------------------------------
+	// --------------------------------VALIDAR
+	// CAMPOS---------------------------------------
 	private boolean validarCampos() {
 		if (vCliente.gettfNombre().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "El campo \"Nombre\" es obligatorio", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "El campo \"Nombre\" es obligatorio", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			vCliente.gettfNombre().requestFocus();
 			return false;
 		}
 		if (vCliente.gettfDocumento().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "El campo \"Documento\" es obligatorio", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "El campo \"Documento\" es obligatorio", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			vCliente.gettfDocumento().requestFocus();
 			return false;
 		}
-		if (vCliente.gettfTelefono().getText().isEmpty() ) {
-			JOptionPane.showMessageDialog(null, "El campo \"Telefono\" es obligatorio", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+		if (vCliente.gettfTelefono().getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "El campo \"Telefono\" es obligatorio", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			vCliente.gettfTelefono().requestFocus();
 			return false;
 		}
 		return true;
 	}
 
-	//---------------------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
+	// ---------------------------------------------INICIALIZAR BASE DE
+	// DATOS-------------------------------------
 	public void inicializarCliente() {
 		String tabla = "tb_cliente";
 		dao.eliminarTodos(tabla);
@@ -250,17 +263,20 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		}
 	}
 
-	//----------------------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------------
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource() == vCliente.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
 			recuperarPorFiltro();
+			recuperarTodo();
 		}
 	}
+
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 	}
+
 	@Override
-	public void keyTyped(KeyEvent arg0) {	
+	public void keyTyped(KeyEvent arg0) {
 	}
 }

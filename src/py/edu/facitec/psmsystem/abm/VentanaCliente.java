@@ -28,12 +28,12 @@ public class VentanaCliente extends VentanaGenerica {
 	}
 
 	public VentanaCliente() {
+		setTitle("Registro Cliente");
 		table.setLocation(0, 53);
 		table.setSize(441, 0);
 		gettBuscador().setToolTipText("Buscar por ID, nombre o documento");
 		getPanelFormulario().setSize(400, 370);
 		getPanelFormulario().setLocation(10, 80);
-		setTitle("Registro Cliente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaCliente.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		gettBuscador().setLocation(420, 55);
 		getMiToolBar().setBounds(new Rectangle(10, 10, 400, 65));

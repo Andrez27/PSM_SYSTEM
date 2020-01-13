@@ -25,23 +25,17 @@ import py.edu.facitec.psmsystem.dao.ConfiguracionDao;
 import py.edu.facitec.psmsystem.entidad.Configuracion;
 import py.edu.facitec.psmsystem.util.FechaUtil;
 
-public class VentanaEmpeno extends VentanaGenerica{
+public class VentanaEmpeno extends VentanaGenerica {
 	private static final long serialVersionUID = 1L;
 
+	private JFormattedTextField tfFechaRegistro, tfFechaVencimiento;
+	private NumberTextField tfValorEmpeno, tfValorTotal, tfCuota;
+	private JTextField tfCliente, tfDescripcion, tfId;
+	private JButton btnBuscarCliente;
+	private JTextPane tfObs, tfDetalle;
+	public JLabel lblValidarCuota;
 	@SuppressWarnings("rawtypes")
 	private JComboBox cbEstado;
-	private JFormattedTextField tfFechaRegistro;
-	private JFormattedTextField tfFechaVencimiento;
-	private JTextField tfCliente;
-	private JButton btnBuscarCliente;
-	private NumberTextField tfValorEmpeno;
-	private JTextPane tfObs;
-	private JTextField tfDescripcion;
-	private JTextPane tfDetalle;
-	private NumberTextField tfValorTotal;
-	private JTextField tfId;
-	private NumberTextField tfCuota;
-	public JLabel lblValidarCuota;
 
 	public void setUpControlador() {
 		new VentanaEmpenoControlador(this);
@@ -128,7 +122,7 @@ public class VentanaEmpeno extends VentanaGenerica{
 
 		cbEstado = new JComboBox();
 		cbEstado.setEnabled(false);
-		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"Activo", "Vencido", "Cobrado", "Anulado"}));
+		cbEstado.setModel(new DefaultComboBoxModel(new String[] { "Activo", "Vencido", "Cobrado", "Anulado" }));
 		cbEstado.setToolTipText("");
 		cbEstado.setBounds(316, 36, 74, 19);
 		getPanelFormulario().add(cbEstado);
@@ -212,16 +206,17 @@ public class VentanaEmpeno extends VentanaGenerica{
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!Character.isDigit(c) & c!= KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE) {
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE) {
 					e.consume();
 					lblValidarCuota.setVisible(true);
-				}else{
+				} else {
 					lblValidarCuota.setVisible(false);
 				}
 				if (tfCuota.getText().length() == 20) {
 					e.consume();
 				}
 			}
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -322,93 +317,120 @@ public class VentanaEmpeno extends VentanaGenerica{
 
 	}
 
-	//-------------------------------------------METODO PARA CALCULAR VALOR TOTAL-------------------------------------------
+	// -------------------------------------------METODO PARA CALCULAR VALOR
+	// TOTAL-------------------------------------------
 	private void calculoTotal() {
-		tfFechaVencimiento.setValue(FechaUtil.convertirDateUtilAString(FechaUtil.sumarMes(FechaUtil.convertirStringADateUtil(tfFechaRegistro.getText()), Integer.parseInt(tfCuota.getText()) )));
+		tfFechaVencimiento.setValue(FechaUtil.convertirDateUtilAString(FechaUtil.sumarMes(
+				FechaUtil.convertirStringADateUtil(tfFechaRegistro.getText()), Integer.parseInt(tfCuota.getText()))));
 		ConfiguracionDao dao = new ConfiguracionDao();
 		Configuracion configuracion = dao.recuperarPorId(1);
-		Double interes = ((Double.parseDouble(tfValorEmpeno.getText())*configuracion.getInteres()) / 100) * tfCuota.getValue();
-		tfValorTotal.setText((interes + Double.parseDouble(tfValorEmpeno.getText()))+"");
+		Double interes = ((Double.parseDouble(tfValorEmpeno.getText()) * configuracion.getInteres()) / 100)
+				* tfCuota.getValue();
+		tfValorTotal.setText((interes + Double.parseDouble(tfValorEmpeno.getText())) + "");
 	}
-
 
 	@SuppressWarnings("rawtypes")
 	public JComboBox getCbEstado() {
 		return cbEstado;
 	}
+
 	@SuppressWarnings("rawtypes")
 	public void setCbEstado(JComboBox cbEstado) {
 		this.cbEstado = cbEstado;
 	}
+
 	public JFormattedTextField getTfFechaRegistro() {
 		return tfFechaRegistro;
 	}
+
 	public void setTfFechaRegistro(JFormattedTextField tfFechaRegistro) {
 		this.tfFechaRegistro = tfFechaRegistro;
 	}
+
 	public JFormattedTextField getTfFechaVencimiento() {
 		return tfFechaVencimiento;
 	}
+
 	public void setTfFechaVencimiento(JFormattedTextField tfFechaVencimiento) {
 		this.tfFechaVencimiento = tfFechaVencimiento;
 	}
+
 	public JTextField getTfCliente() {
 		return tfCliente;
 	}
+
 	public void setTfCliente(JTextField tfCliente) {
 		this.tfCliente = tfCliente;
 	}
+
 	public JButton getBtnBuscarCliente() {
 		return btnBuscarCliente;
 	}
+
 	public void setBtnBuscarCliente(JButton btnBuscarCliente) {
 		this.btnBuscarCliente = btnBuscarCliente;
 	}
+
 	public NumberTextField getTfValorEmpeno() {
 		return tfValorEmpeno;
 	}
+
 	public void setTfValorEmpeno(NumberTextField tfValorEmpeno) {
 		this.tfValorEmpeno = tfValorEmpeno;
 	}
+
 	public JTextPane getTfObs() {
 		return tfObs;
 	}
+
 	public void setTfObservacion(JTextPane tfObservacion) {
 		this.tfObs = tfObservacion;
 	}
+
 	public JTextField getTfDescripcion() {
 		return tfDescripcion;
 	}
+
 	public void setTfDescripcion(JTextField tfDescripcion) {
 		this.tfDescripcion = tfDescripcion;
 	}
+
 	public JTextPane getTfDetalle() {
 		return tfDetalle;
 	}
+
 	public void setTfDetalle(JTextPane tfDetalle) {
 		this.tfDetalle = tfDetalle;
 	}
+
 	public NumberTextField getTfValorTotal() {
 		return tfValorTotal;
 	}
+
 	public void setTfValorTotal(NumberTextField tfValorTotal) {
 		this.tfValorTotal = tfValorTotal;
 	}
+
 	public JTextField getTfId() {
 		return tfId;
 	}
+
 	public void setTfId(JTextField tfId) {
 		this.tfId = tfId;
 	}
+
 	public NumberTextField getTfCuota() {
 		return tfCuota;
 	}
+
 	public void setTfCuota(NumberTextField tfCuota) {
 		this.tfCuota = tfCuota;
 	}
+
 	public JLabel getLblValidarCuota() {
 		return lblValidarCuota;
 	}
+
 	public void setLblValidarCuota(JLabel lblValidarCuota) {
 		this.lblValidarCuota = lblValidarCuota;
 	}

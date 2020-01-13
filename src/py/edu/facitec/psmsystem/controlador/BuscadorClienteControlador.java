@@ -13,7 +13,7 @@ import py.edu.facitec.psmsystem.interfaz.InterfazBuscadorCliente;
 import py.edu.facitec.psmsystem.tabla.TablaCliente;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
-public class BuscadorClienteControlador implements KeyListener{
+public class BuscadorClienteControlador implements KeyListener {
 
 	private BuscadorCliente bCliente;
 	private InterfazBuscadorCliente interfaz;
@@ -25,7 +25,7 @@ public class BuscadorClienteControlador implements KeyListener{
 		this.interfaz = interfaz;
 	}
 
-	public BuscadorClienteControlador (BuscadorCliente bCliente) {
+	public BuscadorClienteControlador(BuscadorCliente bCliente) {
 		this.bCliente = bCliente;
 
 		tCliente = new TablaCliente();
@@ -41,7 +41,7 @@ public class BuscadorClienteControlador implements KeyListener{
 
 	private void setUpEvents() {
 		bCliente.gettBuscador().addKeyListener(this);
-		bCliente.getTable().addMouseListener(new MouseAdapter(){
+		bCliente.getTable().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
@@ -50,6 +50,7 @@ public class BuscadorClienteControlador implements KeyListener{
 			}
 		});
 	}
+
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(bCliente.gettBuscador().getText());
 		tCliente.setLista(lista);
@@ -69,14 +70,17 @@ public class BuscadorClienteControlador implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getSource() == bCliente.gettBuscador() && e.getKeyCode()==KeyEvent.VK_ENTER){
+		if (e.getSource() == bCliente.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
 			recuperarPorFiltro();
 		}
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent e) {
+	}
+
 	@Override
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent e) {
+	}
 
 }

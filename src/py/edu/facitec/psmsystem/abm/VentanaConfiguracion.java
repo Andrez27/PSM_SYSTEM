@@ -42,9 +42,6 @@ public class VentanaConfiguracion extends JDialog {
 	private JLabel lblValidarRuc;
 	private JLabel lblValidarNombre;
 
-	protected void setUpControlador() {
-	}
-
 	public VentanaConfiguracion() {
 		setTitle("Configuración");
 		setResizable(false);

@@ -28,7 +28,7 @@ import py.edu.facitec.psmsystem.util.TablaUtil;
 public class VentanaEmpenoControlador implements AccionesABM, KeyListener, ActionListener, InterfazBuscadorCliente{
 
 	private VentanaEmpeno vEmpeno;
-	private TablaEmpeno mtEmpeno;
+	private TablaEmpeno tEmpeno;
 	private EmpenoDao dao;
 	private List<Empeno> lista;
 	private String accion;
@@ -42,8 +42,8 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 
 		this.vEmpeno.getMiToolBar().setAcciones(this);
 
-		mtEmpeno = new TablaEmpeno();
-		this.vEmpeno.getTable().setModel(mtEmpeno);
+		tEmpeno = new TablaEmpeno();
+		this.vEmpeno.getTable().setModel(tEmpeno);
 
 		estadoInicialCampos(true);
 
@@ -70,15 +70,15 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 
 	private void recuperarTodo() {
 		lista = dao.recuperarTodo();
-		mtEmpeno.setLista(lista);
-		mtEmpeno.fireTableDataChanged();
+		tEmpeno.setLista(lista);
+		tEmpeno.fireTableDataChanged();
 		TablaUtil.resizeTableColumnWidth(vEmpeno.getTable());
 	}
 
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(vEmpeno.gettBuscador().getText());
-		mtEmpeno.setLista(lista);
-		mtEmpeno.fireTableDataChanged();
+		tEmpeno.setLista(lista);
+		tEmpeno.fireTableDataChanged();
 		TablaUtil.resizeTableColumnWidth(vEmpeno.getTable());
 	}
 

@@ -47,21 +47,19 @@ import py.edu.facitec.psmsystem.informe.VentanaListadoProductos;
 import py.edu.facitec.psmsystem.transaccion.VentanaCobranza;
 import py.edu.facitec.psmsystem.transaccion.VentanaEmpeno;
 
-public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
+public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 	private static final long serialVersionUID = 1L;
 
 	private PanelFondo contentPane;
-	public static JLabel lblNombre;
-	public static JLabel lblRuc;
-	public static JLabel lblTelefono;
-	public static JLabel lblEmail;
+	public static JLabel lblNombre, lblRuc, lblTelefono, lblEmail;
 	private List<Configuracion> configuracion;
 	private ConfiguracionDao configuracionDao;
 	private JPanel jPanelConfig;
 
 	public VentanaPrincipal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
-		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this); 
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
+		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
 
 		setTitle("PSMSystem v1.9");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -182,13 +180,15 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		mntmInicializacinDeDatos.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				int respuesta = JOptionPane.showConfirmDialog(null, "Desea restablecer base de datos?\nSerán eliminado permanentemente todos los datos almacenados", "Atención!", JOptionPane.YES_NO_OPTION);
-				if (respuesta==JOptionPane.YES_OPTION) {
+				int respuesta = JOptionPane.showConfirmDialog(null,
+						"Desea restablecer base de datos?\nSerán eliminado permanentemente todos los datos almacenados",
+						"Atención!", JOptionPane.YES_NO_OPTION);
+				if (respuesta == JOptionPane.YES_OPTION) {
 					inicializarBaseDeDatos();
 					JOptionPane.showMessageDialog(null, "Base de datos restablecida!");
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Operación cancelada", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "Operación cancelada", "Atención!",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -215,7 +215,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		toolBar.setForeground(new Color(240, 240, 240));
 		toolBar.setEnabled(false);
 		toolBar.setOpaque(false);
-		toolBar.setOpaque(false);//transparente
+		toolBar.setOpaque(false);// transparente
 		toolBar.setFloatable(false);
 		contentPane.add(toolBar, BorderLayout.NORTH);
 
@@ -234,12 +234,14 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 				}
 			}
 		});
-		btncnEmpeno.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/empe\u00F1o.png")));
+		btncnEmpeno.setIcon(new ImageIcon(
+				VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/empe\u00F1o.png")));
 		btncnEmpeno.setText("Empe\u00F1o");
 		toolBar.add(btncnEmpeno);
 
 		BotonIconoPrincipal btncnCobranza = new BotonIconoPrincipal();
-		btncnCobranza.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cobranza.png")));
+		btncnCobranza.setIcon(
+				new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cobranza.png")));
 		btncnCobranza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirFormularioCobranza();
@@ -250,7 +252,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		toolBar.add(btncnCobranza);
 
 		BotonIconoPrincipal btncnCliente = new BotonIconoPrincipal();
-		btncnCliente.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cliente.png")));
+		btncnCliente.setIcon(
+				new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cliente.png")));
 		btncnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirFormularioCliente();
@@ -260,12 +263,13 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		toolBar.add(btncnCliente);
 
 		BotonIconoPrincipal btncnSalir = new BotonIconoPrincipal();
-		btncnSalir.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/salir.png")));
+		btncnSalir.setIcon(
+				new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/salir.png")));
 		btncnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
-		});											
+		});
 		btncnSalir.setText("Salir");
 		toolBar.add(btncnSalir);
 
@@ -273,10 +277,11 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		jPanelConfig.setOpaque(false);
 		contentPane.add(jPanelConfig, BorderLayout.SOUTH);
 		GridBagLayout gbl_jPanelConfig = new GridBagLayout();
-		gbl_jPanelConfig.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_jPanelConfig.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_jPanelConfig.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_jPanelConfig.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_jPanelConfig.columnWidths = new int[] { 0, 0, 0, 0, 0 };
+		gbl_jPanelConfig.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_jPanelConfig.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gbl_jPanelConfig.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		jPanelConfig.setLayout(gbl_jPanelConfig);
 
 		lblNombre = new JLabel("");
@@ -344,75 +349,85 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 
 	}
 
-	//---------------FORMULARIOS-------------------------------------------------------------
+	// ---------------FORMULARIOS-------------------------------------------------------------
 	public void abrirFormularioConfiguracion() {
 		VentanaConfiguracion ventanaConfiguracion = new VentanaConfiguracion();
 		ventanaConfiguracion.setVisible(true);
 	}
+
 	private void abrirFormularioCliente() {
 		VentanaCliente ventanaCliente = new VentanaCliente();
 		ventanaCliente.setUpControlador();
 		ventanaCliente.setVisible(true);
 	}
+
 	private void abrirFormularioProducto() {
 		VentanaProducto ventanaProducto = new VentanaProducto();
 		ventanaProducto.setUpControlador();
 		ventanaProducto.setVisible(true);
 	}
+
 	private void abrirFormularioEmpeno() {
 		VentanaEmpeno ventanaEmpeno = new VentanaEmpeno();
 		ventanaEmpeno.setUpControlador();
 		ventanaEmpeno.setVisible(true);
 	}
+
 	private void abrirFormularioCobranza() {
 		VentanaCobranza ventanaCobranza = new VentanaCobranza();
 		ventanaCobranza.setUpControlador();
 		ventanaCobranza.setVisible(true);
 	}
+
 	private void abrirListadoClientes() {
 		VentanaListadoClientes ventanaListadoClientes = new VentanaListadoClientes();
 		ventanaListadoClientes.setVisible(true);
 	}
+
 	private void abrirListadoProductos() {
 		VentanaListadoProductos ventanaListadoProductos = new VentanaListadoProductos();
 		ventanaListadoProductos.setVisible(true);
 	}
+
 	private void abrirInformeEmpenos() {
 		VentanaInformeEmpenos ventanaInformeEmpenos = new VentanaInformeEmpenos();
 		ventanaInformeEmpenos.setVisible(true);
 	}
+
 	private void abrirInformeCobranzas() {
 		VentanaInformeCobranzas ventanaInformeCobranzas = new VentanaInformeCobranzas();
 		ventanaInformeCobranzas.setVisible(true);
 	}
+
 	private void abrirInformeDeudas() {
 		VentanaInformeDeudas ventanaInformeDeudas = new VentanaInformeDeudas();
 		ventanaInformeDeudas.setVisible(true);
 	}
 
-	//----------------DESACTIVAR FALLA TECLA F10------------------------------------------
+	// ----------------DESACTIVAR FALLA TECLA F10------------------------------------------
 	@SuppressWarnings("static-access")
 	public boolean dispatchKeyEvent(KeyEvent e) {
-		if(e.getID() == e.KEY_PRESSED){
-			if(e.getKeyCode()== e.VK_F10 | e.getKeyCode() == e.VK_SPACE){
+		if (e.getID() == e.KEY_PRESSED) {
+			if (e.getKeyCode() == e.VK_F10 | e.getKeyCode() == e.VK_SPACE) {
 				e.consume();
 			}
 		}
 		return false;
 	}
 
-	//-----------------CARGAR FORMULARIO DE LA EMPRESA--------------------------------------
+	// -----------------CONFIGURACION EMPRESA--------------------------------------
 	public void cargarConfiguracion() {
 		configuracionDao = new ConfiguracionDao();
 		configuracion = configuracionDao.recuperarTodo();
-		if (configuracion.size()==0) return;
+		if (configuracion.size() == 0)
+			return;
 		lblNombre.setText(configuracion.get(0).getNombre());
 		lblRuc.setText(configuracion.get(0).getRuc());
 		lblTelefono.setText(configuracion.get(0).getTelefono());
 		lblEmail.setText(configuracion.get(0).getEmail());
 	}
 
-	//----------------VERIFICAR VENCIMIENTO DEUDAS------------------------------------------
+	// ----------------VERIFICAR VENCIMIENTO DEUDAS------------------------------------------
 	private void verificarFechasVencimiento() {
 		DeudaClienteDao deudaClienteDao = new DeudaClienteDao();
 		List<DeudaCliente> deudas = deudaClienteDao.comprobarDeudasVencidas();
@@ -428,7 +443,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher{
 		}
 	}
 
-	//----------------INICIALIZAR BASE DE DATOS------------------------------------------
+	// ----------------INICIALIZAR BASE DE DATOS------------------------------------------
 	public void inicializarBaseDeDatos() {
 		VentanaCliente a = new VentanaCliente();
 		VentanaClienteControlador ventanaClienteControlador = new VentanaClienteControlador(a);

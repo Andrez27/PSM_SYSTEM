@@ -3,8 +3,6 @@ package py.edu.facitec.psmsystem.util;
 import java.awt.Component;
 
 import javax.swing.JTable;
-//import javax.swing.SwingConstants;
-//import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
@@ -20,7 +18,7 @@ public class TablaUtil{
 				width = Math.max(comp.getPreferredSize().width +1 , width);
 			}
 			if(width > 300)
-				width=300;
+				width = 300;
 			columnModel.getColumn(column).setPreferredWidth(width);
 		}
 

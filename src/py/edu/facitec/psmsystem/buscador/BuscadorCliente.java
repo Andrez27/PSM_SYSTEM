@@ -12,7 +12,7 @@ public class BuscadorCliente extends BuscadorGenerico {
 		controlador = new BuscadorClienteControlador(this);
 	}
 
-	public BuscadorClienteControlador getControlador( ){
+	public BuscadorClienteControlador getControlador(){
 		return controlador;
 	}
 
