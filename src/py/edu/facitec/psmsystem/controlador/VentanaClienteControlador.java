@@ -54,6 +54,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 
 	@Override
 	public void nuevo() {
+		accion = "NUEVO";
 		vaciarFormulario();
 		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 1);
 		estadoInicialCampos(true);
@@ -145,7 +146,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vaciarFormulario();
 		this.vCliente.getTable().setEnabled(true);
 	}
-
+//------------------------------------------------------------------------
 	private void recuperarTodo() {
 		lista = dao.recuperarTodo();
 		tCliente.setLista(lista);
@@ -170,9 +171,9 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vCliente.gettfTelefono().setText(cliente.getTelefono());
 		vCliente.gettfDomicilio().setText(cliente.getDomicilio());
 		vCliente.gettfEmail().setText(cliente.getEmail());
-		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 3);
 		estadoInicialCampos(true);
 		estadoInicialCampos2(false);
+		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 3);
 	}
 
 	private void estadoInicialCampos(boolean b) {
@@ -227,8 +228,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		return false;
 	}
 
-	// --------------------------------VALIDAR
-	// CAMPOS---------------------------------------
+	// --------------------------------VALIDAR CAMPOS---------------------------------------
 	private boolean validarCampos() {
 		if (vCliente.gettfNombre().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El campo \"Nombre\" es obligatorio", "Atención!",
@@ -251,8 +251,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		return true;
 	}
 
-	// ---------------------------------------------INICIALIZAR BASE DE
-	// DATOS-------------------------------------
+	// ---------------------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
 	public void inicializarCliente() {
 		String tabla = "tb_cliente";
 		dao.eliminarTodos(tabla);
@@ -268,7 +267,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource() == vCliente.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
 			recuperarPorFiltro();
-			recuperarTodo();
+//			recuperarTodo();
 		}
 	}
 

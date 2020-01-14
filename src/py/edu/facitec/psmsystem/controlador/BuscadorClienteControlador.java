@@ -40,7 +40,6 @@ public class BuscadorClienteControlador implements KeyListener {
 	}
 
 	private void setUpEvents() {
-		bCliente.gettBuscador().addKeyListener(this);
 		bCliente.getTable().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -49,13 +48,13 @@ public class BuscadorClienteControlador implements KeyListener {
 				}
 			}
 		});
+		bCliente.gettBuscador().addKeyListener(this);
 	}
 
 	private void recuperarPorFiltro() {
 		lista = dao.recuperarPorFiltro(bCliente.gettBuscador().getText());
 		tCliente.setLista(lista);
 		tCliente.fireTableDataChanged();
-
 		TablaUtil.resizeTableColumnWidth(bCliente.getTable());
 	}
 

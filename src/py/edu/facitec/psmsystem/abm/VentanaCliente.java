@@ -29,8 +29,6 @@ public class VentanaCliente extends VentanaGenerica {
 
 	public VentanaCliente() {
 		setTitle("Registro Cliente");
-		table.setLocation(0, 53);
-		table.setSize(441, 0);
 		gettBuscador().setToolTipText("Buscar por ID, nombre o documento");
 		getPanelFormulario().setSize(400, 370);
 		getPanelFormulario().setLocation(10, 80);

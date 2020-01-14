@@ -89,26 +89,26 @@ public class MiToolBar extends JToolBar implements ActionListener {
 			btncnCancelar.setEnabled(b);
 		}
 	}
-//
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		switch (e.getActionCommand()) {
-//		case "Nuevo":
-//			acciones.nuevo();
-//			break;
-//		case "Modificar":
-//			acciones.modificar();
-//			break;
-//		case "Eliminar":
-//			acciones.eliminar();
-//			break;
-//		case "Guardar":
-//			acciones.guardar();
-//			break;
-//		case "Cancelar":
-//			acciones.cancelar();
-//			break;
-//		}
-//	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		case "Nuevo":
+			acciones.nuevo();
+			break;
+		case "Modificar":
+			acciones.modificar();
+			break;
+		case "Eliminar":
+			acciones.eliminar();
+			break;
+		case "Guardar":
+			acciones.guardar();
+			break;
+		case "Cancelar":
+			acciones.cancelar();
+			break;
+		}
+	}
 
 }

@@ -404,7 +404,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		ventanaInformeDeudas.setVisible(true);
 	}
 
-	// ----------------DESACTIVAR FALLA TECLA F10------------------------------------------
+	// ----------------DESACTIVAR FALLA TECLA
+	// F10------------------------------------------
 	@SuppressWarnings("static-access")
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		if (e.getID() == e.KEY_PRESSED) {
@@ -427,7 +428,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		lblEmail.setText(configuracion.get(0).getEmail());
 	}
 
-	// ----------------VERIFICAR VENCIMIENTO DEUDAS------------------------------------------
+	// ----------------VERIFICAR VENCIMIENTO
+	// DEUDAS------------------------------------------
 	private void verificarFechasVencimiento() {
 		DeudaClienteDao deudaClienteDao = new DeudaClienteDao();
 		List<DeudaCliente> deudas = deudaClienteDao.comprobarDeudasVencidas();
@@ -443,7 +445,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		}
 	}
 
-	// ----------------INICIALIZAR BASE DE DATOS------------------------------------------
+	// ----------------INICIALIZAR BASE DE
+	// DATOS------------------------------------------
 	public void inicializarBaseDeDatos() {
 		VentanaCliente a = new VentanaCliente();
 		VentanaClienteControlador ventanaClienteControlador = new VentanaClienteControlador(a);
