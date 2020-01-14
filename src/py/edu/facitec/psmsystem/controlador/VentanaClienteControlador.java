@@ -76,7 +76,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 
 	@Override
 	public void eliminar() {
-		if (cliente == null) { // Verifica que se seleccione un registro
+		if (cliente == null) { // VERIFICA QUE SE SELECCIONE UN REGISTRO
 			JOptionPane.showMessageDialog(null, "Seleccione un registro");
 		} else {
 			int respuesta = JOptionPane.showConfirmDialog(null,
