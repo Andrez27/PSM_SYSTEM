@@ -3,8 +3,8 @@ package py.edu.facitec.psmsystem.buscador;
 import py.edu.facitec.psmsystem.componente.BuscadorGenerico;
 import py.edu.facitec.psmsystem.controlador.BuscadorClienteControlador;
 
+@SuppressWarnings("serial")
 public class BuscadorCliente extends BuscadorGenerico {
-	private static final long serialVersionUID = 1L;
 
 	private BuscadorClienteControlador controlador;
 

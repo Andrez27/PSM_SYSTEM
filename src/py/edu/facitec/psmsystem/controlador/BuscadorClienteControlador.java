@@ -26,6 +26,7 @@ public class BuscadorClienteControlador implements KeyListener {
 	}
 
 	public BuscadorClienteControlador(BuscadorCliente bCliente) {
+
 		this.bCliente = bCliente;
 
 		tCliente = new TablaCliente();

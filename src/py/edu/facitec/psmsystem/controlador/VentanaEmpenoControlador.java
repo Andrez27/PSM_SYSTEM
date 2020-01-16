@@ -25,7 +25,7 @@ import py.edu.facitec.psmsystem.transaccion.VentanaEmpeno;
 import py.edu.facitec.psmsystem.util.FechaUtil;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
-public class VentanaEmpenoControlador implements AccionesABM, KeyListener, ActionListener, InterfazBuscadorCliente{
+public class VentanaEmpenoControlador implements AccionesABM, KeyListener, ActionListener, InterfazBuscadorCliente {
 
 	private VentanaEmpeno vEmpeno;
 	private TablaEmpeno tEmpeno;
@@ -87,13 +87,13 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			return;
 		}
 		empeno = lista.get(posicion);
-		vEmpeno.getTfId().setText(empeno.getId()+"");
+		vEmpeno.getTfId().setText(empeno.getId() + "");
 		vEmpeno.getTfFechaRegistro().setValue(FechaUtil.convertirDateUtilAString(empeno.getFechaDia()));
 		vEmpeno.getTfFechaVencimiento().setValue(FechaUtil.convertirDateUtilAString(empeno.getFechaVencimiento()));
 		vEmpeno.getTfCliente().setText(empeno.getCliente().getNombre());
 		vEmpeno.getTfObs().setText(empeno.getObservacion());
-		vEmpeno.getTfCuota().setText(empeno.getDeudaClientes().size()+"");
-		vEmpeno.getTfValorEmpeno().setText(empeno.getProducto().getPrecioCompra()+"");
+		vEmpeno.getTfCuota().setText(empeno.getDeudaClientes().size() + "");
+		vEmpeno.getTfValorEmpeno().setText(empeno.getProducto().getPrecioCompra() + "");
 		vEmpeno.getTfValorTotal().setValue(empeno.getValorTotal());
 		vEmpeno.getTfDescripcion().setText(empeno.getProducto().getDescripcion());
 		vEmpeno.getTfDetalle().setText(empeno.getProducto().getDetalle());
@@ -101,7 +101,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		this.cliente = empeno.getCliente();
 		this.producto = empeno.getProducto();
 		TablaUtil.resizeTableColumnWidth(vEmpeno.getTable());
-		this.vEmpeno.getMiToolBar().estadoInicialToolBar(true,3);
+		this.vEmpeno.getMiToolBar().estadoInicialToolBar(true, 3);
 		estadoInicialCampos(true);
 		estadoInicialCampos2(false);
 	}
@@ -149,24 +149,27 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		estadoInicialCampos2(true);
 		accion = "NUEVO";
 		vEmpeno.getTfFechaRegistro().requestFocus();
-		this.vEmpeno.getMiToolBar().estadoInicialToolBar(true,1);
+		this.vEmpeno.getMiToolBar().estadoInicialToolBar(true, 1);
 		this.vEmpeno.getCbEstado().setEnabled(true);
 		this.vEmpeno.getTable().setEnabled(false);
 		vEmpeno.getTfFechaRegistro().setValue(FechaUtil.convertirDateUtilAString(new Date()));
 		vEmpeno.getTfFechaRegistro().selectAll();
-		vEmpeno.getTfId().setText(dao.recuperarSiguienteId()+"");
+		vEmpeno.getTfId().setText(dao.recuperarSiguienteId() + "");
 	}
 
 	@Override
-	public void modificar() {}
+	public void modificar() {
+	}
 
 	@Override
 	public void eliminar() {
-		if (empeno==null) {		//VERIFICA QUE SE SELECCIONO UN REGISTRO
+		if (empeno == null) { // VERIFICA QUE SE SELECCIONO UN REGISTRO
 			JOptionPane.showMessageDialog(null, "Seleccione un registro");
 		} else {
-			if (vEmpeno.getCbEstado().getSelectedIndex() != 3){
-				int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea anular el empeño: \n" + empeno.getId() +" "+ empeno.getCliente().getNombre(), "Atención!", JOptionPane.YES_NO_OPTION);
+			if (vEmpeno.getCbEstado().getSelectedIndex() != 3) {
+				int respuesta = JOptionPane.showConfirmDialog(null, "Esta seguro que desea anular el empeño: \n"
+						+ empeno.getId() + " " + empeno.getCliente().getNombre(), "Atención!",
+						JOptionPane.YES_NO_OPTION);
 				if (respuesta == JOptionPane.YES_OPTION) {
 					empeno.setEstado(3);
 					producto.setEstado(3);
@@ -175,13 +178,14 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 						dao.commit();
 						anularDeuda();
 						recuperarTodo();
-						this.vEmpeno.getMiToolBar().estadoInicialToolBar(true,2);
+						this.vEmpeno.getMiToolBar().estadoInicialToolBar(true, 2);
 						vaciarFormulario();
 					} catch (Exception e) {
 						dao.rollback();
-						JOptionPane.showMessageDialog(null, "No se pudo anular el empeno: \n" + empeno.getId() +" "+ empeno.getCliente().getNombre(), "Error!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "No se pudo anular el empeno: \n" + empeno.getId() + " "
+								+ empeno.getCliente().getNombre(), "Error!", JOptionPane.ERROR_MESSAGE);
 					}
-				} 
+				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Empeño ya anulado", "Atención!", JOptionPane.INFORMATION_MESSAGE);
 				dao.rollback();
@@ -191,7 +195,9 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 
 	@Override
 	public void guardar() {
-		if (!validarCampos()) {return;}
+		if (!validarCampos()) {
+			return;
+		}
 
 		if (accion.equals("NUEVO")) {
 			empeno = new Empeno();
@@ -206,7 +212,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		empeno.setProducto(producto);
 		empeno.setDeudaClientes(deudaCliente);
 		try {
-			if(accion.equals("NUEVO")){
+			if (accion.equals("NUEVO")) {
 				dao.persistir(empeno);
 				dao.commit();
 				guardarDeuda();
@@ -214,7 +220,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 				dao.modificar(empeno);
 				dao.commit();
 			}
-			this.vEmpeno.getMiToolBar().estadoInicialToolBar(true,2);
+			this.vEmpeno.getMiToolBar().estadoInicialToolBar(true, 2);
 			estadoInicialCampos(false);
 			estadoInicialCampos2(false);
 			this.vEmpeno.getCbEstado().setEnabled(false);
@@ -245,7 +251,8 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 			deudaCliente.setEmpeno(empeno);
 			deudaCliente.setEstado(0);
 			deudaCliente.setFechaVencimiento(FechaUtil.sumarMes(deudaCliente.getFechaInicio(), i));
-			deudaCliente.setValor(Double.parseDouble(vEmpeno.getTfValorTotal().getText()) / Integer.parseInt(vEmpeno.getTfCuota().getText()));
+			deudaCliente.setValor(Double.parseDouble(vEmpeno.getTfValorTotal().getText())
+					/ Integer.parseInt(vEmpeno.getTfCuota().getText()));
 			DeudaClienteDao deudaClienteDao = new DeudaClienteDao();
 			try {
 				deudaClienteDao.insertar(deudaCliente);
@@ -272,7 +279,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 
 	@Override
 	public void cancelar() {
-		this.vEmpeno.getMiToolBar().estadoInicialToolBar(true,2);
+		this.vEmpeno.getMiToolBar().estadoInicialToolBar(true, 2);
 		estadoInicialCampos(false);
 		estadoInicialCampos2(false);
 		this.vEmpeno.getCbEstado().setEnabled(false);
@@ -281,38 +288,46 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		this.vEmpeno.lblValidarCuota.setVisible(false);
 	}
 
-	//-----------------------------------VALIDAR CAMPOS OBLIGATORIOS------------------------------------------
+	// -----------------------------------VALIDAR CAMPOS
+	// OBLIGATORIOS------------------------------------------
 	private boolean validarCampos() {
 		if (vEmpeno.getTfCliente().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Debes seleccionar un \"Cliente\"", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Debes seleccionar un \"Cliente\"", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getBtnBuscarCliente().requestFocus();
 			return false;
 		}
 		if (Integer.parseInt(vEmpeno.getTfCuota().getText()) < 1) {
-			JOptionPane.showMessageDialog(null, "Informar cantidad de Cuotas", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Informar cantidad de Cuotas", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getTfCuota().requestFocus();
 			vEmpeno.getTfCuota().selectAll();
 			return false;
 		}
 		if (vEmpeno.getTfDescripcion().getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Debe informar un producto", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Debe informar un producto", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getTfDescripcion().requestFocus();
 			return false;
 		}
 		if (FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaVencimiento().getText()) == null) {
-			JOptionPane.showMessageDialog(null, "Informar cantidad de Cuotas", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Informar cantidad de Cuotas", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getTfCuota().requestFocus();
 			return false;
 		}
-		if (!vEmpeno.getTfFechaRegistro().getText().equals("__/__/____") && FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()) == null) {
-			JOptionPane.showMessageDialog(null, "Ingrese una fecha valida", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+		if (!vEmpeno.getTfFechaRegistro().getText().equals("__/__/____")
+				&& FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()) == null) {
+			JOptionPane.showMessageDialog(null, "Ingrese una fecha valida", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			vEmpeno.getTfFechaRegistro().requestFocus();
 			return false;
 		}
 		return true;
 	}
 
-	//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
+	// -----------------------------------INICIALIZAR BASE DE
+	// DATOS-------------------------------------
 	public void inicializarEmpeno() {
 		String tabla = "tb_empeno";
 		dao.eliminarTodos(tabla);
@@ -323,17 +338,22 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		}
 	}
 
-	//---------------------METODO PARA GENERAR FECHA DE VENCIMIENTO A CADA MES----------------------------------------
+	// ---------------------METODO PARA GENERAR FECHA DE VENCIMIENTO A CADA
+	// MES----------------------------------------
 	public void cargarVencimiento() {
-		vEmpeno.getTfFechaVencimiento().setValue(FechaUtil.convertirDateUtilAString(FechaUtil.sumarMes(FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()), Integer.parseInt(vEmpeno.getTfCuota().getText()) )));
+		vEmpeno.getTfFechaVencimiento()
+				.setValue(FechaUtil.convertirDateUtilAString(
+						FechaUtil.sumarMes(FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()),
+								Integer.parseInt(vEmpeno.getTfCuota().getText()))));
 	}
 
-	//--------------------Verificar El estado de las deudas------------------------------------------
+	// --------------------Verificar El estado de las
+	// deudas------------------------------------------
 	private void comprobarEstadoDeuda() {
 		EmpenoDao empenoDao = new EmpenoDao();
 		List<Empeno> empenos = empenoDao.verificarEstadoDeuda();
 		for (int i = 0; i < empenos.size(); i++) {
-			if (empenos.get(i).getDeudaClientes().get(empenos.get(i).getDeudaClientes().size()-1).getEstado() == 2) {
+			if (empenos.get(i).getDeudaClientes().get(empenos.get(i).getDeudaClientes().size() - 1).getEstado() == 2) {
 				empenos.get(i).setEstado(2);
 				empenoDao = new EmpenoDao();
 				try {
@@ -343,7 +363,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 					e.printStackTrace();
 				}
 			}
-			if (empenos.get(i).getDeudaClientes().get(empenos.get(i).getDeudaClientes().size()-1).getEstado() == 1) {
+			if (empenos.get(i).getDeudaClientes().get(empenos.get(i).getDeudaClientes().size() - 1).getEstado() == 1) {
 				empenos.get(i).setEstado(1);
 				try {
 					empenoDao.modificar(empenos.get(i));
@@ -355,7 +375,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		}
 	}
 
-	//---------------------------------ACCIÓNES DEL BOTON BUSCADOR------------------------------------------------------
+	// ---------------------------------BUSCADOR CLIENTE------------------------------------------------------
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource() == vEmpeno.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -390,6 +410,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
