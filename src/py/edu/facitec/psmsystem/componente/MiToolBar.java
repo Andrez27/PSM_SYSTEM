@@ -8,8 +8,8 @@ import javax.swing.JToolBar;
 
 import py.edu.facitec.psmsystem.interfaz.AccionesABM;
 
+@SuppressWarnings("serial")
 public class MiToolBar extends JToolBar implements ActionListener {
-	private static final long serialVersionUID = 1L;
 
 	public BotonIconoVentana btncnNuevo;
 	public BotonIconoVentana btncnModificar;
@@ -67,21 +67,21 @@ public class MiToolBar extends JToolBar implements ActionListener {
 	}
 
 	public void estadoInicialToolBar(boolean b, int a) {
-		if (a==1) {
+		if (a == 1) {
 			btncnNuevo.setEnabled(!b);
 			btncnModificar.setEnabled(!b);
 			btncnEliminar.setEnabled(!b);
 			btncnGuardar.setEnabled(b);
 			btncnCancelar.setEnabled(b);
 		}
-		if (a==2) {
+		if (a == 2) {
 			btncnNuevo.setEnabled(b);
 			btncnModificar.setEnabled(!b);
 			btncnEliminar.setEnabled(!b);
 			btncnGuardar.setEnabled(!b);
 			btncnCancelar.setEnabled(!b);
 		}
-		if (a==3) {
+		if (a == 3) {
 			btncnNuevo.setEnabled(!b);
 			btncnModificar.setEnabled(b);
 			btncnEliminar.setEnabled(b);

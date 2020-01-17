@@ -27,9 +27,9 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 	public VentanaClienteControlador(VentanaCliente vCliente) {
 		this.vCliente = vCliente;
 
-		this.vCliente.getMiToolBar().setAcciones(this);
-
 		tCliente = new TablaCliente();
+
+		this.vCliente.getMiToolBar().setAcciones(this);
 
 		this.vCliente.getTable().setModel(tCliente);
 
@@ -65,10 +65,10 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 
 	@Override
 	public void modificar() {
+		accion = "MODIFICAR";
 		estadoInicialCampos(true);
 		estadoInicialCampos2(true);
 		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 1);
-		accion = "MODIFICAR";
 		vCliente.gettfNombre().requestFocus();
 		vCliente.gettfNombre().selectAll();
 		this.vCliente.getTable().setEnabled(false);

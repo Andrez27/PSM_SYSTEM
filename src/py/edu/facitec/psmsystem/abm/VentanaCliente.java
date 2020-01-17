@@ -17,8 +17,8 @@ import javax.swing.SwingConstants;
 import py.edu.facitec.psmsystem.componente.VentanaGenerica;
 import py.edu.facitec.psmsystem.controlador.VentanaClienteControlador;
 
+@SuppressWarnings("serial")
 public class VentanaCliente extends VentanaGenerica {
-	private static final long serialVersionUID = 1L;
 
 	private JTextField tfNombre, tfDocumento, tfTelefono, tfDomicilio, tfEmail;
 	private JLabel lblValidarNombre, lblValidarTelefono, lblDocumentoDuplicado;

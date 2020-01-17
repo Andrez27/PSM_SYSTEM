@@ -9,10 +9,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-public class BotonIconoVentana extends JButton{
-	private static final long serialVersionUID = -5135218231501823013L;
+@SuppressWarnings("serial")
+public class BotonIconoVentana extends JButton {
 
-	public BotonIconoVentana(){
+	public BotonIconoVentana() {
 		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setPreferredSize(new Dimension(100, 100));
 		setHorizontalTextPosition(SwingConstants.CENTER);
@@ -21,14 +21,16 @@ public class BotonIconoVentana extends JButton{
 		setForeground(Color.DARK_GRAY);
 		setBackground(Color.WHITE);
 	}
+
 	public void setText(String text) {
 		setIcono(text);
 		super.setText(text);
 	}
 
-	public void setIcono(String nombreIcono){
+	public void setIcono(String nombreIcono) {
 		try {
-			URL url = BotonIconoVentana.class.getResource("/py/edu/facitec/psmsystem/img/32bits/"+nombreIcono.toLowerCase()+".png");
+			URL url = BotonIconoVentana.class
+					.getResource("/py/edu/facitec/psmsystem/img/32bits/" + nombreIcono.toLowerCase() + ".png");
 			setIcon(new ImageIcon(url));
 
 		} catch (Exception e) {

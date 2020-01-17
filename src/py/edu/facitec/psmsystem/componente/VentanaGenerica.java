@@ -17,8 +17,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class VentanaGenerica extends JDialog {
-	private static final long serialVersionUID = 1L;
 
 	private MiToolBar miToolBar;
 	public JTable table;
