@@ -21,8 +21,8 @@ import py.edu.facitec.psmsystem.componente.LoadingPanel;
 import py.edu.facitec.psmsystem.util.Factory;
 import py.edu.facitec.psmsystem.util.ReportesUtil;
 
-public class Cargando extends JFrame {
-	private static final long serialVersionUID = 1L;
+@SuppressWarnings("serial")
+public class CargandoPsmSystem extends JFrame {
 
 	private LoadingPanel contentPane;
 	private JLabel lblVersion;
@@ -39,7 +39,7 @@ public class Cargando extends JFrame {
 			DecorationHelper.decorateWindows(false);
 		} catch (Exception e) {}
 		try {
-			Cargando frame = new Cargando();
+			CargandoPsmSystem frame = new CargandoPsmSystem();
 			frame.setVisible(true);
 			Factory.setUp();
 			for (int i = 1; i <= 100; i++) {
@@ -55,7 +55,7 @@ public class Cargando extends JFrame {
 		}
 	}
 
-	public Cargando() {
+	public CargandoPsmSystem() {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 449, 280);
@@ -72,7 +72,7 @@ public class Cargando extends JFrame {
 		lblGif.setForeground(Color.DARK_GRAY);
 		lblGif.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblGif.setHorizontalAlignment(SwingConstants.LEFT);
-		lblGif.setIcon(new ImageIcon(Cargando.class.getResource("/py/edu/facitec/psmsystem/img/gif.gif")));
+		lblGif.setIcon(new ImageIcon(CargandoPsmSystem.class.getResource("/py/edu/facitec/psmsystem/img/gif.gif")));
 		lblGif.setBounds(8, 208, 135, 68);
 		contentPane.add(lblGif);
 

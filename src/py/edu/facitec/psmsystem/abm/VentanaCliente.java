@@ -3,7 +3,6 @@ package py.edu.facitec.psmsystem.abm;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
@@ -32,7 +31,6 @@ public class VentanaCliente extends VentanaGenerica {
 		gettBuscador().setToolTipText("Buscar por ID, nombre o documento");
 		getPanelFormulario().setSize(400, 370);
 		getPanelFormulario().setLocation(10, 80);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaCliente.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		gettBuscador().setLocation(420, 55);
 		getMiToolBar().setBounds(new Rectangle(10, 10, 400, 65));
 		getMiToolBar().setOpaque(false);
@@ -84,11 +82,11 @@ public class VentanaCliente extends VentanaGenerica {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (Character.isDigit(c) & c!= KeyEvent.VK_ENTER) {
+				if (Character.isDigit(c) & c != KeyEvent.VK_ENTER) {
 					e.consume();
 					lblValidarNombre.setText("*Solo letras");
 					lblValidarNombre.setVisible(true);
-				}else{
+				} else {
 					lblValidarNombre.setVisible(false);
 				}
 				if (tfNombre.getText().length() == 50) {
@@ -97,6 +95,7 @@ public class VentanaCliente extends VentanaGenerica {
 					lblValidarNombre.setVisible(true);
 				}
 			}
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -124,16 +123,17 @@ public class VentanaCliente extends VentanaGenerica {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				int k = (int) e.getKeyChar();
-				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE & k !=45) {
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE & k != 45) {
 					e.consume();
 					lblDocumentoDuplicado.setVisible(true);
-				}else{
+				} else {
 					lblDocumentoDuplicado.setVisible(false);
 				}
 				if (tfDocumento.getText().length() == 15) {
 					e.consume();
 				}
 			}
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -160,17 +160,19 @@ public class VentanaCliente extends VentanaGenerica {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				int k = (int) e.getKeyChar();										//32= ESPACIO, 40= "(", 41= ")", 43= +, 45= -
-				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE & k !=32 & k !=43 & k !=40 & k !=41 & k !=45) {
+				int k = (int) e.getKeyChar(); // 32= ESPACIO, 40= "(", 41= ")", 43= +, 45= -
+				if (!Character.isDigit(c) & c != KeyEvent.VK_ENTER & c != KeyEvent.VK_BACK_SPACE & k != 32 & k != 43
+						& k != 40 & k != 41 & k != 45) {
 					e.consume();
 					lblValidarTelefono.setVisible(true);
-				}else{
+				} else {
 					lblValidarTelefono.setVisible(false);
 				}
 				if (tfTelefono.getText().length() == 20) {
 					e.consume();
 				}
 			}
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -196,6 +198,7 @@ public class VentanaCliente extends VentanaGenerica {
 					tfEmail.selectAll();
 				}
 			}
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if (tfDomicilio.getText().length() == 100) {
@@ -245,48 +248,63 @@ public class VentanaCliente extends VentanaGenerica {
 	public JTextField gettfNombre() {
 		return tfNombre;
 	}
+
 	public void settfNombre(JTextField tfNombre) {
 		this.tfNombre = tfNombre;
 	}
+
 	public JTextField gettfDocumento() {
 		return tfDocumento;
 	}
+
 	public void settfDocumento(JTextField tfDocumento) {
 		this.tfDocumento = tfDocumento;
 	}
+
 	public JTextField gettfTelefono() {
 		return tfTelefono;
 	}
+
 	public void settfTelefono(JFormattedTextField tfTelefono) {
 		this.tfTelefono = tfTelefono;
 	}
+
 	public JTextField gettfDomicilio() {
 		return tfDomicilio;
 	}
+
 	public void setTfDomicilo(JTextField tfDomicilo) {
 		this.tfDomicilio = tfDomicilo;
 	}
+
 	public JTextField gettfEmail() {
 		return tfEmail;
 	}
+
 	public void settfEmail(JTextField tfEmail) {
 		this.tfEmail = tfEmail;
 	}
+
 	public JLabel getlblValidarNombre() {
 		return lblValidarNombre;
 	}
+
 	public void setlblValidarNombre(JLabel lblValidarNombre) {
 		this.lblValidarNombre = lblValidarNombre;
 	}
+
 	public JLabel getlblValidarTelefono() {
 		return lblValidarTelefono;
 	}
+
 	public void setlblValidarTelefono(JLabel lblValidarTelefono) {
 		this.lblValidarTelefono = lblValidarTelefono;
 	}
+
 	public JLabel getlblDocumentoDuplicado() {
 		return lblDocumentoDuplicado;
 	}
+
 	public void setlblDocumentoDuplicado(JLabel lblDocumentoDuplicado) {
 		this.lblDocumentoDuplicado = lblDocumentoDuplicado;
 	}

@@ -57,8 +57,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 	private JPanel jPanelConfig;
 
 	public VentanaPrincipal() {
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
 
 		setTitle("PSMSystem v1.9");
