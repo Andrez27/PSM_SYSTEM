@@ -43,6 +43,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 		this.vEmpeno.getMiToolBar().setAcciones(this);
 
 		tEmpeno = new TablaEmpeno();
+		
 		this.vEmpeno.getTable().setModel(tEmpeno);
 
 		estadoInicialCampos(true);
