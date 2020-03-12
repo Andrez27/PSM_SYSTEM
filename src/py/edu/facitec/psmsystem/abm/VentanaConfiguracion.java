@@ -23,24 +23,18 @@ import py.edu.facitec.psmsystem.app.VentanaPrincipal;
 import py.edu.facitec.psmsystem.dao.ConfiguracionDao;
 import py.edu.facitec.psmsystem.entidad.Configuracion;
 
+@SuppressWarnings("serial")
 public class VentanaConfiguracion extends JDialog {
-	private static final long serialVersionUID = 1L;
 
-	private JTextField tfNombre;
-	private JTextField tfRuc;
-	private JTextField tfTelefono;
-	private JTextField tfEmail;
+	private JLabel lblValidarTelefono, lblValidarRuc, lblValidarNombre;
+	private JTextField tfNombre, tfRuc, tfTelefono, tfEmail;
+	private JButton btnCancelar, btnBorrar, btnActualizar;
 	private Configuracion configuracion;
 	private ConfiguracionDao dao;
 	private List<Configuracion> configuraciones;
-	private JButton btnActualizar;
 	public NumberTextField tfInteres;
-	private JButton btnCancelar;
-	private JButton btnBorrar;
+	@SuppressWarnings("unused")
 	private List<Configuracion> campos;
-	private JLabel lblValidarTelefono;
-	private JLabel lblValidarRuc;
-	private JLabel lblValidarNombre;
 
 	public VentanaConfiguracion() {
 		setTitle("Configuración");
@@ -103,6 +97,7 @@ public class VentanaConfiguracion extends JDialog {
 					tfRuc.selectAll();
 				}
 			}
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if (tfNombre.getText().length() == 40) {
@@ -128,16 +123,17 @@ public class VentanaConfiguracion extends JDialog {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				int k = (int) e.getKeyChar();
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=45) {
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k != 45) {
 					e.consume();
 					lblValidarRuc.setVisible(true);
-				}else{
+				} else {
 					lblValidarRuc.setVisible(false);
 				}
 				if (tfRuc.getText().length() == 20) {
 					e.consume();
 				}
 			}
+
 			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -164,17 +160,19 @@ public class VentanaConfiguracion extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				int k = (int) e.getKeyChar();										//32= ESPACIO, 40= (, 41= ), 43= +, 45= -
-				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k !=32 & k !=43 & k !=40 & k !=41 & k !=45) {
+				int k = (int) e.getKeyChar(); // 32= ESPACIO, 40= (, 41= ), 43= +, 45= -
+				if (!Character.isDigit(c) & c != e.VK_ENTER & c != e.VK_BACK_SPACE & k != 32 & k != 43 & k != 40
+						& k != 41 & k != 45) {
 					e.consume();
 					lblValidarTelefono.setVisible(true);
-				}else{
+				} else {
 					lblValidarTelefono.setVisible(false);
 				}
 				if (tfTelefono.getText().length() == 20) {
 					e.consume();
 				}
 			}
+
 			@SuppressWarnings("static-access")
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -201,6 +199,7 @@ public class VentanaConfiguracion extends JDialog {
 					tfInteres.selectAll();
 				}
 			}
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if (tfEmail.getText().length() == 50) {
@@ -229,16 +228,14 @@ public class VentanaConfiguracion extends JDialog {
 		getContentPane().add(tfInteres);
 		tfInteres.setColumns(10);
 
-
 		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int respuesta = JOptionPane.showConfirmDialog(null, 
-						"Estas seguro que deseas actualizar los datos de la empresa?",
-						"Atención!",
+				int respuesta = JOptionPane.showConfirmDialog(null,
+						"Estas seguro que deseas actualizar los datos de la empresa?", "Atención!",
 						JOptionPane.YES_NO_OPTION);
-				if (respuesta==JOptionPane.YES_OPTION) {
+				if (respuesta == JOptionPane.YES_OPTION) {
 					actualizar();
 				}
 			}
@@ -255,7 +252,6 @@ public class VentanaConfiguracion extends JDialog {
 		});
 		btnBorrar.setBounds(145, 194, 97, 34);
 		getContentPane().add(btnBorrar);
-
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -290,7 +286,7 @@ public class VentanaConfiguracion extends JDialog {
 
 	}
 
-	//-------------------------FIN DEL CONSTRUCTOR--------------------------------
+	// -------------------------FIN DEL CONSTRUCTOR--------------------------------
 	private void cargarDatos() {
 		configuracion = new Configuracion();
 		configuracion.setId(1);
@@ -301,8 +297,8 @@ public class VentanaConfiguracion extends JDialog {
 		configuracion.setInteres(Double.parseDouble(tfInteres.getText()));
 	}
 
-	private void actualizar(){
-		if(validarCampos()) {
+	private void actualizar() {
+		if (validarCampos()) {
 			return;
 		}
 		cargarDatos();
@@ -318,7 +314,7 @@ public class VentanaConfiguracion extends JDialog {
 		dispose();
 	}
 
-	private void actualizarPantalla(){
+	private void actualizarPantalla() {
 		dao = new ConfiguracionDao();
 		configuracion = dao.recuperarPorId(1);
 		VentanaPrincipal.lblNombre.setText(configuracion.getNombre());
@@ -330,12 +326,13 @@ public class VentanaConfiguracion extends JDialog {
 	private void datosActuales() {
 		dao = new ConfiguracionDao();
 		configuraciones = dao.recuperarTodo();
-		if (configuraciones.size()==0) return;
+		if (configuraciones.size() == 0)
+			return;
 		tfNombre.setText(configuraciones.get(0).getNombre());
 		tfRuc.setText(configuraciones.get(0).getRuc());
 		tfTelefono.setText(configuraciones.get(0).getTelefono());
 		tfEmail.setText(configuraciones.get(0).getEmail());
-		tfInteres.setText(configuraciones.get(0).getInteres()+"");
+		tfInteres.setText(configuraciones.get(0).getInteres() + "");
 	}
 
 	private void vaciarFormulario() {
@@ -347,12 +344,14 @@ public class VentanaConfiguracion extends JDialog {
 		tfInteres.setText("");
 	}
 
-	//-----------------------------------VALIDAR CAMPOS-------------------------------------
+	// -----------------------------------VALIDAR
+	// CAMPOS-------------------------------------
 	private boolean validarCampos() {
 		dao = new ConfiguracionDao();
 		campos = dao.recuperarTodo();
-		if (tfInteres.getText().isEmpty() || tfInteres.getValue() < 1){
-			JOptionPane.showMessageDialog(null, "Informe valor del \"Interés\" \nInterés mínimo es de 1%", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+		if (tfInteres.getText().isEmpty() || tfInteres.getValue() < 1) {
+			JOptionPane.showMessageDialog(null, "Informe valor del \"Interés\" \nInterés mínimo es de 1%", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			tfInteres.requestFocus();
 			tfInteres.setValue((double) 1);
 			tfInteres.selectAll();
@@ -361,7 +360,8 @@ public class VentanaConfiguracion extends JDialog {
 		return false;
 	}
 
-	//-----------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
+	// -----------------------------------INICIALIZAR BASE DE
+	// DATOS-------------------------------------
 	public void inicializarConfiguracion() {
 		String tabla = "tb_configuracion";
 		dao.eliminarTodos(tabla);
@@ -377,88 +377,4 @@ public class VentanaConfiguracion extends JDialog {
 
 	}
 
-	public JTextField gettfNombre() {
-		return tfNombre;
-	}
-	public JTextField gettfRuc() {
-		return tfRuc;
-	}
-	public JTextField gettfTelefono() {
-		return tfTelefono;
-	}
-	public JTextField gettfEmail() {
-		return tfEmail;
-	}
-	public JTextField getTfNombre() {
-		return tfNombre;
-	}
-	public JTextField getTfRuc() {
-		return tfRuc;
-	}
-	public JTextField getTfTelefono() {
-		return tfTelefono;
-	}
-	public JTextField getTfEmail() {
-		return tfEmail;
-	}
-	public Configuracion getConfiguracion() {
-		return configuracion;
-	}
-	public ConfiguracionDao getDao() {
-		return dao;
-	}
-	public List<Configuracion> getConfiguraciones() {
-		return configuraciones;
-	}
-	public JButton getBtnActualizar() {
-		return btnActualizar;
-	}
-	public NumberTextField getTfInteres() {
-		return tfInteres;
-	}
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-	public JButton getBtnBorrar() {
-		return btnBorrar;
-	}
-	public List<Configuracion> getCampos() {
-		return campos;
-	}
-	public void setCampos(List<Configuracion> campos) {
-		this.campos = campos;
-	}
-	public void setTfNombre(JTextField tfNombre) {
-		this.tfNombre = tfNombre;
-	}
-	public void setTfRuc(JTextField tfRuc) {
-		this.tfRuc = tfRuc;
-	}
-	public void setTfTelefono(JTextField tfTelefono) {
-		this.tfTelefono = tfTelefono;
-	}
-	public void setTfEmail(JTextField tfEmail) {
-		this.tfEmail = tfEmail;
-	}
-	public void setConfiguracion(Configuracion configuracion) {
-		this.configuracion = configuracion;
-	}
-	public void setDao(ConfiguracionDao dao) {
-		this.dao = dao;
-	}
-	public void setConfiguraciones(List<Configuracion> configuraciones) {
-		this.configuraciones = configuraciones;
-	}
-	public void setBtnActualizar(JButton btnActualizar) {
-		this.btnActualizar = btnActualizar;
-	}
-	public void setTfInteres(NumberTextField tfInteres) {
-		this.tfInteres = tfInteres;
-	}
-	public void setBtnCancelar(JButton btnCancelar) {
-		this.btnCancelar = btnCancelar;
-	}
-	public void setBtnBorrar(JButton btnBorrar) {
-		this.btnBorrar = btnBorrar;
-	}
 }

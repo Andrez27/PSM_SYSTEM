@@ -12,11 +12,12 @@ public class PanelFondo extends JPanel {
 
 	public PanelFondo() {
 	}
-	//estira la imagen desde la carpeta
+
+	// estira la imagen desde la carpeta
 	URL url = getClass().getResource("/py/edu/facitec/psmsystem/img/fondo.png");
 	Image image = new ImageIcon(url).getImage();
 
-	//pasa la imagen a la pantalla
+	// pasa la imagen a la pantalla
 	public void paintComponent(Graphics g) {
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 		setOpaque(false);

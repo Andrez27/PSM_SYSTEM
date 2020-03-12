@@ -73,7 +73,7 @@ public class CargandoPsmSystem extends JFrame {
 		lblGif.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblGif.setHorizontalAlignment(SwingConstants.LEFT);
 		lblGif.setIcon(new ImageIcon(CargandoPsmSystem.class.getResource("/py/edu/facitec/psmsystem/img/gif.gif")));
-		lblGif.setBounds(8, 208, 135, 68);
+		lblGif.setBounds(10, 210, 135, 68);
 		contentPane.add(lblGif);
 
 		lblVersion = new JLabel("v1.9");
@@ -84,7 +84,9 @@ public class CargandoPsmSystem extends JFrame {
 		lblVersion.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblVersion.setForeground(Color.DARK_GRAY);
 		contentPane.add(lblVersion);
+		
 		conectarReporte();
+		
 	}
 
 	public void abrirMenu(){

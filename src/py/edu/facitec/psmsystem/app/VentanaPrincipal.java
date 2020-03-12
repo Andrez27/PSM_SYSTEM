@@ -47,8 +47,8 @@ import py.edu.facitec.psmsystem.informe.VentanaListadoProductos;
 import py.edu.facitec.psmsystem.transaccion.VentanaCobranza;
 import py.edu.facitec.psmsystem.transaccion.VentanaEmpeno;
 
+@SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
-	private static final long serialVersionUID = 1L;
 
 	private PanelFondo contentPane;
 	public static JLabel lblNombre, lblRuc, lblTelefono, lblEmail;
@@ -65,7 +65,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		setBounds(100, 100, 1366, 759);
 		setLocationRelativeTo(this);
 		setExtendedState(MAXIMIZED_BOTH);
-		setLocationRelativeTo(this);
 		setResizable(false);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -210,11 +209,10 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		contentPane.setLayout(new BorderLayout(0, 0));
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBorderPainted(false);
-		toolBar.setForeground(new Color(240, 240, 240));
+		toolBar.setBackground(Color.WHITE);
+		toolBar.setForeground(Color.WHITE);
 		toolBar.setEnabled(false);
-		toolBar.setOpaque(false);
-		toolBar.setOpaque(false);// transparente
+		toolBar.setOpaque(false);// TRANSPARENTE
 		toolBar.setFloatable(false);
 		contentPane.add(toolBar, BorderLayout.NORTH);
 
@@ -239,14 +237,12 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		toolBar.add(btncnEmpeno);
 
 		BotonIconoPrincipal btncnCobranza = new BotonIconoPrincipal();
-		btncnCobranza.setIcon(
-				new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cobranza.png")));
+		btncnCobranza.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cobranza.png")));
 		btncnCobranza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirFormularioCobranza();
 			}
 		});
-
 		btncnCobranza.setText("Cobranza");
 		toolBar.add(btncnCobranza);
 
@@ -279,8 +275,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		gbl_jPanelConfig.columnWidths = new int[] { 0, 0, 0, 0, 0 };
 		gbl_jPanelConfig.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_jPanelConfig.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_jPanelConfig.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				Double.MIN_VALUE };
+		gbl_jPanelConfig.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		jPanelConfig.setLayout(gbl_jPanelConfig);
 
 		lblNombre = new JLabel("");
@@ -344,6 +339,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		jPanelConfig.add(label, gbc_label);
 
 		cargarConfiguracion();
+		
 		verificarFechasVencimiento();
 
 	}

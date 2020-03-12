@@ -9,15 +9,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class BotonIconoPrincipal extends JButton{
-	private static final long serialVersionUID = 1L;
 
 	public BotonIconoPrincipal(){
-		setVerticalTextPosition(SwingConstants.BOTTOM);
-		setPreferredSize(new Dimension(100, 100));
-		setHorizontalTextPosition(SwingConstants.CENTER);
 		setMaximumSize(new Dimension(100, 100));
+		setHorizontalTextPosition(SwingConstants.CENTER);
+		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setFont(new Font("Tahoma", Font.BOLD, 16));
+		setFocusPainted(false);
 		setForeground(Color.DARK_GRAY);
 		setBackground(Color.WHITE);
 	}
