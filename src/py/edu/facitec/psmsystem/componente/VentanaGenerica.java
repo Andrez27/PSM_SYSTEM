@@ -15,29 +15,32 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class VentanaGenerica extends JDialog {
 
-	private MiToolBar miToolBar;
+	private ToolBarABM miToolBar;
 	public JTable table;
 	private JTextField tBuscador;
 	private JPanel panelFormulario;
 
 	public VentanaGenerica() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaGenerica.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(VentanaGenerica.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setMinimumSize(new Dimension(700, 500));
 		setMaximumSize(new Dimension(800, 600));
 		setBounds(100, 100, 890, 500);
 		getContentPane().setLayout(null);
-		//Centrar todas las ventanas que hereden de VentanaGenerica
+		// Centrar todas las ventanas que hereden de VentanaGenerica
 		setLocationRelativeTo(this);
-		//Evitar que se pierda el foco de la ventana
+		// Evitar que se pierda el foco de la ventana
 		setModal(true);
 
-		miToolBar = new MiToolBar();
+		miToolBar = new ToolBarABM();
 		miToolBar.setBounds(10, 11, 400, 66);
+		miToolBar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		getContentPane().add(miToolBar);
 
 		panelFormulario = new JPanel();
@@ -66,7 +69,7 @@ public class VentanaGenerica extends JDialog {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount()==2) {
+				if (e.getClickCount() == 2) {
 
 				}
 			}
@@ -74,15 +77,18 @@ public class VentanaGenerica extends JDialog {
 		scrollPane.setViewportView(table);
 	}
 
-	public MiToolBar getMiToolBar() {
+	public ToolBarABM getMiToolBar() {
 		return miToolBar;
 	}
+
 	public JTable getTable() {
 		return table;
 	}
+
 	public JTextField gettBuscador() {
 		return tBuscador;
 	}
+
 	public JPanel getPanelFormulario() {
 		return panelFormulario;
 	}

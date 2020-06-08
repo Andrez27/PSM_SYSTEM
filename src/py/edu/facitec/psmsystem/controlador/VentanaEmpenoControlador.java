@@ -342,10 +342,7 @@ public class VentanaEmpenoControlador implements AccionesABM, KeyListener, Actio
 	// ---------------------METODO PARA GENERAR FECHA DE VENCIMIENTO A CADA
 	// MES----------------------------------------
 	public void cargarVencimiento() {
-		vEmpeno.getTfFechaVencimiento()
-				.setValue(FechaUtil.convertirDateUtilAString(
-						FechaUtil.sumarMes(FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()),
-								Integer.parseInt(vEmpeno.getTfCuota().getText()))));
+		vEmpeno.getTfFechaVencimiento().setValue(FechaUtil.convertirDateUtilAString(FechaUtil.sumarMes(FechaUtil.convertirStringADateUtil(vEmpeno.getTfFechaRegistro().getText()), Integer.parseInt(vEmpeno.getTfCuota().getText()))));
 	}
 
 	// --------------------Verificar El estado de las

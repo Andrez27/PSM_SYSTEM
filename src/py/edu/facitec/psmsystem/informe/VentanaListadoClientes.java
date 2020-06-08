@@ -30,7 +30,7 @@ import py.edu.facitec.psmsystem.util.TablaUtil;
 public class VentanaListadoClientes extends JDialog {
 	private static final long serialVersionUID = 1L;
 
-	private JTextField tfDesdeNombre, tfHastaNombre,tfHastaId, tfDesdeId;
+	private JTextField tfDesdeNombre, tfHastaNombre, tfHastaId, tfDesdeId;
 	private JLabel lblOrdenarPor, lblTotalRegistros;
 	private JButton btnProcesar, btnCancelar, btnImprimir;
 	private TablaListadoClientes tablaClientes;
@@ -41,7 +41,8 @@ public class VentanaListadoClientes extends JDialog {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaListadoClientes() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaListadoClientes.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(VentanaListadoClientes.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setTitle("Listado de Clientes");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);
@@ -87,6 +88,7 @@ public class VentanaListadoClientes extends JDialog {
 					tfHastaId.selectAll();
 				}
 			}
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -113,6 +115,7 @@ public class VentanaListadoClientes extends JDialog {
 					tfDesdeNombre.selectAll();
 				}
 			}
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -127,7 +130,6 @@ public class VentanaListadoClientes extends JDialog {
 		tfHastaId.setColumns(10);
 		tfHastaId.setBounds(69, 34, 91, 20);
 		getContentPane().add(tfHastaId);
-
 
 		JLabel lblDesdeNombre = new JLabel("Desde Nombre: ");
 		lblDesdeNombre.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -178,7 +180,7 @@ public class VentanaListadoClientes extends JDialog {
 				}
 			}
 		});
-		cbOrden.setModel(new DefaultComboBoxModel(new String[] {"Id", "Nombre"}));
+		cbOrden.setModel(new DefaultComboBoxModel(new String[] { "Id", "Nombre" }));
 		cbOrden.setSelectedIndex(0);
 		cbOrden.setBounds(451, 10, 91, 20);
 		getContentPane().add(cbOrden);
@@ -221,7 +223,6 @@ public class VentanaListadoClientes extends JDialog {
 		btnImprimir.setBounds(420, 340, 122, 34);
 		getContentPane().add(btnImprimir);
 
-
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -232,32 +233,34 @@ public class VentanaListadoClientes extends JDialog {
 		btnCancelar.setBounds(552, 340, 122, 34);
 		getContentPane().add(btnCancelar);
 
-		//		btnSalir = new JButton("Salir");
-		//		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		//		btnSalir.setBounds(552, 340, 122, 34);
-		//		btnSalir.addActionListener(new ActionListener() {
-		//			public void actionPerformed(ActionEvent e) {
-		//				dispose();
-		//			}
-		//		});
-		//		getContentPane().add(btnSalir);
+		// btnSalir = new JButton("Salir");
+		// btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		// btnSalir.setBounds(552, 340, 122, 34);
+		// btnSalir.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		// dispose();
+		// }
+		// });
+		// getContentPane().add(btnSalir);
 
 	}
 
-	//-------------------------------------METODOS------------------------------------------------
+	// -------------------------------------METODOS------------------------------------------------
 	private void procesar() {
 		dao = new ClienteDao();
 		int idDesde = 0;
 		int idHasta = 9999999;
 		try {
 			idDesde = Integer.parseInt(tfDesdeId.getText());
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		try {
 			idHasta = Integer.parseInt(tfHastaId.getText());
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
 		String nDesde = tfDesdeNombre.getText();
-		String nHasta = tfHastaNombre.getText()+"zzzz";
+		String nHasta = tfHastaNombre.getText() + "zzzz";
 
 		lista = dao.recuperarPorRangos(idDesde, idHasta, nDesde, nHasta, cbOrden.getSelectedIndex());
 		tablaClientes.setLista(lista);
@@ -265,23 +268,23 @@ public class VentanaListadoClientes extends JDialog {
 		table.setModel(tablaClientes);
 		TablaUtil.resizeTableColumnWidth(table);
 
-		lblTotalRegistros.setText(lista.size()+"");
+		lblTotalRegistros.setText(lista.size() + "");
 
 		btnImprimir.requestFocus();
 	}
 
 	private void imprimir() {
 		if (lista == null) {
-			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		String filtros = "Id: "+tfDesdeId.getText()+" "+"hasta"+" "+tfHastaId.getText()+" | "
-				+ "Nombre: "+tfDesdeNombre.getText()+" "+"hasta"+" "+tfHastaNombre.getText()+" | "
-				+ "Ordenado por: "+cbOrden.getSelectedItem().toString()+" | "
-				+ "Total registros: "+lblTotalRegistros.getText()+"";
+		String filtros = "Id: " + tfDesdeId.getText() + " " + "hasta" + " " + tfHastaId.getText() + " | " + "Nombre: "
+				+ tfDesdeNombre.getText() + " " + "hasta" + " " + tfHastaNombre.getText() + " | " + "Ordenado por: "
+				+ cbOrden.getSelectedItem().toString() + " | " + "Total registros: " + lblTotalRegistros.getText() + "";
 		Map<String, Object> map = new HashMap<>();
 		map.put("filtros", filtros);
-		map.put("codigo", ""+((Math.random()*9999)+1000));
+		map.put("codigo", "" + ((Math.random() * 9999) + 1000));
 		ReportesUtil.GenerarInforme(lista, map, "ListadoClientes");
 	}
 
@@ -295,7 +298,7 @@ public class VentanaListadoClientes extends JDialog {
 		tablaClientes.setLista(lista);
 		tablaClientes.fireTableDataChanged();
 
-		lblTotalRegistros.setText(lista.size()+"");
+		lblTotalRegistros.setText(lista.size() + "");
 		tfDesdeId.requestFocus();
 	}
 }

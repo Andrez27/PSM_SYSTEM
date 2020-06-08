@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 import py.edu.facitec.psmsystem.util.Factory;
 
 public class GenericDao<T> {
+	
 	Class<T> clase;
 	protected CriteriaBuilder builder;
 	protected CriteriaQuery<T> criteriaQuery;

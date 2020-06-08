@@ -3,16 +3,15 @@ package py.edu.facitec.psmsystem.componente;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class BotonIconoVentana extends JButton {
+public class BotonesTolbarABM extends JButton {
 
-	public BotonIconoVentana() {
+	public BotonesTolbarABM() {
 		setVerticalTextPosition(SwingConstants.BOTTOM);
 		setPreferredSize(new Dimension(100, 100));
 		setHorizontalTextPosition(SwingConstants.CENTER);
@@ -28,13 +27,8 @@ public class BotonIconoVentana extends JButton {
 	}
 
 	public void setIcono(String nombreIcono) {
-		try {
-			URL url = BotonIconoVentana.class
-					.getResource("/py/edu/facitec/psmsystem/img/32bits/" + nombreIcono.toLowerCase() + ".png");
-			setIcon(new ImageIcon(url));
+		setIcon(new ImageIcon(BotonesTolbarABM.class
+				.getResource("/py/edu/facitec/psmsystem/img/32bits/" + nombreIcono.toLowerCase() + ".png")));
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

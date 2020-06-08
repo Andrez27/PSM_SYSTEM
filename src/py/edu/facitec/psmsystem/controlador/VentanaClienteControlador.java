@@ -1,7 +1,7 @@
 package py.edu.facitec.psmsystem.controlador;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -15,7 +15,7 @@ import py.edu.facitec.psmsystem.interfaz.AccionesABM;
 import py.edu.facitec.psmsystem.tabla.TablaCliente;
 import py.edu.facitec.psmsystem.util.TablaUtil;
 
-public class VentanaClienteControlador implements AccionesABM, KeyListener {
+public class VentanaClienteControlador implements AccionesABM {
 
 	private VentanaCliente vCliente;
 	private String accion;
@@ -49,7 +49,15 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 				cargarFormulario(vCliente.getTable().getSelectedRow());
 			}
 		});
-		vCliente.gettBuscador().addKeyListener(this);
+
+		vCliente.gettBuscador().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getSource() == vCliente.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
+					recuperarPorFiltro();
+				}
+			}
+		});
 	}
 
 	@Override
@@ -86,15 +94,15 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 				try {
 					dao.eliminar(cliente);
 					dao.commit();
-					recuperarTodo();
-					this.vCliente.getMiToolBar().estadoInicialToolBar(true, 2);
-					vaciarFormulario();
 				} catch (Exception e) {
 					dao.rollback();
 					JOptionPane.showMessageDialog(null,
 							"No se pudo eliminar el registro \nEl cliente esta vinculado a un empeño", "Error!",
 							JOptionPane.ERROR_MESSAGE);
 				}
+				recuperarTodo();
+				this.vCliente.getMiToolBar().estadoInicialToolBar(true, 2);
+				vaciarFormulario();
 			}
 		}
 	}
@@ -124,17 +132,15 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 				dao.modificar(cliente);
 			}
 			dao.commit();
-			vaciarFormulario();
-			this.vCliente.getMiToolBar().estadoInicialToolBar(true, 2);
-			estadoInicialCampos(false);
-			estadoInicialCampos2(false);
-			recuperarTodo();
 		} catch (Exception e) {
 			dao.rollback();
 			JOptionPane.showMessageDialog(null, "Se produjo un error al guardar", "Error!", JOptionPane.ERROR_MESSAGE);
 		}
+		vaciarFormulario();
+		this.vCliente.getMiToolBar().estadoInicialToolBar(true, 2);
 		estadoInicialCampos(false);
 		estadoInicialCampos2(false);
+		recuperarTodo();
 		this.vCliente.getTable().setEnabled(true);
 	}
 
@@ -146,6 +152,7 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		vaciarFormulario();
 		this.vCliente.getTable().setEnabled(true);
 	}
+
 //------------------------------------------------------------------------
 	private void recuperarTodo() {
 		lista = dao.recuperarTodo();
@@ -228,7 +235,8 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		return false;
 	}
 
-	// --------------------------------VALIDAR CAMPOS---------------------------------------
+	// --------------------------------VALIDAR
+	// CAMPOS---------------------------------------
 	private boolean validarCampos() {
 		if (vCliente.gettfNombre().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "El campo \"Nombre\" es obligatorio", "Atención!",
@@ -251,7 +259,8 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		return true;
 	}
 
-	// ---------------------------------------------INICIALIZAR BASE DE DATOS-------------------------------------
+	// ---------------------------------------------INICIALIZAR BASE DE
+	// DATOS-------------------------------------
 	public void inicializarCliente() {
 		String tabla = "tb_cliente";
 		dao.eliminarTodos(tabla);
@@ -262,20 +271,4 @@ public class VentanaClienteControlador implements AccionesABM, KeyListener {
 		}
 	}
 
-	// ----------------------------------------------------------------------------------------------------------
-	@Override
-	public void keyPressed(KeyEvent e) {
-		if (e.getSource() == vCliente.gettBuscador() && e.getKeyCode() == KeyEvent.VK_ENTER) {
-			recuperarPorFiltro();
-//			recuperarTodo();
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
 }

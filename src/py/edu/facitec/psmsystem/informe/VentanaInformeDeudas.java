@@ -41,7 +41,8 @@ public class VentanaInformeDeudas extends JDialog {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public VentanaInformeDeudas() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInformeDeudas.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(VentanaInformeDeudas.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setTitle("Informe de Deudas");
 		setBounds(100, 100, 690, 415);
 		getContentPane().setLayout(null);
@@ -94,7 +95,8 @@ public class VentanaInformeDeudas extends JDialog {
 
 		cbEstado = new JComboBox();
 		cbEstado.setToolTipText("");
-		cbEstado.setModel(new DefaultComboBoxModel(new String[] {"Activo", "Vencido", "Cobrado", "Anulado", "Todos"}));
+		cbEstado.setModel(
+				new DefaultComboBoxModel(new String[] { "Activo", "Vencido", "Cobrado", "Anulado", "Todos" }));
 		cbEstado.setSelectedIndex(0);
 		cbEstado.setBounds(439, 10, 92, 19);
 		getContentPane().add(cbEstado);
@@ -142,19 +144,19 @@ public class VentanaInformeDeudas extends JDialog {
 
 	}
 
-	//-------------------------------------METODOS------------------------------------------------
+	// -------------------------------------METODOS------------------------------------------------
 	private void procesar() {
 		dao = new DeudaClienteDao();
-		if (cbEstado.getSelectedIndex()==4) {
+		if (cbEstado.getSelectedIndex() == 4) {
 			lista = dao.recuperarPorNombre(tfNombre.getText());
-		}else {
+		} else {
 			lista = dao.filtroInforme(tfNombre.getText(), cbEstado.getSelectedIndex());
 		}
 		tablaInformeDeudas.setLista(lista);
 		tablaInformeDeudas.fireTableDataChanged();
 		table.setModel(tablaInformeDeudas);
 		TablaUtil.resizeTableColumnWidth(table);
-		lblTotalRegistros.setText(lista.size()+"");
+		lblTotalRegistros.setText(lista.size() + "");
 	}
 
 	private void cancelar() {
@@ -166,23 +168,25 @@ public class VentanaInformeDeudas extends JDialog {
 		tablaInformeDeudas.fireTableDataChanged();
 
 		tfNombre.requestFocus();
-		lblTotalRegistros.setText(lista.size()+"");
+		lblTotalRegistros.setText(lista.size() + "");
 	}
 
 	private void imprimir() {
 		if (lista == null) {
-			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No hay datos para imprimir", "Atención!",
+					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		String filtros;
 		if (tfNombre.getText().isEmpty()) {
-			filtros = "Deudas de: |"+cbEstado.getSelectedItem().toString()+"| hasta la fecha";
-		}else {
-			filtros = "Deudas de: |"+tfNombre.getText()+"| con estado |"+cbEstado.getSelectedItem().toString()+"| hasta la fecha";
+			filtros = "Deudas de: |" + cbEstado.getSelectedItem().toString() + "| hasta la fecha";
+		} else {
+			filtros = "Deudas de: |" + tfNombre.getText() + "| con estado |" + cbEstado.getSelectedItem().toString()
+					+ "| hasta la fecha";
 		}
 		Map<String, Object> map = new HashMap<>();
 		map.put("filtros", filtros);
-		map.put("codigo", ""+((Math.random()*9999)+1000));
+		map.put("codigo", "" + ((Math.random() * 9999) + 1000));
 		ReportesUtil.GenerarInforme(lista, map, "InformeDeudas");
 	}
 }

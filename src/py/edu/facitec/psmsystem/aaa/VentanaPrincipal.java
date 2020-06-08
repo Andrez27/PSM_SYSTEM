@@ -1,4 +1,4 @@
-package py.edu.facitec.psmsystem.app;
+package py.edu.facitec.psmsystem.aaa;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -51,13 +51,14 @@ import py.edu.facitec.psmsystem.transaccion.VentanaEmpeno;
 public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 
 	private PanelFondo contentPane;
-	public static JLabel lblNombre, lblRuc, lblTelefono, lblEmail;
 	private List<Configuracion> configuracion;
 	private ConfiguracionDao configuracionDao;
 	private JPanel jPanelConfig;
+	public static JLabel lblNombre, lblRuc, lblTelefono, lblEmail;
 
 	public VentanaPrincipal() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		DefaultKeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(this);
 
 		setTitle("PSMSystem v1.9");
@@ -176,7 +177,6 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 
 		JMenuItem mntmInicializacinDeDatos = new JMenuItem("Inicializaci\u00F3n de Datos");
 		mntmInicializacinDeDatos.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				int respuesta = JOptionPane.showConfirmDialog(null,
 						"Desea restablecer base de datos?\nSerán eliminado permanentemente todos los datos almacenados",
@@ -237,7 +237,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		toolBar.add(btncnEmpeno);
 
 		BotonIconoPrincipal btncnCobranza = new BotonIconoPrincipal();
-		btncnCobranza.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cobranza.png")));
+		btncnCobranza.setIcon(
+				new ImageIcon(VentanaPrincipal.class.getResource("/py/edu/facitec/psmsystem/img/64bits/cobranza.png")));
 		btncnCobranza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirFormularioCobranza();
@@ -275,7 +276,8 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		gbl_jPanelConfig.columnWidths = new int[] { 0, 0, 0, 0, 0 };
 		gbl_jPanelConfig.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_jPanelConfig.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		gbl_jPanelConfig.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_jPanelConfig.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		jPanelConfig.setLayout(gbl_jPanelConfig);
 
 		lblNombre = new JLabel("");
@@ -339,7 +341,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		jPanelConfig.add(label, gbc_label);
 
 		cargarConfiguracion();
-		
+
 		verificarFechasVencimiento();
 
 	}
@@ -440,8 +442,7 @@ public class VentanaPrincipal extends JFrame implements KeyEventDispatcher {
 		}
 	}
 
-	// ----------------INICIALIZAR BASE DE
-	// DATOS------------------------------------------
+	// -------------------------------INICIALIZAR BASE DE DATOS
 	public void inicializarBaseDeDatos() {
 		VentanaCliente a = new VentanaCliente();
 		VentanaClienteControlador ventanaClienteControlador = new VentanaClienteControlador(a);

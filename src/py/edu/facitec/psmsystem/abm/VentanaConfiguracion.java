@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import py.com.cs.xnumberfield.component.NumberTextField;
-import py.edu.facitec.psmsystem.app.VentanaPrincipal;
+import py.edu.facitec.psmsystem.aaa.VentanaPrincipal;
 import py.edu.facitec.psmsystem.dao.ConfiguracionDao;
 import py.edu.facitec.psmsystem.entidad.Configuracion;
 
@@ -29,17 +29,16 @@ public class VentanaConfiguracion extends JDialog {
 	private JLabel lblValidarTelefono, lblValidarRuc, lblValidarNombre;
 	private JTextField tfNombre, tfRuc, tfTelefono, tfEmail;
 	private JButton btnCancelar, btnBorrar, btnActualizar;
+	public NumberTextField tfInteres;
 	private Configuracion configuracion;
 	private ConfiguracionDao dao;
 	private List<Configuracion> configuraciones;
-	public NumberTextField tfInteres;
-	@SuppressWarnings("unused")
-	private List<Configuracion> campos;
 
 	public VentanaConfiguracion() {
 		setTitle("Configuración");
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaConfiguracion.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(VentanaConfiguracion.class.getResource("/py/edu/facitec/psmsystem/img/icono.png")));
 		setBounds(100, 100, 396, 276);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(this);
@@ -282,7 +281,7 @@ public class VentanaConfiguracion extends JDialog {
 		lblValidarNombre.setBounds(185, 32, 195, 20);
 		getContentPane().add(lblValidarNombre);
 
-		datosActuales();
+		cargarConfiguracion();
 
 	}
 
@@ -301,20 +300,24 @@ public class VentanaConfiguracion extends JDialog {
 		if (validarCampos()) {
 			return;
 		}
+
 		cargarDatos();
+
 		dao = new ConfiguracionDao();
 		dao.insertarOModificar(configuracion);
+		
 		try {
 			dao.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			dao.rollback();
 		}
-		actualizarPantalla();
-		dispose();
+		
+		actualizarConfiguracion();
+		JOptionPane.showMessageDialog(null, "Datos actualizados");
 	}
 
-	private void actualizarPantalla() {
+	private void actualizarConfiguracion() {
 		dao = new ConfiguracionDao();
 		configuracion = dao.recuperarPorId(1);
 		VentanaPrincipal.lblNombre.setText(configuracion.getNombre());
@@ -323,7 +326,7 @@ public class VentanaConfiguracion extends JDialog {
 		VentanaPrincipal.lblEmail.setText(configuracion.getEmail());
 	}
 
-	private void datosActuales() {
+	private void cargarConfiguracion() {
 		dao = new ConfiguracionDao();
 		configuraciones = dao.recuperarTodo();
 		if (configuraciones.size() == 0)
@@ -348,7 +351,6 @@ public class VentanaConfiguracion extends JDialog {
 	// CAMPOS-------------------------------------
 	private boolean validarCampos() {
 		dao = new ConfiguracionDao();
-		campos = dao.recuperarTodo();
 		if (tfInteres.getText().isEmpty() || tfInteres.getValue() < 1) {
 			JOptionPane.showMessageDialog(null, "Informe valor del \"Interés\" \nInterés mínimo es de 1%", "Atención!",
 					JOptionPane.INFORMATION_MESSAGE);
